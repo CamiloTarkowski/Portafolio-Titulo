@@ -1,2 +1,3 @@
-/node_modules
-schemas
+node_modules
+data
+app

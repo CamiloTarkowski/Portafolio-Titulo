@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "electron src/index.js"
   },
@@ -10,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^18.0.4"
+    "electron": "^18.0.4",
+    "jest": "^28.0.1"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "sequelize": "^6.19.0"
   }
 }
