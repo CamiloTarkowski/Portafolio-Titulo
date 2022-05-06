@@ -1,25 +1,28 @@
 <main>
+  <div>
+    <form>
+      <div>
+        <h3>Ingrese id del producto: </h3>
+        <input placeholder="1" [(ngModel)]="productId" name="productId" required autocomplete="off">
+      </div>
+      <br>
+      <div>
+        <h3>Dirección de entrega: </h3>
+        <input placeholder="Maipú, Calle, Nº" [(ngModel)]="address" name="address" required autocomplete="off">
+      </div>
+      <br>
+      <div>
+        <h3>Nombre de la persona que recibe: </h3>
+        <input placeholder="Felipe" [(ngModel)]="name" name="name" required autocomplete="off">
+      </div>
+      <br>
+      <div>
+        <h3>Cantidad: </h3>
+        <input placeholder="2" [(ngModel)]="amount" name="amount" required autocomplete="off">
+      </div>
+      <br>
+      <button mat-button (click)="sendOrder($event)">Solicitar</button>
     
-  <form>
-    <div>
-      <h3>Ingrese código de producto: </h3>
-      <input placeholder="" value="" name="" required/>
-    </div>
-
-    <div>
-      <h3>Metodo de entrega: </h3>
-      <input placeholder="" value="" name="" required/>
-    </div>
-
-    <div>
-      <h3>Cantidad: </h3>
-      <input placeholder="" value="" name="" required/>
-    </div>
-
-    <button></button>
-
-  </form>
+    </form>
+  </div>
 </main>
-
-
-// nombre del producto

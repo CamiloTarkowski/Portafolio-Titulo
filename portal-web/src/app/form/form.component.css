@@ -1,0 +1,34 @@
+h3{
+    font-family: calibri;
+    font-size: 1;
+    color: black;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+	width: 200px;
+	height: 400px;
+	background: gainsboro;
+    opacity: 0.8;
+	margin: auto;
+	box-shadow: 7px 13px 37px rgb(46, 46, 46);
+	padding: 20px 50px;
+	color: white;
+  }
+
+  main {
+      background: linear-gradient(green, white);
+        display: flex;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+  }
+
+  button{
+    width: 178px;
+    cursor: pointer;
+  }
