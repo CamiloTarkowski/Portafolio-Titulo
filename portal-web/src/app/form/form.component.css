@@ -8,8 +8,8 @@ form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-	width: 200px;
-	height: 400px;
+	width: 300px;
+	height: 600px;
 	background: gainsboro;
     opacity: 0.8;
 	margin: auto;
