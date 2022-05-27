@@ -2,9 +2,10 @@
   "name": "portal-admin",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "type": "commonjs",
+  "main": "src/index.js",
   "scripts": {
-    "start": "electron src/main.js"
+    "start": "electron src/index.js"
   },
   "keywords": [],
   "author": "",

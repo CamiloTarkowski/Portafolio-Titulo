@@ -35,7 +35,6 @@ main {
   flex-direction: column;
   align-items: center;
   height: 97.9vh;
-  
 }
 
 .container {
@@ -66,7 +65,7 @@ main {
 .icon__text {
   margin-top: 35px;
   font-size: 24px;
-  font-family: 'Inter', sans-serif;
+  user-select: none;
   font-weight: bold;
   color: #6578B9;
 }
@@ -80,5 +79,4 @@ main {
   font-size: 30px;
   font-weight: bold;
   color: #FFFFFF;
-  font-family: 'Inter', sans-serif;
 }
