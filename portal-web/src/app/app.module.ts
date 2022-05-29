@@ -10,9 +10,10 @@ import { ProductoComponent } from './producto/producto.component';
 import { NavegadorComponent } from './navegador/navegador.component';
 import { FooterComponent } from './footer/footer.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent],
+  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

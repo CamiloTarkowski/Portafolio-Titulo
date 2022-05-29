@@ -19,7 +19,7 @@ form {
   }
 
   main {
-      background: linear-gradient(green, white);
+      background: green;
         display: flex;
         height: 100vh;
         display: flex;
