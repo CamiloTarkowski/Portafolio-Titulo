@@ -1,0 +1,19 @@
+html, body {
+  font-family: 'Inter', sans-serif;
+}
+
+#goBack {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+}
+
+.container-goback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(54, 54, 54);
+}
