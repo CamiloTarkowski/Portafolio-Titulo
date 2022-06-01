@@ -29,14 +29,6 @@
 } */
 
 
-main {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 97.9vh;
-}
-
 .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -45,7 +37,7 @@ main {
   justify-items: center;
   background-color: #4B5986;
   width: 800px;
-  padding: 0 100px;
+  padding: 0 160px;
   height: 730px;
   border-radius: 5px;
 }
@@ -74,9 +66,9 @@ main {
   height: 150px;
 }
 
-.title {
-  grid-column: span 2;
+.menu-title {
   font-size: 30px;
   font-weight: bold;
   color: #FFFFFF;
+  grid-column: span 2;
 }
