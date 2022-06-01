@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { HomeComponent } from './home/home.component';
 
+
 @NgModule({
   declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent],
   imports: [
