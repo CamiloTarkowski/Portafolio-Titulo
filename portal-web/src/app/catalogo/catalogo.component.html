@@ -2,15 +2,15 @@
 <body class="pad">
 <div class="container bg-light">
 <div class="row" style="padding-top:3%;">
-  <div class="col-md-4" *ngFor="let item of items">
-    <div class="card box-shadow" style="width: 18rem;">
+  <div class="col-md-4" style="padding:3%;" *ngFor="let item of items">
+    <div class="card box-shadow" style="padding:3%;">
       <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt="">
       <div class="card-body">
         <h5 class="card-title">{{item.nombre}}</h5>
-        <p class="card-text">{{item.descripcion}}</p>
+
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Precio: ${{item.precio}}</li>
+        <li class="list-group-item">Precio: $ {{item.precio | separadorMil }}</li>
         <li class="list-group-item">Colegio: {{item.colegio}}</li>
         <li class="list-group-item">Talla: {{item.talla}}</li>
       </ul>
