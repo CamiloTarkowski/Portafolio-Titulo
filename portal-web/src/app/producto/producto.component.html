@@ -1,57 +1,15 @@
-
-
-
-  <!-- <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3">
-    <div class="card" style="width: 18rem;" *ngFor="let producto of arrayProductos">
-      <div class="col">
-        <div class="p-3 border bg-light"> 
-            <div class="card-body">
-              <img src={{producto.imagen}} class="card-img-top" alt="">
-        <h5 class="card-title">{{producto.nombre}}</h5>
-        <p class="card-text">{{producto.descripcion}}</p>
-        <a href="#" class="btn btn-success">{{producto.precio}}</a>
-      </div>
-      </div>
-      </div>
+<app-navegador></app-navegador>
+<div class="col-md-6">
+  <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+    <div class="card-body d-flex flex-column align-items-start">
+      <strong class="d-inline-block mb-2 text-primary">{{item.codigo}}</strong>
+      <h3 class="mb-0">
+        <h2>{{item.nombre}}</h2>
+      </h3>
+      <div class="mb-1 text-muted">{{item.precio}}</div>
+      <p class="card-text mb-auto">{{item.colegio}}</p>
+      <button class="btn btn-lg btn-block btn-success">Añadir al carrito</button>
     </div>
-  </div> -->
-
-
-    <div class="col">
-      <div class="p-3 border bg-light">
-          <div class="card" style="width: 18rem;">
-              <img src="./assets/img/catalogo/product1.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-success">Go somewhere</a>
-              </div>
-            </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-          <div class="card" style="width: 18rem;">
-              <img src="./assets/img/catalogo/product1.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-success">Go somewhere</a>
-              </div>
-            </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="p-3 border bg-light">
-          <div class="card" style="width: 18rem;">
-              <img src="./assets/img/catalogo/product1.jfif" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-success">Go somewhere</a>
-              </div>
-            </div>
-      </div>
-    </div>
-
-
+    <img class="card-img-right flex-auto d-none d-lg-block" src="../assets/img/catalogo/{{item.imagen}}" alt="Card image cap">
+  </div>
+</div>

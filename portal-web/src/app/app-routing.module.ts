@@ -13,6 +13,9 @@ const routes: Routes = [
     path:'', 
     component: HomeComponent
   },
+  {
+    path:'producto/:codigo',component:ProductoComponent
+  }
 ];
 
 @NgModule({

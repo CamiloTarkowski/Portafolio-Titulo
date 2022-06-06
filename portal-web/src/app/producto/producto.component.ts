@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductosService } from '../services/productos.service';
 
 @Component({
   selector: 'app-producto',
@@ -6,14 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent implements OnInit {
+  codigo:string;
+  private sub:any;
+  item : any;
 
-
-
-  constructor() {
+  constructor(private route: ActivatedRoute, public productoService:ProductosService) {
+    this.codigo='';
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params=> {
+      this.codigo = params['codigo'];
+    });
+    
+    this.getItemInfo();
+
+  }
+  getItemInfo(){
+    this.item=this.productoService.getItem(this.codigo);
   }
   
 
-  }
+}

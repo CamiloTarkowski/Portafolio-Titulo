@@ -4,7 +4,8 @@
 <div class="row" style="padding-top:3%;">
   <div class="col-md-4" style="padding:3%;" *ngFor="let item of items">
     <div class="card box-shadow" style="padding:3%;">
-      <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt="">
+      <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt=""
+      routerLink="/producto/{{item.codigo}}" type="button">
       <div class="card-body">
         <h5 class="card-title">{{item.nombre}}</h5>
 
