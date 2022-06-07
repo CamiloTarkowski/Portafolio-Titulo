@@ -1,26 +1,26 @@
-<app-navegador></app-navegador>
-<body class="pad">
-<div class="container bg-light">
-<div class="row" style="padding-top:3%;">
-  <div class="col-md-4" style="padding:3%;" *ngFor="let item of items">
-    <div class="card box-shadow" style="padding:3%;">
-      <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt=""
-      routerLink="/producto/{{item.codigo}}" type="button">
-      <div class="card-body">
-        <h5 class="card-title">{{item.nombre}}</h5>
 
+<title>Catálogo</title>
+<body class="pad">
+
+    <div class="row" style="padding-top:3%;">
+    <div class="col-md-4" style="padding:3%;" *ngFor="let item of items">
+      <div class="card border-0 box-shadow shadow-sm" style="padding:3%;">
+        <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt=""
+        routerLink="/producto/{{item.codigo}}" type="button">
+        <div class="card-body">
+          <h5 class="card-title">{{item.nombre}}</h5>
+
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Precio: $ {{item.precio | separadorMil }}</li>
+          <li class="list-group-item">Colegio: {{item.colegio}}</li>
+          <li class="list-group-item">Talla: {{item.talla}}</li>
+        </ul>
+        
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Precio: $ {{item.precio | separadorMil }}</li>
-        <li class="list-group-item">Colegio: {{item.colegio}}</li>
-        <li class="list-group-item">Talla: {{item.talla}}</li>
-      </ul>
-      
     </div>
-  </div>
-  </div>
-</div>
+    </div>
+
+</body> 
     
-    
-    
-</body>
+
