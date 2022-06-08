@@ -12,10 +12,11 @@ import { FooterComponent } from './footer/footer.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { HomeComponent } from './home/home.component';
 import { SeparadorMilPipe } from './separador-mil.pipe';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
-  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent, SeparadorMilPipe],
+  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent, SeparadorMilPipe, CartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-success" style="font-family:Ubuntu,sans-serif; font-size:18px;">
     <div class="container-fluid">
-      <a class="navbar-brand" style="padding-left: 15%"><img src="./assets/img/cyc.png" alt=""  width="40px"></a>
+      <a class="navbar-brand" style="padding-left: 15%"><img src="./assets/img/cyc.png" alt=""  width="40px" routerLink="home" type="button"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active, texto-nav" aria-current="page" routerLink="">Inicio</a>
+            <a class="nav-link active, texto-nav" aria-current="page" routerLink="home">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active, texto-nav" routerLink="/catalogo">Catálogo</a>
@@ -23,7 +23,7 @@
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Buscar (disabled)" aria-label="Search">
         </form>
-        <a href="#" style="padding-right:15%"><img src="./assets/img/cart.png" class="rgba(0,0,0,0);" alt=""  width="30px"></a>
+        <a href="/cart" style="padding-right:15%"><img src="./assets/img/cart.png" alt=""  width="30px"></a>
       </div>
     </div>
   </nav>
