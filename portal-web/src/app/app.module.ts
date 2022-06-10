@@ -13,16 +13,20 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
 import { HomeComponent } from './home/home.component';
 import { SeparadorMilPipe } from './separador-mil.pipe';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent, SeparadorMilPipe, CartComponent],
+  declarations: [AppComponent, ProductoComponent, NavegadorComponent, FooterComponent, CatalogoComponent, HomeComponent, SeparadorMilPipe, CartComponent, LoginComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
