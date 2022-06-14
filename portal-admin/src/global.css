@@ -53,6 +53,7 @@ main {
   border: none;
   background-color: #FFFFFF;
   border-radius: 8px;
+  text-indent: 8px;
 }
 
 .button-radius {
