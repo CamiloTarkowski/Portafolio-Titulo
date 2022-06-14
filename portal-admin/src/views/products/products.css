@@ -67,10 +67,11 @@
 
 .product {
   display: grid;
-  grid-template-columns: 150px 150px 150px 150px 150px 150px 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: white;
   border-radius: 5px;
   width: 1070px;
+  height: 150px;
   margin: 5px 0;
 }
 
@@ -91,8 +92,9 @@
 }
 
 .product__image {
-  height: 120px;
-  width: 120px;
+  height: 130px;
+  width: 130px;
+  margin: 5px auto;
   justify-self: center;
   align-self: center;
   border-radius: 5px;
@@ -100,5 +102,4 @@
 
 .button-radius img {
   height: 12px;
-  
 }
