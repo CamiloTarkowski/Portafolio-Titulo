@@ -18,9 +18,7 @@ export class CatalogoComponent implements OnInit {
     var link = 'http://localhost:1337/products';
     this._http.get(link).subscribe((products) => {
       this.products = products;
-      console.log(this.products[0].image.url);
-      // console.log('items en constructor: ' + this.items);
-    });
-    // console.log('Items: ' + this.items);
+      console.log("imagen url: "+this.products[0].image);
+    })
   }
 }
