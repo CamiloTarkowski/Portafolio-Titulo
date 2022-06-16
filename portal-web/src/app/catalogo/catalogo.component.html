@@ -5,9 +5,12 @@
     <!-- <div class="row" style="padding-top:3%;"> -->
     <div class="col-md-4" style="padding:3%;" *ngFor="let item of items">
       <ul class="list-group list-group-flush">
-      <li class="list-group-item">Precio: $ {{item.precio | separadorMil }}</li>
-      <li class="list-group-item">Colegio: {{item.codigo}}</li>
-      <li class="list-group-item">Talla: {{item.talla}}</li>
+        <li class="list-group-item">Nombre: {{item.name}}</li>
+      <li class="list-group-item">Precio: $ {{item.price | separadorMil }}</li>
+      <li class="list-group-item">Codigo: {{item.code}}</li>
+      <li class="list-group-item">Talla: {{item.size}}</li>
+      <img src="http://localhost:1337${{item.image.url}}">
+      <li class="list-group-item"></li>
     </ul>
     </div>
       <!-- <div class="card border-0 box-shadow shadow-sm" style="padding:3%;">

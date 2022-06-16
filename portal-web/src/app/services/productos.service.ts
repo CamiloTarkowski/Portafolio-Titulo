@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosService {
   items:any=[]; 
-  constructor(private _http: HttpClient) {
+  constructor() {
     
    }
 
@@ -14,11 +14,11 @@ export class ProductosService {
      return this.items;
    }
 
-   getItem(codigo:string){
+   getItem(code:string){
      let result:any;
 
      for(let item of this.items){
-       if(item.codigo==codigo){
+       if(item.code==code){
          result=item;
          break;
        }
