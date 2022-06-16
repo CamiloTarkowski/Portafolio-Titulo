@@ -15,18 +15,19 @@ export class ProductoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, public productoService:ProductosService, private _http: HttpClient) {
     this.id=0;
+    this.product=[];
   }
 
   ngOnInit() {
-    //OBTENER 'id' desde catalogo
+    //OBTENER 'id' desde template catalogo
     this.sub = this.route.params.subscribe(params=> {
       this.id = params['id'];
      });
     //GET
     var link = 'http://localhost:1337/products/'+(this.id.toString());
-    this._http.get(link).subscribe((product) => {
-       this.product = product;
-       console.log(product);
+    this._http.get(link).subscribe((products) => {
+       this.product = products;
+       console.log(this.product);
      })
 
 

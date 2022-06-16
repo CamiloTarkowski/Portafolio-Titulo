@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from '../services/productos.service';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-catalogo',
   templateUrl: './catalogo.component.html',
@@ -15,10 +16,7 @@ export class CatalogoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    var link = 'http://localhost:1337/products';
-    this._http.get(link).subscribe((products) => {
-      this.products = products;
-      console.log("imagen url: "+this.products[0].image);
-    })
+    this.productoService.getAllProducts().subscribe(data => this.products=(data));
+    console.log("Products: "+this.products);
   }
 }
