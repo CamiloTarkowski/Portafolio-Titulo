@@ -92,8 +92,10 @@
 }
 
 .product__image {
+  background-size: cover;
+  object-fit: cover;
   height: 120px;
-  width: 120px;
+  width: 140px;
   margin: 5px auto;
   justify-self: center;
   align-self: center;

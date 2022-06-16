@@ -12,7 +12,7 @@
 .orders-container {
   background-color: #1F2B3C;
   width: 1100px;
-  height: 660px;
+  height: 760px;
   border-radius: 5px;
 }
 
@@ -32,8 +32,10 @@
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  margin: 15px;
-  width: 500px;
+  margin: 10px auto;
+  width: 450px;
+  background-color: #3A3F6C;
+  border-radius: 10px;
 }
 
 .light{
@@ -54,9 +56,9 @@
 }
 
 .row {
-  font-size: 18px;
+  font-size: 15px;
   color: white;
-  height: 20px;
+  height: 15px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -67,7 +69,7 @@
   align-items: center;
   height: 60px;
   background-color: #363636;
-  border-radius: 5px 5px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .row-title {

@@ -6,7 +6,6 @@ const listOrders = document.querySelector(".list-orders");
 const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
   orders = JSON.parse(orders);
-  console.log(orders);
   for (let i = 0; i < orders.length; i++) {
     const template = `
     <div class="order">
@@ -17,7 +16,7 @@ const loadOrders = async () => {
       </div>
       <div class="light">
         <p class="row">Id pedido:</p>
-        <p class="row">${orders[i].client.id}</p>
+        <p class="row">${orders[i].id}</p>
       </div>
       <div class="dark">
         <p class="row">Direccion:</p>
@@ -45,10 +44,10 @@ const loadOrders = async () => {
       </div>
       <div class="orders-buttons">
         <button class="button green">Aceptar</button>
-        <button class="button red">Eliminar</button>
-        <button class="button blue" onclick="showProduct(${
-          orders[i].products[0].id
-        })">Ver producto</button>
+        <button class="button red">Rechazar</button>
+        <button class="button blue" onclick="showProduct(${orders[
+          i
+        ].products.map((product) => product.id)})">Ver producto</button>
       </div>
     </div>
     `;
@@ -57,7 +56,7 @@ const loadOrders = async () => {
   }
 };
 
-window.onload = loadOrders();
+window.onload = async () => await loadOrders();
 
 goBack.addEventListener("click", () => {
   ipcRenderer.send("go-back");
@@ -77,4 +76,6 @@ const formatDate = (date) => {
   return `${day}/${month}/${year}`;
 };
 
-const showProducts = async (id) => {};
+const showProduct = async (...ids) => {
+  ipcRenderer.send("show-products", ids);
+};

@@ -1,0 +1,52 @@
+
+
+.form {
+  border-radius: 10px;
+  display:  flex;
+  flex-direction: column;
+  padding: 0 50px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #1F2B3C;
+}
+
+.form__input {
+  height: 45px;
+  border: none;
+  outline: none;
+  text-indent: 5px;
+  margin: 5px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.edit-product__image {
+  height: 200px;
+  width: 300px;
+  background-size: cover;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.form__select {
+  margin: 5px 0;
+  height: 45px;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.button { 
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  height: 45px;
+  width: 100%;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+}
+
+.file {
+  color: white;
+}

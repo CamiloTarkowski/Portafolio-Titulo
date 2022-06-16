@@ -2,41 +2,89 @@ const { ipcRenderer } = require("electron/renderer");
 
 const main = document.querySelector(".main");
 
-// TODO: mostrar si es que tiene más de un codigo de producto diferente una slider de productos horziontalmente y mostrar la cantidad que pidieron de ese producto
+const loadProducts = async () => {
+  let products = await ipcRenderer.invoke("load-show-products");
+  products = JSON.parse(products);
+  products = products.map((product) => {
+    product.amount = 1;
 
-/* const loadProduct = async () => {
-  let product = await ipcRenderer.invoke("load-product");
-  product = JSON.parse(product);
+    return product;
+  });
+  // products = calculateAmountOfProducts(JSON.parse(products));
 
-  const template = `
-  <div class="show-product">
-    <h2>${product.name}</h2>
-    <img class="show-product__image" src="http://localhost:1337${product.image.url}" alt="${product.name}">
-    <div class="show-product__text">
-      <p>Codigo: ${product.code}</p>
+  for (let i = 0; i < products.length; i++) {
+    const template = `
+    <div class="show-product">
+      <h2>${products[i].name}</h2>
+      <img class="show-product__image" src="http://localhost:1337${products[i].image.url}" alt="${products[i].name}">
+      <div class="show-product__text">
+        <p>Codigo: ${products[i].code}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Descripción: ${products[i].description}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Precio: $${products[i].price}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Talla: ${products[i].size}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Stock: ${products[i].stock}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Cantidad: ${products[i].amount}</p>
+      </div>
+      <div class="show-product__text">
+        <p>Institución: ${products[i].institution.name}</p>
+      </div>
+    
     </div>
-    <div class="show-product__text">
-      <p>Descripción: ${product.description}</p>
-    </div>
-    <div class="show-product__text">
-      <p>Precio: $${product.price}</p>
-    </div>
-    <div class="show-product__text">
-      <p>Talla: ${product.size}</p>
-    </div>
-    <div class="show-product__text">
-      <p>Stock: ${product.stock}</p>
-    </div>
-    <div class="show-product__text">
-      <p>Institución: ${product.institution.name}</p>
-    </div>
-   
-  </div>
-  `;
+    
+    `;
 
-  ipcRenderer.send("close-product");
-  main.innerHTML += template;
+    main.innerHTML += template;
+  }
 };
 
-window.onload = loadProduct();
- */
+window.onload = loadProducts();
+
+// const calculateAmountOfProducts = (products) => {
+//   const productsCodeAndSize = products.map((product) => {
+//     return { code: product.code, size: product.size };
+//   });
+
+//   const productsWithAmount = [];
+
+//   for (let i = 0; i < products.length; i++) {
+//     if (existProduct(productsWithAmount, products[i])) {
+//       continue;
+//     }
+
+//     let amount = 1;
+
+//     productsCodeAndSize.map((codeAndSize) => {
+//       if (
+//         codeAndSize.code === products[i].code &&
+//         codeAndSize.size === products[i].size
+//       ) {
+//         amount++;
+//         productsWithAmount.push(products[i]);
+//       }
+//     });
+//   }
+//   return productsWithAmount;
+// };
+
+// const existProduct = (productsWithAmount, product) => {
+//   productsWithAmount.map((productWithAmount) => {
+//     if (
+//       productWithAmount.includes(product.code) &&
+//       productWithAmount.includes(product.size)
+//     ) {
+//       return true;
+//     }
+//   });
+
+//   return false;
+// };

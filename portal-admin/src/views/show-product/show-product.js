@@ -32,7 +32,6 @@ const loadProduct = async () => {
   </div>
   `;
 
-  ipcRenderer.send("close-product");
   main.innerHTML += template;
 };
 
