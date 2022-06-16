@@ -19,6 +19,7 @@
     "dotenv": "^16.0.1",
     "electron-browser-storage": "^1.0.7",
     "electron-reload": "^2.0.0-alpha.1",
-    "sequelize": "^6.19.0"
+    "sequelize": "^6.19.0",
+    "tui-calendar": "^1.15.3"
   }
 }
