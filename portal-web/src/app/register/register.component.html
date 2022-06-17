@@ -4,8 +4,20 @@
     <h1>Regístrate</h1>
     <br />
     <mat-form-field appearance="legacy">
+      <mat-label>Nombre de usuario</mat-label>
+      <input
+        autocomplete="off"
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.username"
+        name="username"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
       <mat-label>Nombre</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="text"
@@ -16,6 +28,7 @@
     <mat-form-field appearance="legacy">
       <mat-label>Apellido</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="text"
@@ -25,8 +38,21 @@
       />
     </mat-form-field>
     <mat-form-field appearance="legacy">
+      <mat-label>Segundo apellido</mat-label>
+      <input
+        autocomplete="off"
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.sec_lastname"
+        name="sec_lastname"
+        placeholder="segundo apellido"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
       <mat-label>Rut</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="text"
@@ -38,6 +64,7 @@
     <mat-form-field appearance="legacy">
       <mat-label>Dirección</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="text"
@@ -49,15 +76,18 @@
     <mat-form-field appearance="legacy">
       <mat-label>Teléfono</mat-label>
       <input
+        autocomplete="off"
         matInput
         [(ngModel)]="newUser.number"
         name="number"
         placeholder="+56 9 1111 1111"
+        required
       />
     </mat-form-field>
     <mat-form-field appearance="legacy">
       <mat-label>Email</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="email"
@@ -69,6 +99,7 @@
     <mat-form-field appearance="legacy">
       <mat-label>Contraseña</mat-label>
       <input
+        autocomplete="off"
         matInput
         required
         type="password"
