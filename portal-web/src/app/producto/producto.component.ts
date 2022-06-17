@@ -15,7 +15,6 @@ export class ProductoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, public productoService:ProductosService, private _http: HttpClient) {
     this.id=0;
-    this.product=[];
   }
 
   ngOnInit() {
@@ -23,12 +22,10 @@ export class ProductoComponent implements OnInit {
     this.sub = this.route.params.subscribe(params=> {
       this.id = params['id'];
      });
-    //GET
-    var link = 'http://localhost:1337/products/'+(this.id.toString());
-    this._http.get(link).subscribe((products) => {
-       this.product = products;
-       console.log(this.product);
-     })
+    
+    //GET 
+      this.productoService.getProducto(this.id).subscribe(data => this.product=(data));
+
 
 
   }
