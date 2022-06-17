@@ -28,6 +28,7 @@ export class LoginComponent {
         this.authService.setToken(res.jwt);
         this.authService.setUser(res.user);
         this.toast.success(`Login exitoso, bienvenido ${res.user.name}`);
+        // this.navigatorService.set
         this.router.navigate(['/']);
       },
       (err) => {

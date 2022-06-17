@@ -28,37 +28,37 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a
-            class="nav-link active, texto-nav"
-            aria-current="page"
-            routerLink="home"
-            >Inicio</a
-          >
-        </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/catalogo"
             >Catálogo</a
           >
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="authService.isLogged()" (click)="logout()">
+          <a class="nav-link active, texto-nav" routerLink="/catalogo"
+            >Cerrar Sesión</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="!authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/login">Ingresa</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/register"
             >Regístrate</a
           >
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <form class="d-flex" role="search" *ngIf="authService.isLogged()">
         <input
           class="form-control me-2"
           type="search"
-          placeholder="Buscar (disabled)"
+          placeholder="Buscar"
           aria-label="Search"
         />
       </form>
-      <a routerLink="/cart" style="padding-right: 15%"
+      <a
+        routerLink="/cart"
+        style="padding-right: 15%"
+        *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
     </div>
