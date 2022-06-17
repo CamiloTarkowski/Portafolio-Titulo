@@ -134,7 +134,7 @@ const loadCalendar = () => {
     {
       id: "1",
       calendarId: "1",
-      title: "Polera aaaa",
+      title: "Polera Carolina llona \n Cantidad: 1",
       category: "allday",
       isAllDay: true,
       isPending: true,
