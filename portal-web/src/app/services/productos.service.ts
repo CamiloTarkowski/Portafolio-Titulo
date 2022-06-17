@@ -15,10 +15,11 @@ export class ProductosService {
   products:any;
   private sub:any;
   id:number;
-  private link = 'http://localhost:1337/products';
+  private link = 'http://localhost:1337/products/';
 
   constructor(private route: ActivatedRoute, private _http:HttpClient) {
     this.id=0;
+
    }
  
   /* retorna todos los productos */
@@ -26,19 +27,13 @@ export class ProductosService {
     return this._http.get<ProductoI[]>(this.link);
     }
 
-  /* busca y retorna un item por id. Si no encuentra nada, retorna [object] */
-  getProducto(id:number){
-    let result:any;
-    this.sub = this.route.params.subscribe(params=> {
-      this.id = params['id'];
-     });
-
-    var link = 'http://localhost:1337/products/'+(this.id.toString());
-    this._http.get(link).subscribe((products) => {
-       this.products = products;
-       console.log(this.products);
-     })
-    return result;
+  /* busca y retorna un producto por id. Si no encuentra nada, retorna [object] */
+  
+  getProducto(id:number):Observable<ProductoI[]>{
+          
+    var link = 'http://localhost:1337/products/'+(id.toString());
+    console.log("Link: "+link);
+    return this._http.get<ProductoI[]>(link);
   }
 
 }
