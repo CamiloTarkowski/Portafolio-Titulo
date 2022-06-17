@@ -1,10 +1,22 @@
- <div class="login container">
-        <form class="custom-form" method="post">
-            <h1>Ingresa con tu email y contraseña</h1>
-            <label for="email">Correo electrónico: </label>
-            <input type="email"[(ngModel)]="email" name="email" placeholder="nombre@email.com" required="required"/>
-            <label for="password">Contraseña: </label>      
-            <input type="password" [(ngModel)]="password"name="Contraseña" placeholder="**********" required="required"/>
-            <button type="submit" (click)="login()">Log in</button>
-        </form>
-  </div>
+<div class="login container">
+  <form class="custom-form">
+    <h1>Ingresa con tu email y contraseña</h1>
+    <label for="email">Correo electrónico: </label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="nombre@email.com"
+      required="required"
+    />
+    <label for="password">Contraseña: </label>
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="Contraseña"
+      placeholder="**********"
+      required="required"
+    />
+    <button type="button" (click)="login()">Iniciar sesión</button>
+  </form>
+</div>

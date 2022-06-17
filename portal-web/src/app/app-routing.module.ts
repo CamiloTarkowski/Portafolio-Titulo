@@ -2,33 +2,39 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
-import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ProductoComponent } from './producto/producto.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
-    path:'catalogo', 
-    component: CatalogoComponent
+    path: '',
+    component: CatalogoComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'home', 
-    component: HomeComponent
+    path: 'producto/:id',
+    component: ProductoComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'producto/:id',component:ProductoComponent
+    path: 'cart',
+    component: CartComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path:'cart',component:CartComponent
+    path: 'register',
+    component: RegisterComponent,
   },
   {
-    path:'login',component:LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path:'register',component:RegisterComponent
-  }
-
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
