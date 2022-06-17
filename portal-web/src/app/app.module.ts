@@ -40,7 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FormsModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
     ToastrModule.forRoot(),
   ],
   providers: [],
