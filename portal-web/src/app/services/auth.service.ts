@@ -12,10 +12,23 @@ export class AuthService {
   private apiUrl: string = 'http://localhost:1337';
 
   login(email: string, password: string): Observable<any> {
-    console.log('auth');
     return this.http.post(`${this.apiUrl}/auth/local`, {
       identifier: email,
       password,
+    });
+  }
+
+  register(newUser: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/auth/local/register`, {
+      name: newUser.name,
+      username: newUser.username,
+      email: newUser.email,
+      password: newUser.password,
+      number: newUser.number,
+      lastname: newUser.lastname,
+      sec_lastname: newUser.secLastname,
+      rut: newUser.rut,
+      address: newUser.address,
     });
   }
 

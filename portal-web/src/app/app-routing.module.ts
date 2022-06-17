@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { ProductoComponent } from './producto/producto.component';
 import { RegisterComponent } from './register/register.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'notificaciones',
+    component: NotificationsComponent,
   },
   {
     path: '**',

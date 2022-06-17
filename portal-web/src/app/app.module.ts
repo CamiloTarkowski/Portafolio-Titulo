@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     CartComponent,
     LoginComponent,
     RegisterComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

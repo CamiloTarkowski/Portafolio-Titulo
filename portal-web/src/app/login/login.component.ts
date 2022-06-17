@@ -27,26 +27,38 @@ export class LoginComponent {
       (res: { jwt: string; user: User }) => {
         this.authService.setToken(res.jwt);
         this.authService.setUser(res.user);
-        this.toast.success(`Login exitoso, bienvenido ${res.user.name}`);
-        // this.navigatorService.set
+        this.toast.success(`Login exitoso, bienvenido ${res.user.username}`);
         this.router.navigate(['/']);
       },
       (err) => {
         const errorMessage = err.error.message[0].messages[0].message;
-        if (errorMessage === 'Please provide your username or your e-mail.') {
-          this.toast.error(
-            'Por favor ingrese su email o nombre de usuario y contraseña.'
-          );
-        } else if (errorMessage === 'Please provide your password.') {
-          this.toast.error('Por favor ingrese su contraseña.');
-        } else if (
-          errorMessage === 'Please provide your username or your e-mail.'
-        ) {
-          this.toast.error('Por favor ingrese su email o nombre de usuario.');
-        } else if (errorMessage === 'Identifier or password invalid.') {
-          this.toast.error('Usuario o contraseña incorrectos.');
-        }
+        this.getErrorAlert(errorMessage);
       }
     );
+  }
+
+  private getErrorAlert(errorMessage: string) {
+    switch (errorMessage) {
+      case 'Please provide your username or your e-mail.':
+        this.toast.error(
+          'Por favor ingrese su email o nombre de usuario y contraseña.'
+        );
+        return;
+      case 'Please provide your password.':
+        this.toast.error('Por favor ingrese su contraseña.');
+        return;
+
+      case 'Please provide your username or your e-mail.':
+        this.toast.error('Por favor ingrese su email o nombre de usuario.');
+        return;
+
+      case 'Identifier or password invalid.':
+        this.toast.error('Usuario/email o contraseña incorrectos.');
+        return;
+
+      default:
+        this.toast.error('Ha ocurrido un error, por favor intente nuevamente.');
+        return;
+    }
   }
 }

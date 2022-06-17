@@ -9,53 +9,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./producto.component.css'],
 })
 export class ProductoComponent implements OnInit {
-<<<<<<< HEAD
-  codigo: string;
+  id: number;
   private sub: any;
-  item: any;
+  product: any;
 
   constructor(
     private route: ActivatedRoute,
-    public productoService: ProductosService
+    public productoService: ProductosService,
+    private _http: HttpClient
   ) {
-    this.codigo = '';
-  }
-
-  ngOnInit() {
-    this.sub = this.route.params.subscribe((params) => {
-      this.codigo = params['codigo'];
-    });
-=======
-  id:number;
-  private sub:any;
-  product : any;
-
-  constructor(private route: ActivatedRoute, public productoService:ProductosService, private _http: HttpClient) {
-    this.id=0;
-    this.product=[];
+    this.id = 0;
+    this.product = [];
   }
 
   ngOnInit() {
     //OBTENER 'id' desde template catalogo
-    this.sub = this.route.params.subscribe(params=> {
+    this.sub = this.route.params.subscribe((params) => {
       this.id = params['id'];
-     });
+    });
     //GET
-    var link = 'http://localhost:1337/products/'+(this.id.toString());
+    var link = 'http://localhost:1337/products/' + this.id.toString();
     this._http.get(link).subscribe((products) => {
-       this.product = products;
-       console.log(this.product);
-     })
-
->>>>>>> 5ca0222f9663990f5db08762a5d6a41a7badcea2
-
-    this.getItemInfo();
+      this.product = products;
+      console.log(this.product);
+    });
   }
-<<<<<<< HEAD
-  getItemInfo() {
-    this.item = this.productoService.getItem(this.codigo);
-  }
-=======
-
->>>>>>> 5ca0222f9663990f5db08762a5d6a41a7badcea2
 }
