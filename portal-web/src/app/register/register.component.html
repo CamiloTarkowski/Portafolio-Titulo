@@ -1,71 +1,92 @@
-<div class="login container">
-  <form class="custom-form">
-    <h1>Ingresa con tu email y contraseña</h1>
-    <label for="email">Correo electrónico: </label>
-    <input
-      type="text"
-      [(ngModel)]="newUser.username"
-      name="username"
-      placeholder="nombre43"
-      required
-    />
-    <input
-      type="email"
-      [(ngModel)]="newUser.email"
-      name="email"
-      placeholder="nombre@email.com"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.name"
-      name="name"
-      placeholder="nombre"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.lastname"
-      name="lastname"
-      placeholder="apellido"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.sec_lastname"
-      name="sec_lastname"
-      placeholder="segundo apellido"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.address"
-      name="address"
-      placeholder="direccion"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.number"
-      name="number"
-      placeholder="+56 9 1111 1111"
-      required
-    />
-    <input
-      type="text"
-      [(ngModel)]="newUser.rut"
-      name="rut"
-      placeholder="99.999.999-9"
-      required
-    />
-    <label for="password">Contraseña: </label>
-    <input
-      type="password"
-      [(ngModel)]="newUser.password"
-      name="Contraseña"
-      placeholder="**********"
-      required
-    />
-    <button type="button" (click)="register()">Iniciar sesión</button>
+<div>
+  <br /><br />
+  <form class="form">
+    <h1>Regístrate</h1>
+    <br />
+    <mat-form-field appearance="legacy">
+      <mat-label>Nombre</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.name"
+        name="name"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Apellido</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.lastname"
+        name="lastname"
+        placeholder="apellido"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Rut</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.rut"
+        name="rut"
+        placeholder="99.999.999-9"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Dirección</mat-label>
+      <input
+        matInput
+        required
+        type="text"
+        [(ngModel)]="newUser.address"
+        name="address"
+        placeholder="direccion"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Teléfono</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newUser.number"
+        name="number"
+        placeholder="+56 9 1111 1111"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        required
+        type="email"
+        [(ngModel)]="newUser.email"
+        name="email"
+        placeholder="nombre@email.com"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+      <mat-label>Contraseña</mat-label>
+      <input
+        matInput
+        required
+        type="password"
+        [(ngModel)]="newUser.password"
+        name="Contraseña"
+        placeholder="**********"
+      /> </mat-form-field
+    ><br />
+    <button
+      mat-raised-button
+      color="success"
+      type="button"
+      (click)="register()"
+    >
+      Registrar</button
+    ><br />
+    <span>¿Ya tienes una cuenta?</span
+    ><a class="lg" routerLink="/login">Iniciar sesión</a>
+    <br /><br /><br /><br />
   </form>
 </div>
