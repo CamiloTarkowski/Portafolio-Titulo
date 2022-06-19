@@ -3,7 +3,7 @@ import axios from "axios";
 describe("crud-auth integration test", () => {
   test("auth register", async () => {
     const { status } = await axios.post(
-      `http://localhost:1337/auth/local/register`,
+      `http://localhost:4444/auth/local/register`,
       {
         username: "sergio",
         password: "contrasena123",
@@ -22,7 +22,7 @@ describe("crud-auth integration test", () => {
 
   test.only("auth login", async () => {
     const { status, data } = await axios.post(
-      `http://localhost:1337/auth/local`,
+      `http://localhost:4444/auth/local`,
       {
         identifier: "sergio",
         password: "contrasena123",

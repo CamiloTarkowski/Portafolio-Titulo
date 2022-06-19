@@ -18,7 +18,7 @@ export class FormComponent {
   async sendOrder(event: any) {
     event.preventDefault();
     const { data: deliveryData } = await axios.post(
-      'http://localhost:1337/delivery-methods',
+      'http://localhost:4444/delivery-methods',
       {
         name: this.name,
         address: this.address,
@@ -36,7 +36,7 @@ export class FormComponent {
     //     this.deliveryMethodId = deliveryMethod.id;
     //   })
 
-    const { data } = await axios.post('http://localhost:1337/orders', {
+    const { data } = await axios.post('http://localhost:4444/orders', {
       client: {
         id: 4,
       },

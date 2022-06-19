@@ -9,7 +9,7 @@ const loadProduct = async () => {
   const template = `
   <div class="show-product">
     <h2>${product.name}</h2>
-    <img class="show-product__image" src="http://localhost:1337${product.image.url}" alt="${product.name}">
+    <img class="show-product__image" src="http://localhost:4444${product.image.url}" alt="${product.name}">
     <div class="show-product__text">
       <p>Codigo: ${product.code}</p>
     </div>

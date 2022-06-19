@@ -10,7 +10,7 @@ const loadProducts = async () => {
   for (let i = 0; i < products.length; i++) {
     const template = `
     <div class="product">
-      <img class="product__image" src="http://localhost:1337${products[i].image.url}" alt="${products[i].name}">
+      <img class="product__image" src="http://localhost:4444${products[i].image.url}" alt="${products[i].name}">
       <p>${products[i].name}</p>
       <p>${products[i].code}</p>
       <p>$${products[i].price}</p>

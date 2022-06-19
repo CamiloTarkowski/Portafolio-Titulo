@@ -16,7 +16,7 @@ const loadProducts = async () => {
     const template = `
     <div class="show-product">
       <h2>${products[i].name}</h2>
-      <img class="show-product__image" src="http://localhost:1337${products[i].image.url}" alt="${products[i].name}">
+      <img class="show-product__image" src="http://localhost:4444${products[i].image.url}" alt="${products[i].name}">
       <div class="show-product__text">
         <p>Codigo: ${products[i].code}</p>
       </div>
@@ -32,9 +32,7 @@ const loadProducts = async () => {
       <div class="show-product__text">
         <p>Stock: ${products[i].stock}</p>
       </div>
-      <div class="show-product__text">
-        <p>Cantidad: ${products[i].amount}</p>
-      </div>
+  
       <div class="show-product__text">
         <p>Institución: ${products[i].institution.name}</p>
       </div>
@@ -48,43 +46,3 @@ const loadProducts = async () => {
 };
 
 window.onload = loadProducts();
-
-// const calculateAmountOfProducts = (products) => {
-//   const productsCodeAndSize = products.map((product) => {
-//     return { code: product.code, size: product.size };
-//   });
-
-//   const productsWithAmount = [];
-
-//   for (let i = 0; i < products.length; i++) {
-//     if (existProduct(productsWithAmount, products[i])) {
-//       continue;
-//     }
-
-//     let amount = 1;
-
-//     productsCodeAndSize.map((codeAndSize) => {
-//       if (
-//         codeAndSize.code === products[i].code &&
-//         codeAndSize.size === products[i].size
-//       ) {
-//         amount++;
-//         productsWithAmount.push(products[i]);
-//       }
-//     });
-//   }
-//   return productsWithAmount;
-// };
-
-// const existProduct = (productsWithAmount, product) => {
-//   productsWithAmount.map((productWithAmount) => {
-//     if (
-//       productWithAmount.includes(product.code) &&
-//       productWithAmount.includes(product.size)
-//     ) {
-//       return true;
-//     }
-//   });
-
-//   return false;
-// };

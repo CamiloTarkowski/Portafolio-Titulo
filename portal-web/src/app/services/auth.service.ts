@@ -9,7 +9,7 @@ import { User } from '../interfaces/user.interfaces';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  private apiUrl: string = 'http://localhost:1337';
+  private apiUrl: string = 'http://localhost:4444';
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/local`, {

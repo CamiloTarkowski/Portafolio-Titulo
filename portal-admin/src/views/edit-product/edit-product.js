@@ -5,7 +5,7 @@ const main = document.querySelector(".main");
 
 const getInstitutions = async () => {
   const { data: institutions } = await axios.get(
-    "http://localhost:1337/institutions"
+    "http://localhost:4444/institutions"
   );
 
   const institutionArray = [];
@@ -34,12 +34,12 @@ const loadProduct = async () => {
 
   const template = `
   <form class="form">
-    <img class="edit-product__image" src="http://localhost:1337${product.image.url}" alt="${product.name}" >
+    <img class="edit-product__image" src="http://localhost:4444${product.image.url}" alt="${product.name}" >
     <input
       class="form__input file"
       id="file"
       type="file"
-      value="http://localhost:1337${product.image.url}"
+      value="http://localhost:4444${product.image.url}"
       accept="image/png/jpg"
     />
     <input
@@ -137,7 +137,7 @@ const editProduct = async (e, id) => {
 
   try {
     const { data } = await axios.put(
-      `http://localhost:1337/products/${id}`,
+      `http://localhost:4444/products/${id}`,
       product
     );
     console.log(data);
@@ -147,7 +147,7 @@ const editProduct = async (e, id) => {
       formData.append("refId", id);
       formData.append("ref", "Products");
       formData.append("field", "image");
-      await axios.post("http://localhost:1337/upload", formData, {
+      await axios.post("http://localhost:4444/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,

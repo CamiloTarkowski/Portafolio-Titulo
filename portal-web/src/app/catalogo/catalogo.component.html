@@ -9,7 +9,11 @@
       </li>
       <li class="list-group-item">Codigo: {{ product.code }}</li>
       <li class="list-group-item">Talla: {{ product.size }}</li>
-      <img src="http://localhost:1337{{ product.image.url }}" routerLink="/producto/{{product.id}}" type="button" />
+      <img
+        src="http://localhost:4444{{ product.image.url }}"
+        routerLink="/producto/{{ product.id }}"
+        type="button"
+      />
       <li class="list-group-item"></li>
     </ul>
   </div>

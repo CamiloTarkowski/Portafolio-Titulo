@@ -37,7 +37,7 @@ addProduct.addEventListener("click", async (e) => {
 
   try {
     const { data } = await axios.post(
-      "http://localhost:1337/products",
+      "http://localhost:4444/products",
       product
     );
     const formData = new FormData();
@@ -45,7 +45,7 @@ addProduct.addEventListener("click", async (e) => {
     formData.append("refId", data.id);
     formData.append("ref", "Products");
     formData.append("field", "image");
-    await axios.post("http://localhost:1337/upload", formData, {
+    await axios.post("http://localhost:4444/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -60,7 +60,7 @@ addProduct.addEventListener("click", async (e) => {
 
 const getInstitution = async () => {
   const { data: institutions } = await axios.get(
-    "http://localhost:1337/institutions"
+    "http://localhost:4444/institutions"
   );
 
   const institutionNamesArray = [];

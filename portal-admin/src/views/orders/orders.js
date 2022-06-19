@@ -5,6 +5,8 @@ const listOrders = document.querySelector(".list-orders");
 
 const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
+  console.log(orders);
+
   orders = JSON.parse(orders);
   for (let i = 0; i < orders.length; i++) {
     const template = `
@@ -32,7 +34,7 @@ const loadOrders = async () => {
       </div>
       <div class="light">
         <p class="row">Codigo(s) producto(s):</p>
-        <p class="row">${showProductsCode(orders[i].products)}</p>
+        <p class="row">${showProductsCode(orders[i].order_products)}</p>
       </div>
       <div class="dark">
         <p class="row">Fecha:</p>
@@ -40,14 +42,16 @@ const loadOrders = async () => {
       </div>
       <div class="light">
         <p class="row">Total:</p>
-        <p class="row">$${orders[i].total}</p>
+        <p class="row">$${parseInt(orders[i].total).toLocaleString("es-ES")}</p>
       </div>
       <div class="orders-buttons">
         <button class="button green">Aceptar</button>
         <button class="button red">Rechazar</button>
         <button class="button blue" onclick="showProduct(${orders[
           i
-        ].products.map((product) => product.id)})">Ver producto</button>
+        ].order_products.map((order_product) => order_product.product.id)})">${
+      orders[i].order_products.length > 1 ? "Ver productos" : "Ver producto"
+    }</button>
       </div>
     </div>
     `;
@@ -62,12 +66,16 @@ goBack.addEventListener("click", () => {
   ipcRenderer.send("go-back");
 });
 
-const showProductsCode = (products) => {
-  const codesSet = new Set(products.map((product) => product.code));
-  return Array.from(codesSet).join(", ");
+const showProductsCode = (order_products) => {
+  const codes = order_products.map(
+    (order_product) => `${order_product.product.code} (${order_product.amount})`
+  );
+
+  return codes.join(", ");
 };
 
 const formatDate = (date) => {
+  console.log(date);
   const DATE_INDEX = 0;
   const newDate = date.split(10)[DATE_INDEX];
   const day = newDate[8] + newDate[9];

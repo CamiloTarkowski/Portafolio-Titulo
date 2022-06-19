@@ -2,21 +2,21 @@ import axios from "axios";
 
 describe("crud products integration test", () => {
   test("get all of products", async () => {
-    const { status, data } = await axios.get("http://localhost:1337/products");
+    const { status, data } = await axios.get("http://localhost:4444/products");
     expect(status).toBe(200);
     console.log(data);
   });
 
   test("get a specific product", async () => {
     const { status, data } = await axios.get(
-      `http://localhost:1337/products/1`
+      `http://localhost:4444/products/1`
     );
     expect(status).toBe(200);
     console.log(data);
   });
 
   test("create a product", async () => {
-    const { status } = await axios.post("http://localhost:1337/products", {
+    const { status } = await axios.post("http://localhost:4444/products", {
       code: "JAHJD",
       name: "boston college",
       price: 5000,
@@ -30,7 +30,7 @@ describe("crud products integration test", () => {
   });
 
   test("update a product", async () => {
-    const { status } = await axios.put(`http://localhost:1337/products/12`, {
+    const { status } = await axios.put(`http://localhost:4444/products/12`, {
       code: "HCGHSF",
       name: "dwdwdaw",
       price: 1000,
@@ -44,7 +44,7 @@ describe("crud products integration test", () => {
   });
 
   test.only("delete a product", async () => {
-    const { status } = await axios.delete(`http://localhost:1337/products/12`);
+    const { status } = await axios.delete(`http://localhost:4444/products/12`);
 
     expect(status).toBe(200);
   });

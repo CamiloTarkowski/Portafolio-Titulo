@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const storeJwt = async () => {
   try {
-    const res = await axios.post(`http://localhost:1337/auth/local`, {
+    const res = await axios.post(`http://localhost:4444/auth/local`, {
       identifier: process.env.ADMIN_EMAIL,
       password: process.env.ADMIN_PASSWORD,
     });
@@ -23,4 +23,8 @@ const storeJwt = async () => {
 app.whenReady().then(async () => {
   await storeJwt();
   createMenuWindow();
+});
+
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
 });
