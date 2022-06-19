@@ -1,18 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../services/productos.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  items:any[]=[];
+  items: any[] = [];
 
-  constructor() {
-   }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-navegador',
-  templateUrl: './navegador.component.html',
-  styleUrls: ['./navegador.component.css'],
+  selector: 'app-navigator',
+  templateUrl: './navigator.component.html',
+  styleUrls: ['./navigator.component.css'],
 })
-export class NavegadorComponent {
+export class NavigatorComponent {
   constructor(
     public authService: AuthService,
     private router: Router,

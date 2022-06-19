@@ -1,0 +1,25 @@
+<title>Catálogo</title>
+<body class="pad">
+  <!-- <div class="row" style="padding-top:3%;"> -->
+  <div class="col-md-4" style="padding: 3%" *ngFor="let product of products">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Nombre: {{ product.name }}</li>
+      <li class="list-group-item">
+        Precio: $ {{ product.price | ThousandSeparator }}
+      </li>
+      <li class="list-group-item">Codigo: {{ product.code }}</li>
+      <li class="list-group-item">Talla: {{ product.size }}</li>
+      <img
+        src="http://localhost:4444{{ product.image.url }}"
+        routerLink="/producto/{{ product.id }}"
+        type="button"
+      />
+      <li class="list-group-item"></li>
+    </ul>
+    <div>
+      <button class="btn btn-primary" routerLink="/producto/{{ product.id }}">
+        Ver producto
+      </button>
+    </div>
+  </div>
+</body>

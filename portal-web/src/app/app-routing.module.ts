@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './cart/cart.component';
-import { CatalogoComponent } from './catalogo/catalogo.component';
+import { CatalogueComponent } from './catalogue/catalogue.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login/login.component';
-import { ProductoComponent } from './producto/producto.component';
+import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: CatalogoComponent,
+    component: CatalogueComponent,
     canActivate: [AuthGuard],
   },
   {
     path: 'producto/:id',
-    component: ProductoComponent,
+    component: ProductComponent,
     canActivate: [AuthGuard],
   },
   {

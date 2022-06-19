@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormModule } from './form/form.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ProductoComponent } from './producto/producto.component';
-import { NavegadorComponent } from './navegador/navegador.component';
+import { ProductComponent } from './product/product.component';
+import { NavigatorComponent } from './navigator/navigator.component';
 import { FooterComponent } from './footer/footer.component';
-import { CatalogoComponent } from './catalogo/catalogo.component';
-import { SeparadorMilPipe } from './separador-mil.pipe';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+import { ThousandSeparatorPipe } from './pipes/thousand-separator.pipe';
 import { CartComponent } from './cart/cart.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -24,11 +24,11 @@ import { NotificationsComponent } from './notifications/notifications.component'
 @NgModule({
   declarations: [
     AppComponent,
-    ProductoComponent,
-    NavegadorComponent,
+    ProductComponent,
+    NavigatorComponent,
     FooterComponent,
-    CatalogoComponent,
-    SeparadorMilPipe,
+    CatalogueComponent,
+    ThousandSeparatorPipe,
     CartComponent,
     LoginComponent,
     RegisterComponent,
