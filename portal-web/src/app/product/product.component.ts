@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../interfaces/product.interface';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private productService: ProductService,
     private cartService: CartService,
     private ordersService: OrdersService,
@@ -27,9 +28,14 @@ export class ProductComponent implements OnInit {
     this.toastService.success('Producto agregado al carrito');
   }
 
-  createOrder() {
+  goToPay() {
+    localStorage.setItem('productsToPay', JSON.stringify([this.product]));
+    this.router.navigate(['/pagar']);
+  }
+
+  createMakeOrder() {
     if (this.product.stock === 0) {
-      this.ordersService.createOrder(this.product, 1).subscribe(
+      this.ordersService.createMakeOrder(this.product).subscribe(
         (res) => {
           this.toastService.success(
             'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
@@ -41,10 +47,7 @@ export class ProductComponent implements OnInit {
           );
         }
       );
-      return;
     }
-
-    // Crea una orden con orden state: pedido
   }
 
   ngOnInit() {

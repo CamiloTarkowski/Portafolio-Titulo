@@ -9,7 +9,7 @@ import axios from 'axios';
 })
 export class FormComponent {
   productId: string = '';
-  amount: string = '';
+  quantity: string = '';
   address: string = '';
   name: string = '';
 
@@ -55,7 +55,7 @@ export class FormComponent {
     console.log(data);
 
     this.productId = '';
-    this.amount = '';
+    this.quantity = '';
     this.address = '';
     this.name = '';
   }

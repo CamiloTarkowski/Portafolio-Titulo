@@ -22,7 +22,7 @@ describe("crud products integration test", () => {
       price: 5000,
       stock: 4,
       description: "dassfsd",
-      amount: 1,
+      quantity: 1,
       institution: 1,
     });
 
@@ -36,7 +36,7 @@ describe("crud products integration test", () => {
       price: 1000,
       stock: 4,
       description: "dassfsd",
-      amount: 3,
+      quantity: 3,
       institution: 1,
     });
 

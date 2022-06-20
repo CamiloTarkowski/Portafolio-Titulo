@@ -6,11 +6,10 @@ const loadProducts = async () => {
   let products = await ipcRenderer.invoke("load-show-products");
   products = JSON.parse(products);
   products = products.map((product) => {
-    product.amount = 1;
+    product.quantity = 1;
 
     return product;
   });
-  // products = calculateAmountOfProducts(JSON.parse(products));
 
   for (let i = 0; i < products.length; i++) {
     const template = `
