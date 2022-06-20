@@ -1,29 +1,27 @@
-<div>
-  <h1>Notificaciones</h1>
-
-  <div>
-    <h3>Polera carolina llona</h3>
-    <img src="" alt="" />
-    <p>Precio</p>
-    <p>Descripcion</p>
-    <p>Fecha</p>
+<h1>Notificaciones</h1>
+<main>
+  <div class="card" *ngFor="let notification of notifications">
+    <p>Pedido: {{ notification.order.order_products | getOrderProducts }}</p>
     <p>
-      La cotizacion del pedido fue rechazada por la dueña, los motivos pueden
-      ser: No hay materiales, no hay tiempo.
+      Precio final (+IVA): ${{
+        notification.order.total + notification.order.tax | ThousandSeparator
+      }}
     </p>
-    <button>Borrar notificacion</button>
-  </div>
-
-  <div>
-    <h3>Polera Boston college</h3>
-    <img src="" alt="" />
-    <p>Precio</p>
-    <p>Descripcion</p>
-    <p>Fecha</p>
     <p>
-      La cotizacion del pedido aceptada por la dueña, pulse pagar para ir a la
-      pasarela de pago.
+      Fecha del pedido de fabricación:
+      {{ notification.order.created_at | date: "dd/MM/YYYY" }}
     </p>
-    <button>Ir a pagar</button>
+    <p>{{ notification.message }}</p>
+    <button
+      *ngIf="notification.order.order_state == 3"
+      class="btn btn-danger"
+      (click)="deleteNotification(notification.id)"
+    >
+      Borrar notificacion
+    </button>
+
+    <button *ngIf="notification.order.order_state != 3" class="btn btn-primary">
+      Pagar
+    </button>
   </div>
-</div>
+</main>

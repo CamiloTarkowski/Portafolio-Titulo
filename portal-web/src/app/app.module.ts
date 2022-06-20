@@ -20,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     LoginComponent,
     RegisterComponent,
     NotificationsComponent,
+    GetOrderProductsPipe,
   ],
   imports: [
     BrowserModule,
