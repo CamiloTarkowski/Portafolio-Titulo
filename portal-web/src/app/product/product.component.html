@@ -16,8 +16,18 @@
         <p class="card-text mb-auto">
           Unidades disponibles: {{ product?.stock }}
         </p>
-        <button class="btn btn-lg btn-block btn-success">
+        <button
+          *ngIf="product.stock > 0"
+          class="btn btn-lg btn-block btn-success"
+          (click)="addToCart()"
+        >
           Añadir al carrito
+        </button>
+        <button
+          class="btn btn-lg btn-block btn-primary"
+          (click)="createOrder()"
+        >
+          {{ product?.stock === 0 ? "Consultar dueña" : "Pagar" }}
         </button>
       </div>
       <img

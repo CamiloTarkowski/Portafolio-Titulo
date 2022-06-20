@@ -132,17 +132,17 @@ ipcMain.on("open-users", () => {
 
 // LOAD DATA
 ipcMain.handle("load-products", async () => {
-  const { data: products } = await axios.get("http://localhost:1337/products");
+  const { data: products } = await axios.get("http://localhost:4444/products");
   return JSON.stringify(products);
 });
 
 ipcMain.handle("load-users", async () => {
-  const { data: users } = await axios.get("http://localhost:1337/users");
+  const { data: users } = await axios.get("http://localhost:4444/users");
   return JSON.stringify(users);
 });
 
 ipcMain.handle("load-orders", async () => {
-  const { data: orders } = await axios.get("http://localhost:1337/orders");
+  const { data: orders } = await axios.get("http://localhost:4444/orders");
   return JSON.stringify(orders);
 });
 
@@ -151,7 +151,7 @@ ipcMain.on("show-product", (_, id) => {
   createShowProductWindow();
   ipcMain.handle(`load-product`, async () => {
     const { data: product } = await axios.get(
-      `http://localhost:1337/products/${id}`
+      `http://localhost:4444/products/${id}`
     );
     return JSON.stringify(product);
   });
@@ -163,7 +163,7 @@ ipcMain.on("show-products", (_, ids) => {
   createShowProductsWindow();
   ipcMain.handle("load-show-products", async () => {
     const { data: products } = await axios.get(
-      `http://localhost:1337/products`
+      `http://localhost:4444/products`
     );
 
     const filteredProducts = products.filter((product) => {
@@ -179,7 +179,7 @@ ipcMain.on("show-products", (_, ids) => {
 });
 
 ipcMain.on("delete-product", async (_, id) => {
-  await axios.delete(`http://localhost:1337/products/${id}`);
+  await axios.delete(`http://localhost:4444/products/${id}`);
   mainWindow.loadFile("views/products/products.html");
 });
 
@@ -191,7 +191,7 @@ ipcMain.on("edit-product", (_, id) => {
   createEditProductWindow();
   ipcMain.handle(`load-product-data`, async () => {
     const { data: product } = await axios.get(
-      `http://localhost:1337/products/${id}`
+      `http://localhost:4444/products/${id}`
     );
     return JSON.stringify(product);
   });
@@ -203,15 +203,15 @@ ipcMain.on("new-product", async () => {
   createNewProductWindow();
 });
 
-ipcMain.on("add-product", async (event, products) => {
-  await axios.post(`http://localhost:1337/products/${id}`, products);
+ipcMain.on("add-product", async (_, products) => {
+  await axios.post(`http://localhost:4444/products/${id}`, products);
   mainWindow.loadFile("views/products/products.html");
 });
 
 ipcMain.on("show-user", (_, id) => {
   createShowUserWindow();
   ipcMain.handle(`load-user`, async () => {
-    const { data: user } = await axios.get(`http://localhost:1337/users/${id}`);
+    const { data: user } = await axios.get(`http://localhost:4444/users/${id}`);
     return JSON.stringify(user);
   });
 
@@ -219,8 +219,26 @@ ipcMain.on("show-user", (_, id) => {
 });
 
 ipcMain.on("delete-user", async (_, id) => {
-  await axios.delete(`http://localhost:1337/users/${id}`);
+  await axios.delete(`http://localhost:4444/users/${id}`);
   mainWindow.loadFile("views/users/users.html");
+});
+
+ipcMain.on("accept-order", async (_, id) => {
+  await axios.put(`http://localhost:4444/orders/${id}`, {
+    order_state: 2,
+  });
+
+  mainWindow.loadFile("views/orders/orders.html");
+
+  // Crear notificacion
+});
+
+ipcMain.on("decline-order", async (_, id) => {
+  await axios.put(`http://localhost:4444/orders/${id}`, {
+    order_state: 3,
+  });
+  mainWindow.loadFile("views/orders/orders.html");
+  // Crear notificacion
 });
 
 module.exports = {
