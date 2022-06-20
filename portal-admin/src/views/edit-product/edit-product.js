@@ -140,7 +140,6 @@ const editProduct = async (e, id) => {
       `http://localhost:4444/products/${id}`,
       product
     );
-    console.log(data);
     if (file.files.length != 0) {
       const formData = new FormData();
       formData.append("files", file.files[0], file.files[0].name);
@@ -153,11 +152,19 @@ const editProduct = async (e, id) => {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       });
+      new Notification({
+        title: "Portal admin",
+        body: "Se ha actualizado el producto",
+      }).show();
     }
     ipcRenderer.send("open-products");
     ipcRenderer.send("edit-product", id);
   } catch (error) {
     console.log(error);
+    new Notification({
+      title: "Portal admin",
+      body: "Ha ocurrido un error!",
+    }).show();
   }
 };
 

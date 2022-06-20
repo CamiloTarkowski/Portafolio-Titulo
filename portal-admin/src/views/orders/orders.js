@@ -7,7 +7,7 @@ const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
   orders = JSON.parse(orders);
   for (let i = 0; i < orders.length; i++) {
-    if (orders[i].order_state.state === "Pedido") continue;
+    if (orders[i].order_state.state !== "Cotizacion") continue;
 
     console.log(orders[i]);
 

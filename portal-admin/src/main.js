@@ -1,5 +1,6 @@
 const { ipcMain, BrowserWindow } = require("electron");
 const axios = require("axios");
+const { Notification } = require("electron/main");
 
 let mainWindow;
 let newProductWindow;
@@ -181,11 +182,14 @@ ipcMain.on("show-products", (_, ids) => {
 ipcMain.on("delete-product", async (_, id) => {
   await axios.delete(`http://localhost:4444/products/${id}`);
   mainWindow.loadFile("views/products/products.html");
+  new Notification({
+    title: "Portal admin",
+    body: "Se ha eliminado el producto",
+  }).show();
 });
 
 ipcMain.on("edit-product", (_, id) => {
   if (editProductWindow && !editProductWindow.isDestroyed()) {
-    console.log("aaa");
     editProductWindow.close();
   }
   createEditProductWindow();
@@ -206,6 +210,10 @@ ipcMain.on("new-product", async () => {
 ipcMain.on("add-product", async (_, products) => {
   await axios.post(`http://localhost:4444/products/${id}`, products);
   mainWindow.loadFile("views/products/products.html");
+  new Notification({
+    title: "Portal admin",
+    body: "Se ha agregado el producto",
+  }).show();
 });
 
 ipcMain.on("show-user", (_, id) => {
@@ -221,6 +229,10 @@ ipcMain.on("show-user", (_, id) => {
 ipcMain.on("delete-user", async (_, id) => {
   await axios.delete(`http://localhost:4444/users/${id}`);
   mainWindow.loadFile("views/users/users.html");
+  new Notification({
+    title: "Portal admin",
+    body: "Se ha borrado el usuario",
+  }).show();
 });
 
 ipcMain.on("accept-order", async (_, id) => {
@@ -229,6 +241,10 @@ ipcMain.on("accept-order", async (_, id) => {
   });
 
   mainWindow.loadFile("views/orders/orders.html");
+  new Notification({
+    title: "Portal admin",
+    body: "Se ha enviado una notificacion de aceptacion",
+  }).show();
 
   // Crear notificacion
 });
@@ -238,6 +254,10 @@ ipcMain.on("decline-order", async (_, id) => {
     order_state: 3,
   });
   mainWindow.loadFile("views/orders/orders.html");
+  new Notification({
+    title: "Portal admin",
+    body: "Se ha enviado una notificacion de rechazo",
+  }).show();
   // Crear notificacion
 });
 
