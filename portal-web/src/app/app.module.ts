@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
+import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { NgxStripeModule } from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
     RegisterComponent,
     NotificationsComponent,
     GetOrderProductsPipe,
+    PaymentMethodComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,9 @@ import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
     MatButtonModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    NgxStripeModule.forRoot(
+      'pk_test_51LCowUBKpY1HISME3JwtigXTnttVp0whJchc570whrFOENdNmxb2f6Jof0PuNfBLiC09iZQUQJJ8agE30QUXZBn500CyUuhhLF'
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],

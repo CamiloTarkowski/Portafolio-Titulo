@@ -74,7 +74,8 @@ goBack.addEventListener("click", () => {
 
 const showProductsCode = (order_products) => {
   const codes = order_products.map(
-    (order_product) => `${order_product.product.code} (${order_product.amount})`
+    (order_product) =>
+      `${order_product.product.code} (${order_product.quantity})`
   );
 
   return codes.join(", ");

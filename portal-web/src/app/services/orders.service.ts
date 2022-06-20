@@ -12,49 +12,69 @@ export class OrdersService {
   user: User = {} as User;
   constructor(private http: HttpClient) {}
 
-  createOrder(products: Product[] | Product, orderType: number) {
+  createOrder(products: Product[] | Product) {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.createDeliveryMethod();
 
-    // Si es una orden de fabricacion entra aqui
     if (products instanceof Array) {
       const productsCode = products.map((product) => product.code);
-      const productsAmount = this.getProductAmount(productsCode);
+      const productsQuantity = this.getProductQuantity(productsCode);
       const { total, tax } = this.getTotalAndTax(products);
 
       const order = {
         total,
         tax,
         client: this.user.id,
-        order_state: orderType,
+        order_state: 2,
         delivery_method: this.deliveryMethod.id,
         order_products: [
           products.map((product) => ({
             product: {
               id: product.id,
             },
-            amount: productsAmount[product.code],
+            quantity: productsQuantity[product.code],
           })),
         ],
       };
 
-      console.log(order);
       return this.http.post(this.apiUrl + '/orders', order);
     }
 
-    // Solo llega aqui si es una orden de venta
     const order = {
       total: products.price,
       tax: products.price * 0.19,
       client: this.user.id,
-      order_state: orderType,
+      order_state: 2,
       delivery_method: this.deliveryMethod,
       order_products: [
         {
           product: {
             id: products.id,
           },
-          amount: 1,
+          quantity: 1,
+        },
+      ],
+    };
+
+    return this.http.post(this.apiUrl + '/orders', order);
+  }
+
+  createMakeOrder(product: Product) {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    this.createDeliveryMethod();
+
+    const order = {
+      total: product.price,
+      tax: product.price * 0.19,
+      client: this.user.id,
+      order_state: 1,
+      delivery_method: this.deliveryMethod,
+      order_products: [
+        {
+          product: {
+            id: product.id,
+          },
+          quantity: 1,
         },
       ],
     };
@@ -73,7 +93,7 @@ export class OrdersService {
       });
   }
 
-  private getProductAmount(productsCode: string[]) {
+  private getProductQuantity(productsCode: string[]) {
     return productsCode.reduce(
       (prev: any, cur: any) => ((prev[cur] = prev[cur] + 1 || 1), prev),
       {}

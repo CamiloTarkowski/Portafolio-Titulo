@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GetOrderProductsPipe implements PipeTransform {
   transform(products: unknown[]): unknown {
     return products
-      .map(({ product, amount }: any) => `${product.name} (${amount})`)
+      .map(({ product, quantity }: any) => `${product.name} (${quantity})`)
       .join(', ');
   }
 }
