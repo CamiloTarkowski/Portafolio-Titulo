@@ -3,12 +3,13 @@ import { response } from "express";
 
 export const getAllNotifications = async (req, res = response) => {
   const { id } = req.params;
+  const { data: notifications } = await axios.get(
+    `http://localhost:1337/notifications`
+  );
 
-  const { data } = await axios.get(`http://localhost:4444/notifications`);
+  const userNotifications = notifications.filter(
+    (notification) => notification.order.client == id
+  );
 
-  console.log("a");
-  console.log(data);
-  return res.json("a");
+  return res.json(userNotifications);
 };
-export const getNotification = async (req, res) => {};
-export const createNotification = async (req, res) => {};
