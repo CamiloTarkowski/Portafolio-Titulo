@@ -246,7 +246,13 @@ ipcMain.on("accept-order", async (_, id) => {
     body: "Se ha enviado una notificacion de aceptacion",
   }).show();
 
-  // Crear notificacion
+  await axios.post(`http://localhost:4444/notifications`, {
+    order: {
+      id,
+    },
+    message:
+      "Se ha aceptado el pedido de fabricación, proceda a la pasarela de pago y se le notificara la fecha estimada.",
+  });
 });
 
 ipcMain.on("decline-order", async (_, id) => {
@@ -258,7 +264,14 @@ ipcMain.on("decline-order", async (_, id) => {
     title: "Portal admin",
     body: "Se ha enviado una notificacion de rechazo",
   }).show();
-  // Crear notificacion
+
+  await axios.post(`http://localhost:4444/notifications`, {
+    order: {
+      id,
+    },
+    message:
+      "El pedido de fabricación fue rechazado por la dueña, los motivos pueden ser: No hay materiales, no hay tiempo.",
+  });
 });
 
 module.exports = {
