@@ -1,6 +1,6 @@
 <title>Catálogo</title>
-<body class="pad">
-  <!-- <div class="row" style="padding-top:3%;"> -->
+<body class="pad" style="">
+  <div class="row" style="padding-top:3%;">
   <div class="col-md-4" style="padding: 3%" *ngFor="let product of products">
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Nombre: {{ product.name }}</li>
@@ -9,6 +9,7 @@
       </li>
       <li class="list-group-item">Codigo: {{ product.code }}</li>
       <li class="list-group-item">Talla: {{ product.size }}</li>
+      <li class="list-group-item">Colegio: {{ product.institution.name }}</li>
       <img
         src="http://localhost:4444{{ product.image.url }}"
         routerLink="/producto/{{ product.id }}"
@@ -16,6 +17,7 @@
       />
       <li class="list-group-item"></li>
     </ul>
+    </div>
   </div>
   <!-- <div class="card border-0 box-shadow shadow-sm" style="padding:3%;">
         <img src="../assets/img/catalogo/{{item.imagen}}" class="card-img-top" alt=""

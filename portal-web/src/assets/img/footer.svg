@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1900" height="1080" viewBox="0 0 1900 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        opacity: 0.93;
+      }
+
+      .cls-2 {
+        fill: #19598b;
+        stroke: #000;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <image id="Capa_1" data-name="Capa 1" class="cls-1" x="918" y="510" width="64" height="58" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAA6CAYAAAAA0F95AAAE9ElEQVRogeWbW2hdRRSGvxR7EW2tGtG3iqKibYqmNi1WwYI0oiJVEAUfBIv6aNIHwYoi6IOCL76IIH2thiJN66WiLyJ9MKmpUXuJVrG0FcUmijeoF/xl0jVlOOy9z+zbydnxh8nemTVnr8tZs9ZeM3N6JC0CngTuBxYAbwDPA/8wd1gGbAEEbAd+q00SSc9ImpH0rTV3/7Qk5qj1StpncszYfW9dsjgPOAScC6wBeoAJ4F/gAWB/h32gFxgFrgWOWJ+/3wxMV81wgV17guawHNgLvAosrpppClqV32ztiPWN2phqYe7up8Axu39L0km7H5G0sKSrLZM0LGlI0tIEeuj2rS6fRSvd3J9FZoRDkr6S9Kz1XS1pyhg/WoJRuzkdo2BtRmg3YKMxPSppcUnl9yUokUexWowQM+gjY7qxpPJJCudVqHIjxAx6yRg+VlL5JFoRRSo1woKIiPqDXWMjsBu3yyL3UeDehPQlu6bRszBt2eGw8XgbuLRoZogxwIxdL44Y65W/zpS7G/gxBz0Wzgj3mBGuAnYXNUKVBuiU8h6VGKFnNhBkYwOwp4Sg3Qg3rUeAF86JEO6neaa8w2XA4y4WxXjAJcCUudw1nZGvdqwH3nGeEBMDfraovTwyZjQBvuZRzBRw6wK/mAFOzRMDeIzEGACLA8vrl6dj+N6C4IuxBnCp8ArgDmCsoUq7F67XgPeAB31n7Jz27wIX1SNbR7DGmEyEzPIawL8MucWSd1vGdHtfv10/DTvzTAGCemAgYUw39y0EVls2OxASYj3AvwxdGDm+27ASWAJ8bRntLIp6wMdBRUcD+vz8P0ArIuvm263+fr2KVZg5aK+Y/A8XWQ8gqNdjSuJuhPeAT1pl+z+kwQvsHebPYK/hLPIGwerX5etHv+k5Cfzdyi3WAL8CfwFLO7hRUhUSX4A8Yg0gqwppYCpMzwA5y9s8a4PdBP8GWMoDCOJAkwLh5Ra3XBY7njSgiAc0KRCmpj+PPAbw7wJN8oBM93coMgWaFAMyM4DDfDaAqwD7LINNpg0qEgOaMgVSK8AQ8zkNtnV/h/k8BW60a2UGaFpF2DYFOsQuiJAQA/amLIPViTFbmU7j7+m+AjydVAGGyOMBrpz8w4qh8+0oXacR8kzi7/v6bffn86QKMEQeD8C84DybBnfOgQFCZPH38z/T/R3y7vU1IRC6Hay77L7tQc+8HnAMuB74oJhsHcV3wPvtGOb1gMPdr/dsrPrQtsJOtxsccz4gRJ893E2FG4Dfq5B4LpHXA76wyOpS4SNNV96hyIGH5+y61bwgDTcDO4EvgRN2iGlDCVn9WaWTwfMGSzzvDApuUrxsGw1Tdqa4lT5k9GlJ49amrW+4AL+twcHKg9b8/0/VfVI0qS2RtMcEcKfKt0hnzhtJusWUHZO0MvhsX2CIW3PwGrTPTEpaG/QPSPrMZBjstAG8EbYH38SEpCfMMKckrUr4TJ8psyMHH2/otQm0AaONFtUjbxZIwn32m6MVAe2bjDphHLgyJw93pGVVCu2g7VesSKFnoopTXztN2YeAHbaBkoWeNvTOokwASWlvmpv3JdBXl5gC6xJo68tOgToMcJsJNd5iBKf8/gJBcFMQBAeC/nVBENzUTQZwbVtGGhwq8LzhjDS4rYysdRnAf3O7JZ2QdFzSLkk3lXjeBnN19yzX3H3hb362SfwHMInk9E4DvE0AAAAASUVORK5CYII="/>
+  <path id="Forma_1" data-name="Forma 1" class="cls-2" d="M0,838.253L635.1,746.11h633.6s145.03,21.036,296.51,43.005L1904,838.253,1903,1083l-1914-3Z"/>
+</svg>
