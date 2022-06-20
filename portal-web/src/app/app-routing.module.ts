@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CatalogueComponent,
   },
   {
-    path: 'producto/:id',
+    path: 'product/:id',
     component: ProductComponent,
     canActivate: [AuthGuard],
   },

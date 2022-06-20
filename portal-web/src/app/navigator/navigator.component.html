@@ -33,11 +33,7 @@
             >Catálogo</a
           >
         </li>
-        <li class="nav-item" *ngIf="authService.isLogged()" (click)="logout()">
-          <a class="nav-link active, texto-nav" routerLink="/catalogo"
-            >Cerrar Sesión</a
-          >
-        </li>
+        
         <li class="nav-item" *ngIf="authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/notificaciones"
             >Notificaciones</a
@@ -62,10 +58,15 @@
       </form>
       <a
         routerLink="/cart"
-        style="padding-right: 15%"
+        
         *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
+      <a class="nav-item" *ngIf="authService.isLogged()" (click)="logout()" style="padding-right: 15%">
+        <a class="nav-link active, texto-nav" routerLink="/catalogo"
+          >Cerrar Sesión <i class="fa-solid fa-arrow-right-from-bracket"></i></a
+        >
+      </a>
     </div>
   </div>
 </nav>
