@@ -1,0 +1,40 @@
+<title>{{ product?.name }}</title>
+<body class="pad">
+  <div class="col-md-6">
+    <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+      <div class="card-body d-flex flex-column align-items-start">
+        <strong class="d-inline-block mb-2 text-primary"
+          >Código: {{ product?.code }}</strong
+        >
+        <h3 class="mb-0">
+          <h2>{{ product?.name }}</h2>
+        </h3>
+        <div class="mb-1 text-muted">Price: ${{ product?.price }}</div>
+        <p class="card-text mb-auto">
+          Colegio:{{ product?.institution?.name }}
+        </p>
+        <p class="card-text mb-auto">
+          Unidades disponibles: {{ product?.stock }}
+        </p>
+        <button
+          *ngIf="product.stock > 0"
+          class="btn btn-lg btn-block btn-success"
+          (click)="addToCart()"
+        >
+          Añadir al carrito
+        </button>
+        <button
+          class="btn btn-lg btn-block btn-primary"
+          (click)="createOrder()"
+        >
+          {{ product?.stock === 0 ? "Consultar dueña" : "Pagar" }}
+        </button>
+      </div>
+      <img
+        class="card-img-right flex-auto d-none d-lg-block"
+        alt="Card image cap"
+        src="http://localhost:4444{{ product?.image?.url }}"
+      />
+    </div>
+  </div>
+</body>

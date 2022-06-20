@@ -1,15 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationService } from '../services/notification.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.css'],
 })
 export class NotificationsComponent implements OnInit {
+  notifications: any = [];
 
-  constructor() { }
+  constructor(
+    private notificationService: NotificationService,
+    private toastService: ToastrService
+  ) {}
 
-  ngOnInit(): void {
+  deleteNotification(notificationId: number) {
+    this.notificationService
+      .deleteNotification(notificationId)
+      .subscribe((res) => {
+        this.toastService.success('Se borrado la notificación');
+        this.notificationService
+          .getNotifications()
+          .subscribe((notifications) => {
+            this.notifications = notifications;
+          });
+      });
   }
 
+  ngOnInit(): void {
+    this.notificationService.getNotifications().subscribe((notifications) => {
+      this.notifications = notifications;
+    });
+  }
 }

@@ -21,6 +21,7 @@
     "dotenv": "^16.0.1",
     "electron": "^19.0.4",
     "electron-browser-storage": "^1.0.7",
+    "toastr": "^2.1.4",
     "tui-calendar": "^1.15.3"
   }
 }

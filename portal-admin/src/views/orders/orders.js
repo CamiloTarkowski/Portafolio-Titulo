@@ -5,10 +5,12 @@ const listOrders = document.querySelector(".list-orders");
 
 const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
-  console.log(orders);
-
   orders = JSON.parse(orders);
   for (let i = 0; i < orders.length; i++) {
+    if (orders[i].order_state.state !== "Cotizacion") continue;
+
+    console.log(orders[i]);
+
     const template = `
     <div class="order">
       <div class="row-title-container">
@@ -45,9 +47,13 @@ const loadOrders = async () => {
         <p class="row">$${parseInt(orders[i].total).toLocaleString("es-ES")}</p>
       </div>
       <div class="orders-buttons">
-        <button class="button green">Aceptar</button>
-        <button class="button red">Rechazar</button>
-        <button class="button blue" onclick="showProduct(${orders[
+        <button type="button" class="button green" onclick="accept(${
+          orders[i].id
+        })">Aceptar</button>
+        <button type="button" class="button red" onclick="decline(${
+          orders[i].id
+        })">Rechazar</button>
+        <button type="button" class="button blue" onclick="showProduct(${orders[
           i
         ].order_products.map((order_product) => order_product.product.id)})">${
       orders[i].order_products.length > 1 ? "Ver productos" : "Ver producto"
@@ -75,7 +81,6 @@ const showProductsCode = (order_products) => {
 };
 
 const formatDate = (date) => {
-  console.log(date);
   const DATE_INDEX = 0;
   const newDate = date.split(10)[DATE_INDEX];
   const day = newDate[8] + newDate[9];
@@ -86,4 +91,12 @@ const formatDate = (date) => {
 
 const showProduct = async (...ids) => {
   ipcRenderer.send("show-products", ids);
+};
+
+const accept = async (id) => {
+  ipcRenderer.send("accept-order", id);
+};
+
+const decline = async (id) => {
+  ipcRenderer.send("decline-order", id);
 };

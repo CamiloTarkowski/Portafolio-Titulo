@@ -1,5 +1,25 @@
 <body class="pad">
-    <section>
-        <div class="divmain">asdasdasdasd</div>
-    </section>
+  <main>
+    <h1>Carrito</h1>
+    <div
+      class="card card-body d-flex flex-column align-items-start mb-2"
+      *ngFor="let product of products"
+    >
+      <strong class="d-inline-block mb-2 text-primary"
+        >Código: {{ product?.code }}</strong
+      >
+      <h3 class="mb-0">
+        <h2>{{ product?.name }}</h2>
+      </h3>
+      <div class="mb-1 text-muted">Price: ${{ product?.price }}</div>
+      <p class="card-text mb-auto">Colegio:{{ product?.institution?.name }}</p>
+      <p class="card-text mb-auto">
+        Unidades disponibles: {{ product?.stock }}
+      </p>
+      <button class="btn btn-danger" (click)="deleteCartProduct(product.id)">
+        Borrar del carrito
+      </button>
+    </div>
+    <button class="btn btn-success">Pagar</button>
+  </main>
 </body>
