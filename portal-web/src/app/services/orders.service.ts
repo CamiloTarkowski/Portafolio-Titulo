@@ -48,7 +48,7 @@ export class OrdersService {
       tax: products.price * 0.19,
       client: this.user.id,
       order_state: orderType,
-      delivery_method: this.deliveryMethod.id,
+      delivery_method: this.deliveryMethod,
       order_products: [
         {
           product: {

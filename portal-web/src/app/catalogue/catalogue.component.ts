@@ -12,8 +12,8 @@ export class CatalogueComponent implements OnInit {
   constructor(public productService: ProductService) {}
 
   ngOnInit() {
-    this.productService
-      .getAllProducts()
-      .subscribe((product) => (this.products = product));
+    this.productService.getAllProducts().subscribe((products) => {
+      this.products = products;
+    });
   }
 }
