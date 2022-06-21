@@ -8,8 +8,7 @@
       <li class="list-group-item">
         Precio: $ {{ product.price | ThousandSeparator }}
       </li>
-      <li class="list-group-item">Codigo: {{ product.code }}</li>
-      <li class="list-group-item">Talla: {{ product.size }}</li>
+
       <li class="list-group-item">Colegio: {{ product.institution.name }}</li>
       <img
         src="http://localhost:4444{{ product.image.url }}"

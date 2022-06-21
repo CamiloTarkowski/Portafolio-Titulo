@@ -23,6 +23,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { NgxStripeModule } from 'ngx-stripe';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { NgxStripeModule } from 'ngx-stripe';
     NotificationsComponent,
     GetOrderProductsPipe,
     PaymentMethodComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
