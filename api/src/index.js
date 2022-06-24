@@ -1,9 +1,10 @@
-import express, { json } from "express";
+import express from "express";
 import dotenv from "dotenv";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import notificationRoutes from "./routes/notifications.routes.js";
 import cors from "cors";
-// import reportRoutes from "./routes/report.routes.js";
+import notificationRoutes from "./routes/notifications.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
+import reportRoutes from "./routes/report.routes.js";
 
 dotenv.config();
 
@@ -12,7 +13,8 @@ const app = express();
 app.use(cors());
 
 app.use("/api", notificationRoutes);
-// app.use("/api", reportRoutes);
+app.use("/api", paymentRoutes);
+app.use("/api", reportRoutes);
 
 app.use(
   createProxyMiddleware({
@@ -20,8 +22,6 @@ app.use(
     changeOrigin: true,
   })
 );
-
-app.use(json());
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
