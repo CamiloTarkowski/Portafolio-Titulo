@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../interfaces/user.interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,11 @@ export class RegisterComponent {
     rut: '',
   };
 
-  constructor(private authService: AuthService, private toast: ToastrService) {}
+  constructor(
+    private authService: AuthService,
+    private toast: ToastrService,
+    private router: Router
+  ) {}
 
   register() {
     if (!this.validateNewUser(this.newUser)) {
@@ -34,6 +39,7 @@ export class RegisterComponent {
         this.toast.success(
           `Usuario registrado correctamente, bienvenido ${res.user.username}`
         );
+        this.router.navigate(['/login']);
       },
       (err) => {
         console.log(err.error.message[0].messages[0].message);

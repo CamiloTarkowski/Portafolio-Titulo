@@ -6,11 +6,12 @@
         {{ product.name }}
       </li>
     </ul>
-    <p>Precio final: ${{ finalPrice | ThousandSeparator }}</p>
+    <p class="price">Precio final: ${{ finalPrice | ThousandSeparator }}</p>
     <ngx-stripe-card
+      class="method"
       [options]="cardOptions"
       [elementsOptions]="elementsOptions"
     ></ngx-stripe-card>
-    <button (click)="pay()" class="btn btn-success">Pagar</button>
+    <button (click)="pay()" class="btn btn-success mt-3">Pagar</button>
   </div>
 </main>

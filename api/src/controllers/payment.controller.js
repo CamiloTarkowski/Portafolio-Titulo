@@ -31,13 +31,16 @@ export const pay = async (req, res = response) => {
 };
 
 export const myPayments = async (req, res = response) => {
-  const id = req.params;
+  const { id } = req.body;
 
   const { data } = await axios.get(`http://localhost:1337/orders`);
 
   const orders = data.filter(
-    (order) => order.client.id == id && order.order_state.state == "Pedido"
+    (order) =>
+      (order.client.id == id && order.order_state.state == "Pedido") ||
+      order.order_state.state == "Agendado"
   );
+  console.log(orders);
 
   return res.json(orders);
 };

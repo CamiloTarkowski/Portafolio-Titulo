@@ -8,7 +8,7 @@ import { OrdersService } from '../services/orders.service';
 import { Router } from '@angular/router';
 import { Product } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -22,6 +22,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   finalPrice: number = 0;
   TEST_CREDIT_CART = '4242 4242 4242 4242';
+  isValid: boolean = false;
 
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 

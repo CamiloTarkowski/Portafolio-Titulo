@@ -22,7 +22,7 @@ const loadData = async () => {
           <div
             class="tui-full-calendar-popup-detail-date tui-full-calendar-content"
           >
-            ${schedule.body.split("\n")[5]}
+            ${schedule.body.split("\n")[6]}
           </div>
         </div>
         <div class="tui-full-calendar-section-detail">
@@ -57,6 +57,11 @@ const loadData = async () => {
           <div class="tui-full-calendar-popup-detail-item">
             <span class="tui-full-calendar-content"
               >${schedule.body.split("\n")[4]}
+            </span>
+          </div>
+          <div class="tui-full-calendar-popup-detail-item">
+            <span class="tui-full-calendar-content"
+              >${schedule.body.split("\n")[5]}
             </span>
           </div>
         </div>

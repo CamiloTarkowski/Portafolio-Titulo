@@ -1,0 +1,26 @@
+<body class="pad">
+  <main>
+    <h1>Historial de pagos</h1>
+    <div
+      class="card card-body d-flex flex-column align-items-start mb-2"
+      *ngFor="let payment of payments"
+    >
+      <div *ngFor="let orderProducts of payment.order_products">
+        <strong class="d-inline-block mb-2 text-primary"
+          >Código: {{ orderProducts.product?.code }}</strong
+        >
+        <div class="mb-0">
+          <h2>{{ orderProducts.product?.name }}</h2>
+        </div>
+        <div class="mb-1 text-muted">
+          Pagado: ${{ orderProducts.product?.price | ThousandSeparator }}
+        </div>
+        <p class="card-text mb-auto">
+          Fecha de pago: {{ payment.created_at | date: "dd/MM/YY" }}
+        </p>
+      </div>
+    </div>
+
+    <p *ngIf="payments.length == 0">No hay ningun pago aún.</p>
+  </main>
+</body>

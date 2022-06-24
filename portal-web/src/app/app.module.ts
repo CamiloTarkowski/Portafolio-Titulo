@@ -24,6 +24,7 @@ import { GetOrderProductsPipe } from './pipes/get-order-products.pipe';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { NgxStripeModule } from 'ngx-stripe';
 import { HomeComponent } from './home/home.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HomeComponent } from './home/home.component';
     GetOrderProductsPipe,
     PaymentMethodComponent,
     HomeComponent,
+    PaymentHistoryComponent,
   ],
   imports: [
     BrowserModule,

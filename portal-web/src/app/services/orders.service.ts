@@ -85,6 +85,11 @@ export class OrdersService {
     return this.http.post(this.apiUrl + '/orders', order);
   }
 
+  getPayments() {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return this.http.post(this.apiUrl + '/api/my-payments', { id: user.id });
+  }
+
   private async createDeliveryMethod() {
     const { data } = await axios.post(this.apiUrl + '/delivery-methods', {
       name: this.user.name,
