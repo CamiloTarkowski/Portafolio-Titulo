@@ -1,13 +1,16 @@
 <main class="main">
   <div class="payment-container">
-    <h1>Polera jaja</h1>
-    <p>Precio:</p>
-    <p>Descripcion:</p>
-    <p>Cantidad:</p>
+    <h1>Productos</h1>
+    <ul>
+      <li *ngFor="let product of products">
+        {{ product.name }}
+      </li>
+    </ul>
+    <p>Precio final: ${{ finalPrice | ThousandSeparator }}</p>
     <ngx-stripe-card
       [options]="cardOptions"
       [elementsOptions]="elementsOptions"
     ></ngx-stripe-card>
-    <button>Pagar</button>
+    <button (click)="pay()" class="btn btn-success">Pagar</button>
   </div>
 </main>

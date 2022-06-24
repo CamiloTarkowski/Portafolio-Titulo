@@ -82,11 +82,11 @@ export const createReport = async (req, res = response) => {
     ];
   });
 
-  console.log(DATA_ROWS);
-
   const data = [HEADER_ROW, ...DATA_ROWS];
 
   await writeXlsxFile(data, {
     filePath: "src/assets/report.xlsx",
   });
+
+  return res.json({ message: "Reporte creado" });
 };

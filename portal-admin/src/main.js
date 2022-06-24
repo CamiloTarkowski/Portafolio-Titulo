@@ -8,6 +8,7 @@ let showProductWindow;
 let showProductsWindow;
 let editProductWindow;
 let showUserWindow;
+let showPopupWindow;
 
 const createMenuWindow = () => {
   mainWindow = new BrowserWindow({
@@ -20,6 +21,7 @@ const createMenuWindow = () => {
       contextIsolation: false,
       enableRemoteModule: true,
     },
+    resizable: false,
   });
   mainWindow.loadFile("views/menu/menu.html");
 };
@@ -35,6 +37,7 @@ const createNewProductWindow = () => {
       contextIsolation: false,
       enableRemoteModule: true,
     },
+    resizable: false,
   });
 
   newProductWindow.loadFile("views/new-product/new-product.html");
@@ -51,6 +54,7 @@ const createEditProductWindow = () => {
       contextIsolation: false,
       enableRemoteModule: true,
     },
+    resizable: false,
   });
 
   editProductWindow.loadFile("views/edit-product/edit-product.html");
@@ -107,6 +111,23 @@ const createShowUserWindow = () => {
   showUserWindow.loadFile("views/show-user/show-user.html");
 };
 
+const createPopupWindow = () => {
+  showPopupWindow = new BrowserWindow({
+    width: 360,
+    height: 308,
+    autoHideMenuBar: true,
+    backgroundColor: "#6578B9",
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+    resizable: false,
+  });
+
+  showPopupWindow.loadFile("views/popup/popup.html");
+};
+
 ipcMain.on("go-back", () => {
   if (showProductWindow && !showProductWindow.isDestroyed()) {
     showProductWindow.close();
@@ -144,6 +165,12 @@ ipcMain.handle("load-users", async () => {
 
 ipcMain.handle("load-orders", async () => {
   const { data: orders } = await axios.get("http://localhost:4444/orders");
+  return JSON.stringify(orders);
+});
+
+ipcMain.handle("load-calendar-orders", async () => {
+  const { data } = await axios.get("http://localhost:4444/orders");
+  const orders = data.filter((order) => order.order_state.state == "Pedido");
   return JSON.stringify(orders);
 });
 
@@ -272,6 +299,23 @@ ipcMain.on("decline-order", async (_, id) => {
     message:
       "El pedido de fabricación fue rechazado por la dueña, los motivos pueden ser: No hay materiales, no hay tiempo.",
   });
+});
+
+ipcMain.on("show-notification", async (_, data) => {
+  console.log(data);
+  new Notification({
+    title: data.title,
+    body: data.body,
+  }).show();
+});
+
+ipcMain.on("show-popup", async (_, schedule) => {
+  createPopupWindow();
+  ipcMain.handle(`load-popup-data`, () => {
+    return schedule;
+  });
+
+  setTimeout(() => ipcMain.removeHandler("load-popup-data"), 300);
 });
 
 module.exports = {

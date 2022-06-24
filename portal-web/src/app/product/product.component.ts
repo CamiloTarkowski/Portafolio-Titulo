@@ -33,9 +33,9 @@ export class ProductComponent implements OnInit {
     this.router.navigate(['/pagar']);
   }
 
-  createMakeOrder() {
-    if (this.product.stock === 0) {
-      this.ordersService.createMakeOrder(this.product).subscribe(
+  async createMakeOrder() {
+    if (this.product.stock == 0) {
+      (await this.ordersService.createMakeOrder([this.product])).subscribe(
         (res) => {
           this.toastService.success(
             'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
