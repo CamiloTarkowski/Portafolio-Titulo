@@ -1,34 +1,37 @@
-<body class="pad">
-  <main>
-    <h1>Carrito</h1>
-    <div
-      class="card card-body d-flex flex-column align-items-start mb-2"
-      *ngFor="let product of products"
-    >
-      <strong class="d-inline-block mb-2 text-primary"
-        >Código: {{ product?.code }}</strong
+
+  <main class="padding-top">
+    <div class="centerdiv">
+      <h1>Carrito de compras</h1>
+      <div
+        class="row" 
+        *ngFor="let product of products"
       >
-      <h3 class="mb-0">
-        <h2>{{ product?.name }}</h2>
-      </h3>
-      <div class="mb-1 text-muted">
-        Price: ${{ product?.price | ThousandSeparator }}
+      <div class="row">
+        <div class="col-8">
+          <p><b>Código:</b> {{ product?.code }}</p>
+          <p><b>Precio:</b> ${{ product?.price | ThousandSeparator }}</p>
+          <p><b>Colegio:</b> {{ product?.institution?.name }}</p>
+          <p><b>Unidades:</b> x</p>
+
+          <button class="btn btn-outline-primary" (click)="deleteCartProduct(product.id)">
+            Eliminar
+          </button>
+          <hr>
+        </div>
+        <div class="col-4 "><img class="rounded float-end img-thumbnail" src="http://localhost:4444{{ product?.image?.url }}" width="150px" alt=""></div>
       </div>
-      <p class="card-text mb-auto">Colegio:{{ product?.institution?.name }}</p>
-      <p class="card-text mb-auto">
-        Unidades disponibles: {{ product?.stock }}
-      </p>
-      <button class="btn btn-danger" (click)="deleteCartProduct(product.id)">
-        Borrar del carrito
-      </button>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom:10px;">
+        <button
+          *ngIf="products.length != 0"
+          (click)="goToPay()"
+          class="btn btn-outline-success mx-auto"
+        >
+          Realizar Compra
+        </button>
+      </div>
+      <p *ngIf="products.length == 0">No hay nada en el carrito.</p>
     </div>
-    <button
-      *ngIf="products.length != 0"
-      (click)="goToPay()"
-      class="btn btn-success"
-    >
-      Pagar
-    </button>
-    <p *ngIf="products.length == 0">No hay nada en el carrito.</p>
   </main>
-</body>
+  
+

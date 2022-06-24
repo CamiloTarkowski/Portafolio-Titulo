@@ -1,6 +1,31 @@
-.divmain{
+
+
+.centerdiv{
+    margin: auto;
+    max-width: 1000px;
+    text-align: left;
     background-color: #ffffff;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.image{
+    border: #616161;
+}
+
+.row{
+    margin: auto;
+}
+
+h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 20px;
+    text-decoration: dotted;
+    font-size: 30px;
+}
+
+.padding-top{
+    padding-top: 50px;
 }
