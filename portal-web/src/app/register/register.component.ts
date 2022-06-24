@@ -42,7 +42,6 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       (err) => {
-        console.log(err.error.message[0].messages[0].message);
         const errorMessage = err.error.message[0].messages[0].message;
         this.getErrorAlert(errorMessage);
       }

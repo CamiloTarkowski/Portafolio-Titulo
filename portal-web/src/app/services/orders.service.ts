@@ -36,14 +36,12 @@ export class OrdersService {
         })),
       };
 
-      console.log(order);
-
       return this.http.post(this.apiUrl + '/orders', order);
     }
 
     const order = {
       total: products[0].price,
-      tax: products[0].price * 0.19,
+      tax: Math.round(products[0].price * 0.19),
       client: this.user.id,
       order_state: 2,
       delivery_method: this.deliveryMethod,
@@ -68,7 +66,7 @@ export class OrdersService {
 
     const order = {
       total: product[0].price,
-      tax: product[0].price * 0.19,
+      tax: Math.round(product[0].price * 0.19),
       client: this.user.id,
       order_state: 1,
       delivery_method: this.deliveryMethod.id,
@@ -113,7 +111,7 @@ export class OrdersService {
       total = total + products[i].price;
     }
 
-    const tax = total * 0.19;
+    const tax = Math.round(total * 0.19);
 
     return {
       total,

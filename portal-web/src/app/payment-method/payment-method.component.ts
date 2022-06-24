@@ -5,10 +5,10 @@ import {
   StripeElementsOptions,
 } from '@stripe/stripe-js';
 import { OrdersService } from '../services/orders.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -23,6 +23,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   finalPrice: number = 0;
   TEST_CREDIT_CART = '4242 4242 4242 4242';
   isValid: boolean = false;
+  notificationId?: string | null = '';
 
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
@@ -51,6 +52,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
     private stripeService: StripeService,
     private toastService: ToastrService,
     private router: Router,
+    private route: ActivatedRoute,
     private http: HttpClient
   ) {}
 
@@ -70,7 +72,6 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
       )
       .subscribe(async (result) => {
         if (result.error) {
-          console.log(result.error);
           this.toastService.error(
             'Hubo un error al realizar el pago, intente más tarde'
           );
@@ -78,6 +79,16 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
           if (result.paymentIntent?.status === 'succeeded') {
             (await this.ordersService.createOrder(this.products)).subscribe(
               (res: any) => {
+                if (this.notificationId != '') {
+                  console.log(this.notificationId);
+                  this.http
+                    .delete(
+                      `${this.apiUrl}/notifications/${this.notificationId}`
+                    )
+                    .subscribe((res) => {
+                      console.log(res);
+                    });
+                }
                 this.toastService.success(
                   'Pago realizado con éxito, se le enviara una notificacion con la fecha de entrega aproximada'
                 );
@@ -93,7 +104,9 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   }
 
   private getProductData(): void {
-    const products: Product[] = JSON.parse(
+    this.notificationId =
+      this.route.snapshot.queryParamMap.get('notificationId');
+    const products: any[] = JSON.parse(
       localStorage.getItem('productsToPay') || '[]'
     );
     if (products.length === 0) this.router.navigate(['/']);

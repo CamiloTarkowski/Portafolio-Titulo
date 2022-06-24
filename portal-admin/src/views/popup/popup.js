@@ -4,8 +4,6 @@ const popup = document.querySelector("#popup");
 const loadData = async () => {
   const schedule = await ipcRenderer.invoke("load-popup-data");
 
-  console.log(schedule);
-
   const template = `
   <div class="tui-full-calendar-popup-container">
         <div

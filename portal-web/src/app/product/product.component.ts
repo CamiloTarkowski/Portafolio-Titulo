@@ -42,6 +42,7 @@ export class ProductComponent implements OnInit {
           );
         },
         (err) => {
+          console.log(err);
           this.toastService.error(
             'No se pudo crear el pedido de fabricacion, intente nuevamente'
           );

@@ -302,7 +302,6 @@ ipcMain.on("decline-order", async (_, id) => {
 });
 
 ipcMain.on("show-notification", async (_, data) => {
-  console.log(data);
   new Notification({
     title: data.title,
     body: data.body,

@@ -52,8 +52,6 @@ export class FormComponent {
       first_pay: '5000',
     });
 
-    console.log(data);
-
     this.productId = '';
     this.quantity = '';
     this.address = '';

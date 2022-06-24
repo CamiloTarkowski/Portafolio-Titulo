@@ -20,6 +20,8 @@ export const pay = async (req, res = response) => {
       payment_method_types: ["card"],
     });
 
+    console.log(paymentIntent);
+
     res.status(201).json(paymentIntent.client_secret);
   } catch (error) {
     return res.json({
@@ -40,7 +42,6 @@ export const myPayments = async (req, res = response) => {
       (order.client.id == id && order.order_state.state == "Pedido") ||
       order.order_state.state == "Agendado"
   );
-  console.log(orders);
 
   return res.json(orders);
 };
