@@ -8,11 +8,11 @@
       >
       <div class="row">
         <div class="col-8">
+          <p><b>Producto:</b> {{ product?.name }}</p>
           <p><b>Código:</b> {{ product?.code }}</p>
           <p><b>Precio:</b> ${{ product?.price | ThousandSeparator }}</p>
           <p><b>Colegio:</b> {{ product?.institution?.name }}</p>
-          <p><b>Talla:</b> {{ product?.institution?.name }}</p>
-          <p><b>Unidades:</b> x</p>
+          <p><b>Talla:</b> {{ product?.size }}</p>
 
           <button class="btn btn-outline-primary" (click)="deleteCartProduct(product.id)">
             Eliminar
