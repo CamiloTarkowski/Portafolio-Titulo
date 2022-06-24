@@ -85,7 +85,7 @@ export const createReport = async (req, res = response) => {
   const data = [HEADER_ROW, ...DATA_ROWS];
 
   await writeXlsxFile(data, {
-    filePath: "src/assets/report.xlsx",
+    filePath: `${process.env.HOMEPATH}/Desktop/report.xlsx`,
   });
 
   return res.json({ message: "Reporte creado" });
