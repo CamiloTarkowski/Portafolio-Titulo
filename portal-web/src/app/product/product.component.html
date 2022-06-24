@@ -1,25 +1,24 @@
 <title>{{ product?.name }}</title>
-<body class="pad">
-  <div class="col-md-6">
+<!-- <div class="box__product">
+
     <div class="card flex-md-row mb-4 shadow-sm h-md-250">
       <div class="card-body d-flex flex-column align-items-start">
         <img
-          class="card-img-right flex-auto d-none d-lg-block"
-          style="width: 500px; padding: 5px"
-          alt="Card image cap"
-          src="http://localhost:4444{{ product?.image?.url }}"
-        />
-
+        
+        style="width:500px; padding: 5px;"
+        alt="{{product?.name}}"
+        src="http://localhost:4444{{ product?.image?.url }}"
+        class="img-fluid"
+      />
+        
         <strong class="d-inline-block mb-2 text-primary"
           >Código: {{ product?.code }}</strong
         >
         <h3 class="mb-0">
           <h2>{{ product?.name }}</h2>
         </h3>
-
-        <div class="mb-1 text-muted">
-          Precio: ${{ product?.price | ThousandSeparator }}
-        </div>
+        
+        <div class="mb-1 text-muted bg-success">Price: ${{ product?.price }}</div>
         <p class="card-text mb-auto">
           Colegio: {{ product?.institution?.name }}
         </p>
@@ -49,5 +48,62 @@
         </button>
       </div>
     </div>
+
+  </div> -->
+<div class="container box__product">
+  <div class="row" style="margin: auto">
+    <div class="col-12 col-sm-6 col-md-8">
+      <div class="card">
+        <img
+          src="http://localhost:4444{{ product?.image?.url }}"
+          style="width: 80%"
+          class="card-img-top"
+          alt="..."
+        />
+      </div>
+    </div>
+    <div class="col-6 col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h3>{{ product?.name }}</h3>
+          <p class="price padding">${{ product?.price | ThousandSeparator }}</p>
+          <p class="card-text mb-auto">
+            Colegio: {{ product?.institution?.name }}
+          </p>
+          <h2>Descripción: {{ product?.description }}</h2>
+          <p>Unidades disponibles: {{ product?.stock }}</p>
+          <p>Código: {{ product?.code }}</p>
+          <div class="d-grid gap-2" style="padding: 5px">
+            <button
+              *ngIf="product.stock > 0"
+              class="btn btn-lg btn-block btn-outline-primary"
+              (click)="addToCart()"
+            >
+              Añadir al carrito
+            </button>
+          </div>
+
+          <div
+            *ngIf="product.stock != 0"
+            class="d-grid gap-2"
+            style="padding: 5px"
+          >
+            <button
+              class="btn btn-lg btn-block btn-primary"
+              (click)="goToPay()"
+            >
+              Ir a pagar
+            </button>
+          </div>
+          <button
+            *ngIf="product.stock == 0"
+            class="btn btn-lg btn-block btn-primary"
+            (click)="createMakeOrder()"
+          >
+            Ir a pagar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</body>
+</div>

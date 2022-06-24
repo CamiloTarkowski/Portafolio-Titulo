@@ -31,12 +31,12 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
     style: {
       base: {
         color: '#31325F',
-        backgroundColor: '#c9c9c9',
+        backgroundColor: '#ffffff',
         fontWeight: '300',
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSize: '20px',
         '::placeholder': {
-          color: '#1f1f1f',
+          color: '#b1b1b1',
         },
       },
     },

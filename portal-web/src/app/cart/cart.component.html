@@ -1,34 +1,49 @@
-<body class="pad">
-  <main>
-    <h1>Carrito</h1>
-    <div
-      class="card card-body d-flex flex-column align-items-start mb-2"
-      *ngFor="let product of products"
-    >
-      <strong class="d-inline-block mb-2 text-primary"
-        >Código: {{ product?.code }}</strong
+<main class="padding-top">
+  <div class="centerdiv">
+    <h1>Carrito de compras</h1>
+    <div class="row" *ngFor="let product of products">
+      <div class="row">
+        <div class="col-8">
+          <p><b>Producto:</b> {{ product?.name }}</p>
+          <p><b>Código:</b> {{ product?.code }}</p>
+          <p><b>Precio:</b> ${{ product?.price | ThousandSeparator }}</p>
+          <p><b>Colegio:</b> {{ product?.institution?.name }}</p>
+          <p><b>Talla:</b> {{ product?.size }}</p>
+
+          <button
+            class="btn btn-outline-primary"
+            (click)="deleteCartProduct(product.id)"
+          >
+            Eliminar
+          </button>
+          <hr />
+        </div>
+        <div class="col-4">
+          <img
+            class="rounded float-end img-thumbnail"
+            src="http://localhost:4444{{ product?.image?.url }}"
+            width="150px"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 10px">
+      <button
+        *ngIf="products.length != 0"
+        (click)="goToPay()"
+        class="btn btn-outline-success mx-auto"
       >
-      <div class="mb-0">
-        <h2>{{ product?.name }}</h2>
-      </div>
-      <div class="mb-1 text-muted">
-        Price: ${{ product?.price | ThousandSeparator }}
-      </div>
-      <p class="card-text mb-auto">Colegio:{{ product?.institution?.name }}</p>
-      <p class="card-text mb-auto">
-        Unidades disponibles: {{ product?.stock }}
-      </p>
-      <button class="btn btn-danger" (click)="deleteCartProduct(product.id)">
-        Borrar del carrito
+        Realizar Compra
       </button>
     </div>
-    <button
-      *ngIf="products.length != 0"
-      (click)="goToPay()"
-      class="btn btn-success"
-    >
-      Pagar
-    </button>
-    <p *ngIf="products.length == 0">No hay nada en el carrito.</p>
-  </main>
-</body>
+    <div *ngIf="products.length == 0">
+      <p class="noProducts">(No hay nada en el carrito)</p>
+      <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 10px">
+        <button class="btn btn-outline-success mx-auto" routerLink="/catalogue">
+          Ir a catálogo
+        </button>
+      </div>
+    </div>
+  </div>
+</main>
