@@ -11,7 +11,9 @@
       <h3 class="mb-0">
         <h2>{{ product?.name }}</h2>
       </h3>
-      <div class="mb-1 text-muted">Price: ${{ product?.price }}</div>
+      <div class="mb-1 text-muted">
+        Price: ${{ product?.price | ThousandSeparator }}
+      </div>
       <p class="card-text mb-auto">Colegio:{{ product?.institution?.name }}</p>
       <p class="card-text mb-auto">
         Unidades disponibles: {{ product?.stock }}
@@ -20,6 +22,13 @@
         Borrar del carrito
       </button>
     </div>
-    <button class="btn btn-success">Pagar</button>
+    <button
+      *ngIf="products.length != 0"
+      (click)="goToPay()"
+      class="btn btn-success"
+    >
+      Pagar
+    </button>
+    <p *ngIf="products.length == 0">No hay nada en el carrito.</p>
   </main>
 </body>

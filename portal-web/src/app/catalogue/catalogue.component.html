@@ -1,22 +1,22 @@
 <title>Catálogo</title>
 
-  <section>
-  <div class="row" style="padding-top:10px;">
-  <div class="col-md-4" style="padding: 3%" *ngFor="let product of products" >
-    <ul class="list-group">
-      <li class="list-group-item">Nombre: {{ product.name }}</li>
-      <li class="list-group-item">
-        Precio: $ {{ product.price | ThousandSeparator }}
-      </li>
+<section>
+  <div class="row" style="padding-top: 10px">
+    <div class="col-md-4" style="padding: 3%" *ngFor="let product of products">
+      <ul class="list-group">
+        <li class="list-group-item">Nombre: {{ product.name }}</li>
+        <li class="list-group-item">
+          Precio: $ {{ product.price | ThousandSeparator }}
+        </li>
 
-      <li class="list-group-item">Colegio: {{ product.institution.name }}</li>
-      <img
-        src="http://localhost:4444{{ product.image.url }}"
-        routerLink="/product/{{ product.id }}"
-        type="button"
-      />
-      <li class="list-group-item"></li>
-    </ul>
+        <li class="list-group-item">Colegio: {{ product.institution.name }}</li>
+        <img
+          src="http://localhost:4444{{ product.image.url }}"
+          routerLink="/product/{{ product.id }}"
+          type="button"
+        />
+        <li class="list-group-item"></li>
+      </ul>
     </div>
   </div>
 </section>

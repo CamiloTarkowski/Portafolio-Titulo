@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
 import { CartService } from '../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'cart',
@@ -10,7 +11,12 @@ import { CartService } from '../services/cart.service';
 export class CartComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
+
+  goToPay() {
+    localStorage.setItem('productsToPay', JSON.stringify(this.products));
+    this.router.navigate(['/pagar']);
+  }
 
   getCartProducts() {
     this.cartService.getCartProducts().subscribe((products) => {

@@ -23,14 +23,32 @@ export class NotificationsComponent implements OnInit {
         this.notificationService
           .getNotifications()
           .subscribe((notifications) => {
-            this.notifications = notifications;
+            this.notifications = notifications.map((notification: any) => {
+              return {
+                ...notification,
+                order: {
+                  ...notification.order,
+                  total: parseInt(notification.order.total),
+                  tax: parseInt(notification.order.tax),
+                },
+              };
+            });
           });
       });
   }
 
   ngOnInit(): void {
     this.notificationService.getNotifications().subscribe((notifications) => {
-      this.notifications = notifications;
+      this.notifications = notifications.map((notification: any) => {
+        return {
+          ...notification,
+          order: {
+            ...notification.order,
+            total: parseInt(notification.order.total),
+            tax: parseInt(notification.order.tax),
+          },
+        };
+      });
     });
   }
 }

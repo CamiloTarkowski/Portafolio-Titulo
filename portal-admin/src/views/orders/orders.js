@@ -6,10 +6,9 @@ const listOrders = document.querySelector(".list-orders");
 const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
   orders = JSON.parse(orders);
+  console.log(orders);
   for (let i = 0; i < orders.length; i++) {
-    if (orders[i].order_state.state !== "Cotizacion") continue;
-
-    console.log(orders[i]);
+    if (orders[i].order_state.state != "Cotizacion") continue;
 
     const template = `
     <div class="order">
