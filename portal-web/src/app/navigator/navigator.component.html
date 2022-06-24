@@ -12,7 +12,7 @@
         src="./assets/img/cyc.png"
         alt=""
         width="40px"
-        routerLink="home"
+        routerLink=""
         type="button"
     /></a>
     <button
@@ -29,15 +29,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active, texto-nav" routerLink="/catalogo"
+          <a class="nav-link active, texto-nav" routerLink=""
+            >Inicio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active, texto-nav" routerLink="/catalogue"
             >Catálogo</a
           >
         </li>
-        <li class="nav-item" *ngIf="authService.isLogged()" (click)="logout()">
-          <a class="nav-link active, texto-nav" routerLink="/catalogo"
-            >Cerrar Sesión</a
-          >
-        </li>
+        
         <li class="nav-item" *ngIf="authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/notificaciones"
             >Notificaciones</a
@@ -62,10 +63,15 @@
       </form>
       <a
         routerLink="/cart"
-        style="padding-right: 15%"
+        
         *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
+      <a class="nav-item" *ngIf="authService.isLogged()" (click)="logout()" style="padding-right: 15%">
+        <a class="nav-link active, texto-nav" routerLink="/catalogo"
+          ><i class="fa-solid fa-arrow-right-from-bracket" alt="Cerrar Sesión"></i></a
+        >
+      </a>
     </div>
   </div>
 </nav>

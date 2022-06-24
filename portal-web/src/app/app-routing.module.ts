@@ -8,14 +8,19 @@ import { ProductComponent } from './product/product.component';
 import { RegisterComponent } from './register/register.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'catalogue',
     component: CatalogueComponent,
   },
   {
-    path: 'producto/:id',
+    path: 'product/:id',
     component: ProductComponent,
     canActivate: [AuthGuard],
   },
