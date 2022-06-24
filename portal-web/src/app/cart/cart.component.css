@@ -29,3 +29,10 @@ h1{
 .padding-top{
     padding-top: 50px;
 }
+
+.noProducts{
+    text-align: center;
+    padding: 50px;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

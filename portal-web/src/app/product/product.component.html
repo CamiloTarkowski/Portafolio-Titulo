@@ -68,23 +68,26 @@
           <h2>Descripción: {{ product?.description }}</h2>
           <p>Unidades disponibles: {{ product?.stock}}</p>
           <p>Código: {{ product?.code }}</p>
-
-          <button
-          *ngIf="product.stock > 0"
-          class="btn btn-lg btn-block btn-outline-primary"
-          (click)="addToCart()"
-          >
-          Añadir al carrito
-          </button>
+          <div class="d-grid gap-2" style="padding: 5px;">
+            <button
+            *ngIf="product.stock > 0"
+            class="btn btn-lg btn-block btn-outline-primary"
+            (click)="addToCart()"
+            >
+            Añadir al carrito
+            </button>
+          </div>
    
-
-          <button
-          *ngIf="product.stock != 0"
-          class="btn btn-lg btn-block btn-primary"
-          (click)="goToPay()"
-          >
-          Ir a pagar
-          </button>
+          
+          <div *ngIf="product.stock != 0" class="d-grid gap-2" style="padding: 5px;">
+            <button
+            
+            class="btn btn-lg btn-block btn-primary"
+            (click)="goToPay()"
+            >
+            Ir a pagar
+            </button>
+          </div>
           <button
           *ngIf="product.stock == 0"
           class="btn btn-lg btn-block btn-primary"
