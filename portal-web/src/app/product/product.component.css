@@ -1,0 +1,26 @@
+.card{
+    margin:auto;
+}
+
+.box__product{
+    
+    padding-top: 10px;
+    max-width: 1000px;
+    box-shadow: 20px;
+}
+
+h3{
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.price{
+    font-size: 300%;
+    color: crimson;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.padding{
+    padding: 5%;
+}
