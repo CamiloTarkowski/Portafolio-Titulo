@@ -1,6 +1,12 @@
 .texto-nav{
     color:#ffffff;
 }
+.borderco{
+    border-color: hwb(147 65% 7%);
+    padding-right: 15%;
+    color: #ffffff;
+    
+}
 
 a{
     padding: 10px;

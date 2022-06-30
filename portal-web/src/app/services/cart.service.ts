@@ -7,6 +7,7 @@ import { Product } from '../interfaces/product.interface';
 })
 export class CartService {
   products: Product[] = [];
+  quantity: number = 0;
 
   constructor() {}
 

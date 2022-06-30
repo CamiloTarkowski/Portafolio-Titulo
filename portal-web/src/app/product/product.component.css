@@ -1,12 +1,15 @@
-.card{
-    margin:auto;
-}
 
+.pad-bott{
+    padding-bottom: 15px;
+}
 .box__product{
     
-    padding-top: 10px;
-    max-width: 1000px;
-    box-shadow: 20px;
+    padding: 10px;
+    margin: auto;
+    box-shadow: 100px;
+    background-color: rgb(255, 255, 255);
+    border-color: #424242;
+    border-radius: 8px;
 }
 
 h3{
@@ -23,4 +26,38 @@ h3{
 
 .padding{
     padding: 5%;
+}
+
+
+.increase{
+    float: right;
+}
+
+.quantity{
+    text-align: center;
+}
+
+.border{
+    border: 3px;
+    color: black;
+    border-radius: 8px;
+    margin: auto;
+    padding: 2%;
+}
+
+.divwidth{
+    padding-top: 2px;
+}
+
+.font1{
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: 18px;
+}
+
+h2{
+    color: #424242;
+}
+
+.floatbottom{
+    bottom: 100%;
 }

@@ -5,6 +5,7 @@ import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from '../services/orders.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-producto',
@@ -13,6 +14,7 @@ import { OrdersService } from '../services/orders.service';
 })
 export class ProductComponent implements OnInit {
   product: Product = {} as Product;
+  quantity:number;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,7 +23,9 @@ export class ProductComponent implements OnInit {
     private cartService: CartService,
     private ordersService: OrdersService,
     private toastService: ToastrService
-  ) {}
+  ) {
+    this.quantity=1;
+  }
 
   addToCart() {
     this.cartService.addToCart(this.product);
@@ -43,7 +47,7 @@ export class ProductComponent implements OnInit {
         },
         (err) => {
           this.toastService.error(
-            'No se pudo crear el pedido de fabricacion, intente nuevamente'
+            'No se pudo crear el pedido de fabricación, intente nuevamente'
           );
         }
       );
@@ -59,4 +63,16 @@ export class ProductComponent implements OnInit {
       });
     });
   }
+
+  increaseQuantity(){
+    this.quantity++;
+  }
+
+  diminishQuantity(){
+    if (this.quantity > 1){
+      this.quantity--;
+    }
+  }
+
+
 }
