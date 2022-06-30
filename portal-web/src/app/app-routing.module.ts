@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { PaymentMethodComponent } from './payment-method/payment-method.component';
 import { HomeComponent } from './home/home.component';
+import { PaymentHistoryComponent } from './payment-history/payment-history.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'catalogue',
     component: CatalogueComponent,
+  },
+  {
+    path: 'historial',
+    component: PaymentHistoryComponent,
   },
   {
     path: 'product/:id',

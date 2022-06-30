@@ -1,20 +1,24 @@
 <main class="main">
   <div class="payment-container">
-    <h1 style="text-align:center">Productos</h1>
-    <hr>
+    <h1 style="text-align: center">Productos</h1>
+    <hr />
     <ul>
       <li *ngFor="let product of products">
-        {{ product.name }} <p class="text">${{product.price | ThousandSeparator}}</p>
+        {{ product.name }}
+        <p class="text">${{ product.price | ThousandSeparator }}</p>
       </li>
-      <hr>
+      <hr />
     </ul>
-    <p class="text"><b>Precio total:</b> ${{ finalPrice | ThousandSeparator }}</p>
-    
-    <ngx-stripe-card class="border"
+    <p class="text">
+      <b>Precio total:</b> ${{ finalPrice | ThousandSeparator }}
+    </p>
+
+    <ngx-stripe-card
+      class="border"
       [options]="cardOptions"
       [elementsOptions]="elementsOptions"
     ></ngx-stripe-card>
-    <div class="d-grid gap-2" style="padding-top: 15px;">
+    <div class="d-grid gap-2" style="padding-top: 15px">
       <button (click)="pay()" class="btn btn-success">Pagar</button>
     </div>
   </div>

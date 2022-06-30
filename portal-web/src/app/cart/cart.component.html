@@ -1,11 +1,7 @@
-
-  <main class="padding-top">
-    <div class="centerdiv">
-      <h1>Carrito de compras</h1>
-      <div
-        class="row" 
-        *ngFor="let product of products"
-      >
+<main class="padding-top">
+  <div class="centerdiv">
+    <h1>Carrito de compras</h1>
+    <div class="row" *ngFor="let product of products">
       <div class="row">
         <div class="col-8">
           <p><b>Producto:</b> {{ product?.name }}</p>
@@ -14,30 +10,40 @@
           <p><b>Colegio:</b> {{ product?.institution?.name }}</p>
           <p><b>Talla:</b> {{ product?.size }}</p>
 
-          <button class="btn btn-outline-primary" (click)="deleteCartProduct(product.id)">
+          <button
+            class="btn btn-outline-primary"
+            (click)="deleteCartProduct(product.id)"
+          >
             Eliminar
           </button>
-          <hr>
+          <hr />
         </div>
-        <div class="col-4 "><img class="rounded float-end img-thumbnail" src="http://localhost:4444{{ product?.image?.url }}" width="150px" alt=""></div>
+        <div class="col-4">
+          <img
+            class="rounded float-end img-thumbnail"
+            src="http://localhost:4444{{ product?.image?.url }}"
+            width="150px"
+            alt=""
+          />
+        </div>
       </div>
-      </div>
-      <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom:10px;">
-        <button
-          *ngIf="products.length != 0"
-          (click)="goToPay()"
-          class="btn btn-outline-success mx-auto"
-        >
-          Realizar Compra
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 10px">
+      <button
+        *ngIf="products.length != 0"
+        (click)="goToPay()"
+        class="btn btn-outline-success mx-auto"
+      >
+        Realizar Compra
+      </button>
+    </div>
+    <div *ngIf="products.length == 0">
+      <p class="noProducts">(No hay nada en el carrito)</p>
+      <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 10px">
+        <button class="btn btn-outline-success mx-auto" routerLink="/catalogue">
+          Ir a catálogo
         </button>
       </div>
-      <div *ngIf="products.length == 0">
-        <p class="noProducts">(No hay nada en el carrito)</p>
-        <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom:10px;">      
-          <button class="btn btn-outline-success mx-auto " routerLink="/catalogue">Ir a catálogo</button>
-        </div>
     </div>
-    </div>
-  </main>
-  
-
+  </div>
+</main>

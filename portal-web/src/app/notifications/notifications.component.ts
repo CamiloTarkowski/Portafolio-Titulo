@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../services/notification.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -12,8 +13,16 @@ export class NotificationsComponent implements OnInit {
 
   constructor(
     private notificationService: NotificationService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private router: Router
   ) {}
+
+  goToPay(products: any, notificationId: number) {
+    let finalProducts = products.map((product: any) => product.product);
+    localStorage.setItem('productsToPay', JSON.stringify(finalProducts));
+
+    this.router.navigate(['/pagar'], { queryParams: { notificationId } });
+  }
 
   deleteNotification(notificationId: number) {
     this.notificationService

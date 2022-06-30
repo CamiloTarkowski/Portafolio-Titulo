@@ -30,19 +30,22 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active, texto-nav" routerLink=""
-            >Inicio</a
-          >
+          <a class="nav-link active, texto-nav" routerLink="">Inicio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active, texto-nav" routerLink="/catalogue"
             >Catálogo</a
           >
         </li>
-        
+
         <li class="nav-item" *ngIf="authService.isLogged()">
           <a class="nav-link active, texto-nav" routerLink="/notificaciones"
             >Notificaciones</a
+          >
+        </li>
+        <li class="nav-item" *ngIf="authService.isLogged()">
+          <a class="nav-link active, texto-nav" routerLink="/historial"
+            >Historial de pagos</a
           >
         </li>
         <li class="nav-item" *ngIf="!authService.isLogged()">
@@ -62,16 +65,21 @@
           aria-label="Search"
         />
       </form>
-      <a
-        routerLink="/cart"
-        
-        *ngIf="authService.isLogged()"
+      <a routerLink="/cart" *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
-      <a class="nav-item" *ngIf="authService.isLogged()" (click)="logout()" style="padding-right: 15%">
+      <a
+        class="nav-item"
+        *ngIf="authService.isLogged()"
+        (click)="logout()"
+        style="padding-right: 15%"
+      >
         <a class="nav-link active, texto-nav" routerLink="/catalogo"
-          ><i class="fa-solid fa-arrow-right-from-bracket" alt="Cerrar Sesión"></i></a
-        >
+          ><i
+            class="fa-solid fa-arrow-right-from-bracket"
+            alt="Cerrar Sesión"
+          ></i
+        ></a>
       </a>
     </div>
   </div>

@@ -10,14 +10,13 @@ const size = document.querySelector("#size");
 const stock = document.querySelector("#stock");
 const institution = document.querySelector("#institution");
 const addProduct = document.querySelector("#addProduct");
+const manufacturingTime = document.querySelector("#manufacturingTime");
 
 addProduct.addEventListener("click", async (e) => {
   e.preventDefault();
 
   const selectedOption = institution.options[institution.selectedIndex].value;
   const actualInstitutions = JSON.parse(sessionStorage.getItem("institutions"));
-  // if (actualInstitutions.includes(selectedOption)) {
-  // }
 
   const selectedInstitution = actualInstitutions.filter((institution) => {
     if (institution.name === selectedOption) {
@@ -33,6 +32,7 @@ addProduct.addEventListener("click", async (e) => {
     size: size.value,
     stock: parseInt(stock.value),
     institution: selectedInstitution[0].id,
+    manufacturing_time: manufacturingTime.value,
   };
 
   try {

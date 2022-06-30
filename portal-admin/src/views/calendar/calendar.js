@@ -182,6 +182,10 @@ const loadCalendar = async () => {
       (orderProduct) =>
         `${orderProduct.product.name} (${orderProduct.quantity})`
     );
+    const estimatedManufactoringTime = orderProducts.map(
+      (orderProduct) =>
+        orderProduct.product.manufactoring_time * orderProduct.quantity
+    );
     return {
       id: schedule.id,
       calendarId: "1",
@@ -192,7 +196,9 @@ const loadCalendar = async () => {
         schedule.client.rut
       }\nTelefono: ${schedule.client.number}\nTotal: $${
         schedule.total
-      }\n Fecha de entrega: ${schedule.estimated_date_delivery}`,
+      }\nTiempo de fabricación estimado: ${estimatedManufactoringTime} Horas\nFecha de entrega: ${
+        schedule.estimated_date_delivery
+      }`,
       location: schedule.client.address,
       category: "allday",
       isPending: true,
@@ -225,6 +231,9 @@ const loadOrders = async () => {
       <p class="row">Telefono: ${orders[i].client.number}</p>
       <p class="row">Rut: ${orders[i].client.rut}</p>
       <p class="row">Codigo(s) producto(s): ${showProductsCode(
+        orders[i].order_products
+      )}</p>
+      <p class="row">Tiempo aprox. fabricación: ${calculateEstimatedTime(
         orders[i].order_products
       )}</p>
       <p class="row">Fecha de emisión: ${formatDate(orders[i].created_at)}</p>
@@ -265,6 +274,11 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
     (orderProduct) => `${orderProduct.product.name} (${orderProduct.quantity})`
   );
 
+  const estimatedManufactoringTime = orderProducts.map(
+    (orderProduct) =>
+      orderProduct.product.manufactoring_time * orderProduct.quantity
+  );
+
   if (date === "") {
     ipcRenderer.send("show-notification", {
       title: "Portal admin - Error",
@@ -280,7 +294,7 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
       title: `Id Pedido: ${orderId}`,
       body: `Productos: ${nameAndQuantity.join(
         ", "
-      )}\nNombre: ${name}\nRut: ${rut}\nTelefono: ${number}\nTotal: $${total}\n Fecha de entrega: ${date}`,
+      )}\nNombre: ${name}\nRut: ${rut}\nTelefono: ${number}\nTotal: $${total}\nTiempo de fabricación estimado: ${estimatedManufactoringTime} Horas\n Fecha de entrega: ${date}`,
       location: location,
       category: "allday",
       isPending: true,
@@ -306,6 +320,17 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
   });
 
   ipcRenderer.send("open-calendar");
+};
+
+const calculateEstimatedTime = (orderProducts) => {
+  const estimatedManufactoringTime = orderProducts.map((orderProduct) => {
+    return (
+      Number(orderProduct.product.manufacturing_time) *
+      Number(orderProduct.quantity)
+    );
+  });
+
+  return estimatedManufactoringTime;
 };
 
 const showProductsCode = (order_products) => {

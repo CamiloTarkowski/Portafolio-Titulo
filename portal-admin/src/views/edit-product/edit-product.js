@@ -133,8 +133,6 @@ const editProduct = async (e, id) => {
     institution: selectedInstitution[0].id,
   };
 
-  console.log(product.id);
-
   try {
     await axios.put(`http://localhost:4444/products/${id}`, product);
     if (file.files.length != 0) {

@@ -1,36 +1,38 @@
-<h1>Notificaciones</h1>
-<main>
-  <div class="card mt-5" *ngFor="let notification of notifications">
-    <p>Pedido: {{ notification.order.order_products | getOrderProducts }}</p>
-    <p *ngIf="notification.order.order_state != 4">
-      Precio final (+IVA): ${{
-        notification.order.total + notification.order.tax | ThousandSeparator
-      }}
-    </p>
-    <p>
-      Fecha del pedido de fabricación:
-      {{ notification.order.created_at | date: "dd/MM/YYYY" }}
-    </p>
-    <p>{{ notification.message }}</p>
-    <button
-      *ngIf="
-        notification.order.order_state == 3 ||
-        notification.order.order_state == 4
-      "
-      class="btn btn-danger"
-      (click)="deleteNotification(notification.id)"
-    >
-      Borrar notificacion
-    </button>
+<body class="pad">
+  <h1>Notificaciones</h1>
+  <main>
+    <div class="card mt-5" *ngFor="let notification of notifications">
+      <p>Pedido: {{ notification.order.order_products | getOrderProducts }}</p>
+      <p *ngIf="notification.order.order_state != 4">
+        Precio final (+IVA): ${{
+          notification.order.total + notification.order.tax | ThousandSeparator
+        }}
+      </p>
+      <p>
+        Fecha del pedido de fabricación:
+        {{ notification.order.created_at | date: "dd/MM/YYYY" }}
+      </p>
+      <p>{{ notification.message }}</p>
+      <button
+        *ngIf="notification.order.order_state != 2"
+        class="btn btn-danger mt-3"
+        (click)="deleteNotification(notification.id)"
+      >
+        Borrar notificacion
+      </button>
 
-    <button
-      *ngIf="
-        notification.order.order_state != 3 &&
-        notification.order.order_state != 4
-      "
-      class="btn btn-primary"
-    >
-      Pagar
-    </button>
-  </div>
-</main>
+      <button
+        *ngIf="
+          notification.order.order_state != 3 &&
+          notification.order.order_state != 4
+        "
+        class="btn btn-primary mt-3"
+        (click)="goToPay(notification.order.order_products, notification.id)"
+      >
+        Pagar
+      </button>
+    </div>
+
+    <p *ngIf="notifications.length == 0">No hay ninguna notificación.</p>
+  </main>
+</body>
