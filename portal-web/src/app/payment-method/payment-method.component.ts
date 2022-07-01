@@ -10,6 +10,7 @@ import { Product } from '../interfaces/product.interface';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { Order_products } from '../interfaces/order_products.interface';
 
 @Component({
   selector: 'app-payment-method',
@@ -20,6 +21,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   apiUrl: string = 'http://localhost:4444';
   user: any;
   products: Product[] = [];
+  orderProducts: Order_products[]=[];
   finalPrice: number = 0;
   TEST_CREDIT_CART = '4242 4242 4242 4242';
   isValid: boolean = false;

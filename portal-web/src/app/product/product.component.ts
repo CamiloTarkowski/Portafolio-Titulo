@@ -5,7 +5,6 @@ import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { OrdersService } from '../services/orders.service';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-producto',
@@ -28,8 +27,8 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.product);
-    this.toastService.success('Producto agregado al carrito');
+    this.cartService.addToCart(this.product, this.quantity);
+    this.toastService.success('Has agregado'+this.quantity+' unidades al carrito');
   }
 
   goToPay() {
@@ -73,6 +72,10 @@ export class ProductComponent implements OnInit {
     if (this.quantity > 1){
       this.quantity--;
     }
+  }
+
+  getQuantity(){
+    return this.quantity;
   }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../interfaces/product.interface';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
+import { Order_products } from '../interfaces/order_products.interface';
 
 @Component({
   selector: 'cart',
@@ -9,28 +10,29 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-  products: Product[] = [];
+  order_products: Order_products[] = [];
 
   constructor(private cartService: CartService, private router: Router) {}
 
   goToPay() {
-    localStorage.setItem('productsToPay', JSON.stringify(this.products));
+    localStorage.setItem('productsToPay', JSON.stringify(this.order_products));
     this.router.navigate(['/pagar']);
   }
 
   getCartProducts() {
-    this.cartService.getCartProducts().subscribe((products) => {
-      this.products = products;
+    this.cartService.getCartProducts().subscribe((Order_products) => {
+      this.order_products = Order_products;
     });
   }
 
   deleteCartProduct(id: number) {
-    this.cartService.deleteFromCart(id).subscribe((products) => {
-      this.products = products;
+    this.cartService.deleteFromCart(id).subscribe((Order_products) => {
+      this.order_products = Order_products;
     });
   }
 
   ngOnInit(): void {
     this.getCartProducts();
+    
   }
 }
