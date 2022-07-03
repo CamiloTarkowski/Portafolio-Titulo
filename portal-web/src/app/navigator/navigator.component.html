@@ -58,12 +58,13 @@
         </li>
       </ul>
       <form class="d-flex" role="search" *ngIf="authService.isLogged()">
-        <input
+        <div class="username">Sesión iniciada como {{user.name}} {{user.lastname}}</div>
+        <!-- <input
           class="form-control me-2"
           type="search"
           placeholder="Buscar"
           aria-label="Search"
-        />
+        /> -->
       </form>
       <a routerLink="/cart" *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
@@ -75,11 +76,11 @@
         style="padding-right: 15%"
       >
         <a class="nav-link active, texto-nav" routerLink="/catalogo"
-          ><i
+          ><div><i
             class="fa-solid fa-arrow-right-from-bracket"
             alt="Cerrar Sesión"
           ></i
-        ></a>
+        > Cerrar Sesión</div></a>
       </a>
     </div>
   </div>

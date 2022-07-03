@@ -79,7 +79,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
           );
         } else {
           if (result.paymentIntent?.status === 'succeeded') {
-            (await this.ordersService.createOrder(this.products)).subscribe(
+            (await this.ordersService.createOrder(this.orderProducts)).subscribe(
               (res: any) => {
                 if (this.notificationId != '') {
                   console.log(this.notificationId);
@@ -108,15 +108,15 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   private getProductData(): void {
     this.notificationId =
       this.route.snapshot.queryParamMap.get('notificationId');
-    const products: any[] = JSON.parse(
+    const orderProducts: any[] = JSON.parse(
       localStorage.getItem('productsToPay') || '[]'
     );
-    if (products.length === 0) this.router.navigate(['/']);
+    if (orderProducts.length === 0) this.router.navigate(['/']);
 
-    this.finalPrice = products
-      .map((product: Product) => product.price)
+    this.finalPrice = orderProducts
+      .map((orderProduct: Order_products) => orderProduct.price*orderProduct.quantity)
       .reduce((a: number, b: number) => Number(a) + Number(b));
-    this.products = products;
+    this.orderProducts = orderProducts;
   }
 
   private createPaymentIntent(): Observable<any> {

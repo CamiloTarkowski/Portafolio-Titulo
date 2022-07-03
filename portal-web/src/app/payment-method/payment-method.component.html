@@ -3,9 +3,9 @@
     <h1 style="text-align: center">Productos</h1>
     <hr />
     <ul>
-      <li *ngFor="let product of products">
-        {{ product.name }}
-        <p class="text">${{ product.price | ThousandSeparator }}</p>
+      <li *ngFor="let orderProduct of orderProducts">
+        {{ orderProduct.name }} ({{orderProduct.quantity}} Unidades)
+        <p class="text">${{ orderProduct.price*orderProduct.quantity | ThousandSeparator }}</p>
       </li>
       <hr />
     </ul>

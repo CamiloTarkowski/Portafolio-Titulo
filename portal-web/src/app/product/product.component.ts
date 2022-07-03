@@ -28,7 +28,7 @@ export class ProductComponent implements OnInit {
 
   addToCart() {
     this.cartService.addToCart(this.product, this.quantity);
-    this.toastService.success('Has agregado'+this.quantity+' unidades al carrito');
+    this.toastService.success('Has agregado '+this.quantity+' unidades al carrito');
   }
 
   goToPay() {
