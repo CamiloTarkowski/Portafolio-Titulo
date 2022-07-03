@@ -22,18 +22,20 @@ export class CartService {
   // }
 
   getCartProducts(): Observable<Order_products[]> {
-    localStorage.setItem('cart', JSON.stringify(this.orderProducts));
+    this.orderProducts = JSON.parse(localStorage.getItem('cart') ?? '[]');
     return of(this.orderProducts);
   }
 
   addToCart(product: Product, quantity: number): void {
     var finded=false;
-        
-    for(const order_product of this.orderProducts){
-      var i = 0;
+    var i = 0;    
+    for(var order_product of this.orderProducts){
       if (product.id == order_product.id){
         this.orderProducts[i].quantity = order_product.quantity+quantity;
+        console.log("var i: "+i+" Quanti: "+this.orderProducts[i].quantity);
+                
         finded=true;
+
       }
       i++;
     }
@@ -43,15 +45,11 @@ export class CartService {
         image: {url : product.image.url},institution: {id: product.institution.id , name:product.institution.name}, 
         quantity: quantity}); 
         this.orderProducts.push(this.orderProduct);
-        localStorage.setItem('cart', JSON.stringify(this.orderProducts));
-    } 
-    console.log("quanti: "+this.orderProducts[0].quantity);
-  }
-  mostrarConsola(){
+        
+    }
+    localStorage.setItem('cart', JSON.stringify(this.orderProducts));
 
-    
-  }
-    
+  }    
 
   deleteFromCart(id: number): Observable<Order_products[]> {
     this.orderProducts = JSON.parse(localStorage.getItem('cart') ?? '[]');

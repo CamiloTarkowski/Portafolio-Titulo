@@ -22,6 +22,8 @@
         <div class="col-4">
           <img
             class="rounded float-end img-thumbnail"
+            type="button"
+            routerLink="/product/{{order_product?.id}}"
             src="http://localhost:4444{{ order_product?.image?.url }}"
             width="150px"
             alt=""
