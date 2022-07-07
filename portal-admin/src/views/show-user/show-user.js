@@ -2,6 +2,7 @@ const { ipcRenderer } = require("electron/renderer");
 
 const main = document.querySelector(".main");
 
+// carga el usuario especifico a mostrar
 const loadUser = async () => {
   let user = await ipcRenderer.invoke("load-user");
   user = JSON.parse(user);

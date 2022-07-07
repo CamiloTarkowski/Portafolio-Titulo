@@ -98,12 +98,17 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
                 }
 
                 this.updateProductStock(res.order_products);
-
-                this.toastService.success(
-                  'Pago realizado con éxito, se le enviara una notificacion con la fecha de entrega aproximada'
-                );
-                this.disableButton = false;
-                this.router.navigate(['/catalogo']);
+                this.http
+                  .put(`${this.apiUrl}/orders/${res.id}`, {
+                    order_state: 2,
+                  })
+                  .subscribe((res) => {
+                    this.toastService.success(
+                      'Pago realizado con éxito, se le enviara una notificacion con la fecha de entrega aproximada'
+                    );
+                    this.disableButton = false;
+                    this.router.navigate(['/catalogo']);
+                  });
               },
               (err: any) => {
                 console.log(err);

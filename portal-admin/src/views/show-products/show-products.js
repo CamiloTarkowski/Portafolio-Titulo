@@ -2,14 +2,10 @@ const { ipcRenderer } = require("electron/renderer");
 
 const main = document.querySelector(".main");
 
+// carga los productos a mostrar
 const loadProducts = async () => {
   let products = await ipcRenderer.invoke("load-show-products");
   products = JSON.parse(products);
-  products = products.map((product) => {
-    product.quantity = 1;
-
-    return product;
-  });
 
   for (let i = 0; i < products.length; i++) {
     const template = `

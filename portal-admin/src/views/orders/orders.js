@@ -3,22 +3,28 @@ const { ipcRenderer } = require("electron");
 const goBack = document.querySelector("#goBack");
 const listOrders = document.querySelector(".list-orders");
 
+// carga todas las ordenes
 const loadOrders = async () => {
+  // obtiene las ordenes invocando un evento en el main.js
   let orders = await ipcRenderer.invoke("load-orders");
   orders = JSON.parse(orders);
 
+  // filtra las ordenes por el estado "Cotizacion"
   const ordersLength = orders.filter(
     (order) => order.order_state.state === "Cotizacion"
   );
 
+  // si no hay ordenes cotizadas retorna un mensaje
   if (ordersLength == 0) {
     listOrders.innerHTML += `<p class="not-pending-text">No hay pedidos de fabricación pendientes.</p>`;
     return;
   }
 
   for (let i = 0; i < orders.length; i++) {
+    // si la orden no esta cotizada, no se muestra
     if (orders[i].order_state.state != "Cotizacion") continue;
 
+    // crea el template para mostrar la orden
     const template = `
     <div class="order">
       <div class="row-title-container">
@@ -80,6 +86,7 @@ goBack.addEventListener("click", () => {
   ipcRenderer.send("go-back");
 });
 
+// muestra los codigos de los productos y su cantidad EJ: "Producto 1 (2)"
 const showProductsCode = (order_products) => {
   const codes = order_products.map(
     (order_product) =>
@@ -89,6 +96,7 @@ const showProductsCode = (order_products) => {
   return codes.join(", ");
 };
 
+// formatea la fecha a como lo usamos nosotros
 const formatDate = (date) => {
   const DATE_INDEX = 0;
   const newDate = date.split(10)[DATE_INDEX];
@@ -98,14 +106,17 @@ const formatDate = (date) => {
   return `${day}/${month}/${year}`;
 };
 
+// muestra el producto o productos de la orden enviand el evento "show-product" y sus ids
 const showProduct = async (...ids) => {
   ipcRenderer.send("show-products", ids);
 };
 
+// acepta la orden enviand el evento "accept-order" y su id
 const accept = async (id) => {
   ipcRenderer.send("accept-order", id);
 };
 
+// rechaza la orden enviand el evento "decline-order" y su id
 const decline = async (id) => {
   ipcRenderer.send("decline-order", id);
 };

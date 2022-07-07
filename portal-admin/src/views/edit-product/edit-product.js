@@ -3,6 +3,7 @@ const { ipcRenderer } = require("electron/renderer");
 
 const main = document.querySelector(".main");
 
+// obtiene todas las instituciones
 const getInstitutions = async () => {
   const { data: institutions } = await axios.get(
     "http://localhost:4444/institutions"
@@ -16,22 +17,28 @@ const getInstitutions = async () => {
       <option value="${institutions[i].name}">${institutions[i].name}</option>
     `;
 
+    // agrega las instituciones al array
     institutionArray.push({
       name: institutions[i].name,
       id: institutions[i].id,
     });
   }
 
+  // guarda las instituciones en el sessionStorage
   sessionStorage.setItem("institutions", JSON.stringify(institutionArray));
 
+  // retorna el template creado
   return template;
 };
 
+// carga el producto a editar
 const loadProduct = async () => {
+  // obtiene la info del producto
   let product = await ipcRenderer.invoke("load-product-data");
   const institutions = await getInstitutions();
   product = JSON.parse(product);
 
+  // crea el template para editar el producto
   const template = `
   <form class="form">
     <img class="edit-product__image" src="http://localhost:4444${product.image.url}" alt="${product.name}" >
@@ -102,8 +109,12 @@ const loadProduct = async () => {
   main.innerHTML += template;
 };
 
+// fucnion para editar el producto
 const editProduct = async (e, id) => {
+  // previene la recarga de la pagina
   e.preventDefault();
+
+  // obtiene los datos del producto
   const file = document.querySelector("#file");
   const name = document.querySelector("#name");
   const code = document.querySelector("#code");
@@ -113,16 +124,20 @@ const editProduct = async (e, id) => {
   const stock = document.querySelector("#stock");
   const institution = document.querySelector("#institution");
 
+  // obtiene la opcion seleccionada en el select del html
   const selectedOption = institution.options[institution.selectedIndex].value;
+
+  // obtiene las instituciones del sessionStorage
   const actualInstitutions = JSON.parse(sessionStorage.getItem("institutions"));
-  // if (actualInstitutions.includes(selectedOption)) {
-  // }
+
+  // obtiene el id de la institucion seleccionada
   const selectedInstitution = actualInstitutions.filter((institution) => {
     if (institution.name === selectedOption) {
       return institution.id;
     }
   });
 
+  // crea el objeto para editar el producto
   const product = {
     name: name.value,
     code: code.value,
@@ -134,7 +149,10 @@ const editProduct = async (e, id) => {
   };
 
   try {
+    // actualiza el producto
     await axios.put(`http://localhost:4444/products/${id}`, product);
+
+    // si hay una imagen seleccionada se actualiza
     if (file.files.length != 0) {
       const formData = new FormData();
       formData.append("files", file.files[0], file.files[0].name);
@@ -152,6 +170,8 @@ const editProduct = async (e, id) => {
         body: "Se ha actualizado el producto",
       });
     }
+
+    // se recarga la pagina de porductos y el editar el producto
     ipcRenderer.send("open-products");
     ipcRenderer.send("edit-product", id);
   } catch (error) {
@@ -162,6 +182,7 @@ const editProduct = async (e, id) => {
   }
 };
 
+// se ejecuta cuando carga la ventana
 window.window.onload = async () => {
   await loadProduct();
 };

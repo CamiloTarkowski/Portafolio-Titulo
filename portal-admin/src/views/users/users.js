@@ -3,9 +3,11 @@ const { ipcRenderer } = require("electron");
 const goBack = document.querySelector("#goBack");
 const listUsers = document.querySelector(".list-users");
 
+// carga todos los usuarios a mostrar
 const loadUsers = async () => {
   let users = await ipcRenderer.invoke("load-users");
   users = JSON.parse(users);
+
   for (let i = 0; i < users.length; i++) {
     const template = `
     <div class="user">
@@ -29,11 +31,13 @@ const loadUsers = async () => {
   }
 };
 
+// elimina el usuario seleccionado en el main.js por medio de un evento "delete-user" y se envia el id del usuario y se recarga la ventana
 const deleteUser = (e, id) => {
   e.preventDefault();
   ipcRenderer.send("delete-user", id);
 };
 
+// muestra el usuario seleccionado en el main.js por medio de un evento "show-user" y se envia el id del usuario
 const showUser = (e, id) => {
   e.preventDefault();
   ipcRenderer.send("show-user", id);

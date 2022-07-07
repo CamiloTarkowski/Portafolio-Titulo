@@ -12,18 +12,24 @@ const institution = document.querySelector("#institution");
 const addProduct = document.querySelector("#addProduct");
 const manufacturingTime = document.querySelector("#manufacturingTime");
 
+// escucha el evento click del boton de agregar producto
 addProduct.addEventListener("click", async (e) => {
   e.preventDefault();
 
+  // se obtiene la option seleccionada en el select de institucion
   const selectedOption = institution.options[institution.selectedIndex].value;
+
+  // se obtiene las instituciones del sessionStorage
   const actualInstitutions = JSON.parse(sessionStorage.getItem("institutions"));
 
+  // se obtiene el id de la institucion seleccionada
   const selectedInstitution = actualInstitutions.filter((institution) => {
     if (institution.name === selectedOption) {
       return institution.id;
     }
   });
 
+  // se crea el objeto para agregar el producto
   const product = {
     name: name.value,
     code: code.value,
@@ -36,10 +42,13 @@ addProduct.addEventListener("click", async (e) => {
   };
 
   try {
+    // crea el producto en la base de datos y strapi
     const { data } = await axios.post(
       "http://localhost:4444/products",
       product
     );
+
+    // crea el archivo de imagen en el strapi y la sube
     const formData = new FormData();
     formData.append("files", file.files[0], file.files[0].name);
     formData.append("refId", data.id);
@@ -52,12 +61,14 @@ addProduct.addEventListener("click", async (e) => {
       },
     });
 
+    // recarga la pagina
     ipcRenderer.send("open-products");
   } catch (error) {
     console.log(error);
   }
 });
 
+// obtiene todas las instituciones (más detalle en edit-product.js es casi lo mismo que aca)
 const getInstitution = async () => {
   const { data: institutions } = await axios.get(
     "http://localhost:4444/institutions"

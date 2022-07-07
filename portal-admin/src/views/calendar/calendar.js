@@ -6,6 +6,7 @@ const goBack = document.querySelector("#goBack");
 const ordersDiv = document.querySelector("#orders");
 let calendar;
 
+// tema para el calendario
 const MONTHLY_CUSTOM_THEME = {
   // month header 'dayname'
   "month.dayname.height": "30px",
@@ -43,6 +44,7 @@ const MONTHLY_CUSTOM_THEME = {
   "month.moreViewList.padding": "10px",
 };
 
+// template el calendario
 const templates = {
   milestone: function (schedule) {
     return (
@@ -150,7 +152,9 @@ const templates = {
   },
 };
 
+// carga la informacion del calendario
 const loadCalendar = async () => {
+  // crea un calendario mensual
   calendar = new Calendar("#calendar", {
     defaultView: "month",
     theme: MONTHLY_CUSTOM_THEME,
@@ -171,21 +175,31 @@ const loadCalendar = async () => {
     },
   });
 
+  // carga los pedidos
   const { data } = await axios.get(`http://localhost:4444/orders`);
+
+  // filtea por pedidos en estado "Agendado"
   const schedules = data.filter(
     (order) => order.order_state.state == "Agendado"
   );
 
+  // crea un array de pedidos con estado "Agendado"
   const schedulesCalendar = schedules.map((schedule) => {
     const orderProducts = schedule.order_products;
+
+    // devuelve una lista de productos con su cantidad, EJ: "Producto 1 (2)"
     const nameAndQuantity = orderProducts.map(
       (orderProduct) =>
         `${orderProduct.product.name} (${orderProduct.quantity})`
     );
+
+    // calcula el tiempo estimado de fabricacion
     const estimatedManufactoringTime = orderProducts.map(
       (orderProduct) =>
         orderProduct.product.manufactoring_time * orderProduct.quantity
     );
+
+    // retorna una tarjeta con la info de un pedido
     return {
       id: schedule.id,
       calendarId: "1",
@@ -208,26 +222,35 @@ const loadCalendar = async () => {
       end: schedule.estimated_date_delivery,
     };
   });
+
+  // crea las tarjetas dentro del calendario
   calendar.createSchedules(schedulesCalendar);
 
+  // espera el evento click de una tarjeta para mostrar la info de la tarjeta en un popup
   calendar.on("clickSchedule", (event) => {
+    // envia un evento que sera escuchado en main.js para mostrar la info de la tarjeta en un popup
     ipcRenderer.send("show-popup", event.schedule);
   });
 };
 
+// carga la los pedidos del calendario
 const loadOrders = async () => {
+  // invoca los pedidos que sera escuchado en el main.js"
   let orders = await ipcRenderer.invoke("load-calendar-orders");
   orders = JSON.parse(orders);
 
+  // se calcula cuantos pedidos hay
   const ordersLength = orders.filter(
     (order) => order.order_state.state === "Pedido"
   );
 
+  // si no hay pedidos, muestra un mensaje
   if (ordersLength.length == 0) {
     ordersDiv.innerHTML += `<p class="not-pending-text">No hay pedidos pendientes.</p>`;
     return;
   }
 
+  // por cada pedido  se crea una tarjeta y se inyecta al calendar.html por medio de un template
   for (let i = 0; i < orders.length; i++) {
     const template = `
     <div class="order">
@@ -261,19 +284,23 @@ const loadOrders = async () => {
     
     `;
 
+    // aqui se inyecta el template al calendar.html
     ordersDiv.innerHTML += template;
   }
 };
 
+// esta funcion se ejecuta cuando carga la pagina
 window.onload = async () => {
   await loadCalendar();
   await loadOrders();
 };
 
+// escucha que se haga click en el boton de volver atras
 goBack.addEventListener("click", () => {
   ipcRenderer.send("go-back");
 });
 
+// crea una tarjeta con la info de un pedido, esta funcion se ejecuta cuando se hace click en "Agendar"
 const createNewSchedule = async (orderId, name, rut, number, total) => {
   const { data } = await axios.get(`http://localhost:4444/orders/${orderId}`);
   const location = data.client.address;
@@ -288,6 +315,16 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
       orderProduct.product.manufactoring_time * orderProduct.quantity
   );
 
+  // si la fecha de entrega es menor a la fecha actual, muestra un mensaje de error
+  if (new Date(date) < Date.now()) {
+    ipcRenderer.send("show-notification", {
+      title: "Portal admin - Error",
+      body: "Debe ingresar una fecha valida",
+    });
+    return;
+  }
+
+  // si no hay fecha de entrega, muestra un mensaje de error
   if (date === "") {
     ipcRenderer.send("show-notification", {
       title: "Portal admin - Error",
@@ -296,6 +333,7 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
     return;
   }
 
+  // crea una tarjeta con la info de un pedido temporalmente (cuando se vuelve a cargar la pagina ya va a estar creada)
   calendar.createSchedules([
     {
       id: orderId,
@@ -328,9 +366,11 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
     message: `Se ha agendado una fecha estimada: ${date}. Cualquier cambio me comunicare con usted.`,
   });
 
+  // recarga el calendario
   ipcRenderer.send("open-calendar");
 };
 
+// calcula el tiempo de fabricacion de un pedido
 const calculateEstimatedTime = (orderProducts) => {
   const estimatedManufactoringTime = orderProducts.map((orderProduct) => {
     return (
@@ -342,15 +382,18 @@ const calculateEstimatedTime = (orderProducts) => {
   return estimatedManufactoringTime;
 };
 
+// muestra los codigos de los productos de un pedido y su cantidad
 const showProductsCode = (order_products) => {
   const codes = order_products.map(
     (order_product) =>
       `${order_product.product.code} (${order_product.quantity})`
   );
 
+  // une los elementos de un array con una coma
   return codes.join(", ");
 };
 
+// formatea la fecha para nuestro formato
 const formatDate = (date) => {
   const DATE_INDEX = 0;
   const newDate = date.split(10)[DATE_INDEX];
@@ -360,6 +403,7 @@ const formatDate = (date) => {
   return `${day}/${month}/${year}`;
 };
 
+// evento de js que espera que se le haga click al boton de volver
 goBack.addEventListener("click", () => {
   ipcRenderer.send("go-back");
 });

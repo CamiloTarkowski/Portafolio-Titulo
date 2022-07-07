@@ -2,6 +2,7 @@ const { ipcRenderer } = require("electron/renderer");
 
 const main = document.querySelector(".main");
 
+// carga el producto a mostrar
 const loadProduct = async () => {
   let product = await ipcRenderer.invoke("load-product");
   product = JSON.parse(product);

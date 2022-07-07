@@ -1,8 +1,12 @@
 const { ipcRenderer } = require("electron");
 const popup = document.querySelector("#popup");
 
+// carga la info del pedido a mostrar en el popup
 const loadData = async () => {
+  // obtiene la info del pedido
   const schedule = await ipcRenderer.invoke("load-popup-data");
+
+  // schedule es un objeto con la info del pedido y en el body esta la info, por eso se hace un split para separarla por los saltos de linea que tiene (\n)
 
   const template = `
   <div class="tui-full-calendar-popup-container">
