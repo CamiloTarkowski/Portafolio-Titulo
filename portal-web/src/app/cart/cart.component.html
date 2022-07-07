@@ -23,7 +23,7 @@
           <img
             class="rounded float-end img-thumbnail"
             type="button"
-            routerLink="/product/{{ order_product?.id }}"
+            routerLink="/producto/{{ order_product?.id }}"
             src="http://localhost:4444{{ order_product?.image?.url }}"
             width="150px"
             alt=""
@@ -43,7 +43,7 @@
     <div *ngIf="order_products.length == 0">
       <p class="noProducts">(No hay nada en el carrito)</p>
       <div class="d-grid gap-2 col-6 mx-auto" style="padding-bottom: 10px">
-        <button class="btn btn-outline-success mx-auto" routerLink="/catalogue">
+        <button class="btn btn-outline-success mx-auto" routerLink="/catalogo">
           Ir a catálogo
         </button>
       </div>

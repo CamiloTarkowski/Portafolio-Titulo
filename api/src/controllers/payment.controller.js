@@ -20,8 +20,6 @@ export const pay = async (req, res = response) => {
       payment_method_types: ["card"],
     });
 
-    console.log(paymentIntent);
-
     res.status(201).json(paymentIntent.client_secret);
   } catch (error) {
     return res.json({

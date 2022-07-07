@@ -13,7 +13,10 @@
           <h2>{{ orderProducts.product?.name }}</h2>
         </div>
         <div class="mb-1 text-muted">
-          Pagado: ${{ orderProducts.product?.price | ThousandSeparator }}
+          Pagado: ${{
+            orderProducts.product?.price * (orderProducts.quantity || 1)
+              | ThousandSeparator
+          }}
         </div>
         <p class="card-text mb-auto">
           Fecha de pago: {{ payment.created_at | date: "dd/MM/YY" }}

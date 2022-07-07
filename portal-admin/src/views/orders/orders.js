@@ -8,7 +8,7 @@ const loadOrders = async () => {
   orders = JSON.parse(orders);
 
   const ordersLength = orders.filter(
-    (order) => order.order_state.state === "Cotización"
+    (order) => order.order_state.state === "Cotizacion"
   );
 
   if (ordersLength == 0) {

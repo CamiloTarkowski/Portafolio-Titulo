@@ -20,19 +20,18 @@ export class CartComponent implements OnInit {
   }
 
   getCartProducts() {
-    this.cartService.getCartProducts().subscribe((Order_products) => {
-      this.order_products = Order_products;
+    this.cartService.getCartProducts().subscribe((order_products) => {
+      this.order_products = order_products;
     });
   }
 
   deleteCartProduct(id: number) {
-    this.cartService.deleteFromCart(id).subscribe((Order_products) => {
-      this.order_products = Order_products;
+    this.cartService.deleteFromCart(id).subscribe((order_products) => {
+      this.order_products = order_products;
     });
   }
 
   ngOnInit(): void {
     this.getCartProducts();
-    
   }
 }

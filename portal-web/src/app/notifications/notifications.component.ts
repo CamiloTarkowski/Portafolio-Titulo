@@ -17,9 +17,15 @@ export class NotificationsComponent implements OnInit {
     private router: Router
   ) {}
 
-  goToPay(products: any, notificationId: number) {
-    let finalProducts = products.map((product: any) => product.product);
-    localStorage.setItem('productsToPay', JSON.stringify(finalProducts));
+  goToPay(order: any, notificationId: number) {
+    const orderProducts = order.order_products.map((orderProduct: any) => {
+      return {
+        ...orderProduct.product,
+        quantity: parseInt(orderProduct.quantity),
+      };
+    });
+
+    localStorage.setItem('productsToPay', JSON.stringify(orderProducts));
 
     this.router.navigate(['/pagar'], { queryParams: { notificationId } });
   }

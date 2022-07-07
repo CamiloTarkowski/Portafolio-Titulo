@@ -27,6 +27,10 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   isValid: boolean = false;
   notificationId?: string | null = '';
   disableButton: boolean = false;
+  quantityMap = {
+    '=1': 'unidad',
+    other: 'unidades',
+  };
 
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
@@ -116,6 +120,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
     const orderProducts: any[] = JSON.parse(
       localStorage.getItem('productsToPay') || '[]'
     );
+    console.log(orderProducts);
     if (orderProducts.length === 0) this.router.navigate(['/']);
 
     this.finalPrice = orderProducts
@@ -133,9 +138,12 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
 
   private updateProductStock(order_products: any[]): void {
     for (const order_product of order_products) {
+      const newStock =
+        parseInt(order_product.product.stock) - order_product.quantity;
+
       this.http
         .put(`${this.apiUrl}/products/${order_product.product.id}`, {
-          stock: parseInt(order_product.product.stock) - order_product.quantity,
+          stock: newStock < 0 ? 0 : newStock,
         })
         .subscribe(
           (res: any) => {

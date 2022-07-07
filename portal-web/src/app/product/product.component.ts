@@ -43,25 +43,23 @@ export class ProductComponent implements OnInit {
   }
 
   async createMakeOrder() {
-    if (this.product.stock == 0) {
-      (
-        await this.ordersService.createMakeOrder([
-          { ...this.product, quantity: this.quantity },
-        ])
-      ).subscribe(
-        (res) => {
-          this.toastService.success(
-            'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
-          );
-        },
-        (err) => {
-          console.log(err);
-          this.toastService.error(
-            'No se pudo crear el pedido de fabricación, intente nuevamente'
-          );
-        }
-      );
-    }
+    (
+      await this.ordersService.createMakeOrder([
+        { ...this.product, quantity: this.quantity },
+      ])
+    ).subscribe(
+      (res) => {
+        this.toastService.success(
+          'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
+        );
+      },
+      (err) => {
+        console.log(err);
+        this.toastService.error(
+          'No se pudo crear el pedido de fabricación, intente nuevamente'
+        );
+      }
+    );
   }
 
   ngOnInit() {

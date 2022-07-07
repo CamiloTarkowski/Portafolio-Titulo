@@ -1,27 +1,29 @@
 <title>Catálogo</title>
-  <div class="row" style="padding-top: 10px; max-width: 1200px; margin: auto;">
-    <div class="col-md-6 col-sm-6 col-lg-4" style="padding: 3%" *ngFor="let product of products">
-      <ul class="list-group">
-        <li class="list-group-item text-name">{{ product.name }}</li>
-        <li class="list-group-item text-price">
-          $ {{ product.price | ThousandSeparator }}
-        </li>
+<div class="row" style="padding-top: 10px; max-width: 1200px; margin: auto">
+  <div
+    class="col-md-6 col-sm-6 col-lg-4"
+    style="padding: 3%"
+    *ngFor="let product of products"
+  >
+    <ul class="list-group">
+      <li class="list-group-item text-name">{{ product.name }}</li>
+      <li class="list-group-item text-price">
+        $ {{ product.price | ThousandSeparator }}
+      </li>
 
-        <li class="list-group-item text-colegio">{{ product.institution.name }}</li>
+      <li class="list-group-item text-colegio">
+        {{ product.institution.name }}
+      </li>
 
-        <div class="col-12 col-sm-12 container-fluid divimagen" routerLink="/product/{{ product.id }}"
-        type="button" style=" background-color: white;"><img
-          class="zoom"
-          src="http://localhost:4444{{ product.image.url }}"
-          
-        />
-        <div class="ver-producto">
-          
-        </div>
-       </div>
-
-      </ul>
-    </div>
+      <div
+        class="col-12 col-sm-12 container-fluid divimagen"
+        routerLink="/producto/{{ product.id }}"
+        type="button"
+        style="background-color: white"
+      >
+        <img class="zoom" src="http://localhost:4444{{ product.image.url }}" />
+        <div class="ver-producto"></div>
+      </div>
+    </ul>
   </div>
- 
-
+</div>
