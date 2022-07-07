@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { Order_products } from '../interfaces/order_products.interface';
+import { User } from '../interfaces/user.interfaces';
 
 @Component({
   selector: 'app-payment-method',
@@ -26,6 +27,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
   TEST_CREDIT_CART = '4242 4242 4242 4242';
   isValid: boolean = false;
   notificationId?: string | null = '';
+  user1: User[] = [];
 
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
@@ -127,7 +129,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProductData();
-    this.user = localStorage.getItem('user');
+    this.user = JSON.parse(localStorage.getItem('user')|| '[]');
   }
 
   ngOnDestroy(): void {

@@ -4,6 +4,7 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  padding: 15px;
 }
 
 .payment-container {
@@ -12,9 +13,8 @@
   justify-content: center;
   align-content: center;
   background-color: #ffffff;
-  width: 400px;
+  max-width: 800px;
   padding: 0 50px;
-  height: 350px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -33,4 +33,9 @@
   border-color: black;
   border-radius: 4px;
   padding: 5px;
+}
+
+.font1{
+  font-size: 16px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

@@ -1,3 +1,18 @@
-.max-width {
+.card{
+    max-width: 1000px;
+    margin: auto;
+    
+}
+
+.card-title{
+    text-align: center;
+    font-size: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 28px;
+}
+
+.divimg{
+    max-width: 1000px;
+    margin:auto;
     
 }
