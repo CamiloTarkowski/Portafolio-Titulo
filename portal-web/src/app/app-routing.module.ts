@@ -17,7 +17,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'catalogue',
+    path: 'catalogo',
     component: CatalogueComponent,
   },
   {
@@ -25,7 +25,7 @@ const routes: Routes = [
     component: PaymentHistoryComponent,
   },
   {
-    path: 'product/:id',
+    path: 'producto/:id',
     component: ProductComponent,
     canActivate: [AuthGuard],
   },
@@ -35,16 +35,16 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'cart',
+    path: 'carrito',
     component: CartComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'register',
+    path: 'registro',
     component: RegisterComponent,
   },
   {
-    path: 'login',
+    path: 'inicia-sesion',
     component: LoginComponent,
   },
   {

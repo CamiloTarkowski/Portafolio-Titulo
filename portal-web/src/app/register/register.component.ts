@@ -21,6 +21,7 @@ export class RegisterComponent {
     address: '',
     rut: '',
   };
+  disableButton: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -32,6 +33,7 @@ export class RegisterComponent {
     if (!this.validateNewUser(this.newUser)) {
       return;
     }
+    this.disableButton = true;
     this.authService.register(this.newUser).subscribe(
       (res: { jwt: string; user: User }) => {
         this.authService.setToken(res.jwt);
@@ -39,10 +41,11 @@ export class RegisterComponent {
         this.toast.success(
           `Usuario registrado correctamente, bienvenido ${res.user.username}`
         );
-        this.router.navigate(['/login']);
+        this.router.navigate(['/iniciar-sesion']);
       },
       (err) => {
         const errorMessage = err.error.message[0].messages[0].message;
+        this.disableButton = false;
         this.getErrorAlert(errorMessage);
       }
     );

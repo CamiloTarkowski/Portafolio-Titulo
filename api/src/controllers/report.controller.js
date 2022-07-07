@@ -40,16 +40,6 @@ export const createReport = async (req, res = response) => {
       backgroundColor: "#71afbd",
       borderStyle: "thin",
     },
-    {
-      value: "",
-      fontWeight: "bold",
-    },
-    {
-      value: "Total",
-      fontWeight: "bold",
-      backgroundColor: "#71afbd",
-      borderStyle: "thin",
-    },
   ];
 
   const DATA_ROWS = salesData.map((sale) => {

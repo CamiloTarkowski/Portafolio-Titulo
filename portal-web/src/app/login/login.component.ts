@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string;
   password: string;
+  disableButton: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -23,6 +24,7 @@ export class LoginComponent {
   }
 
   login() {
+    this.disableButton = true;
     this.authService.login(this.email, this.password).subscribe(
       (res: { jwt: string; user: User }) => {
         this.authService.setToken(res.jwt);
@@ -32,6 +34,7 @@ export class LoginComponent {
       },
       (err) => {
         const errorMessage = err.error.message[0].messages[0].message;
+        this.disableButton = false;
         this.getErrorAlert(errorMessage);
       }
     );

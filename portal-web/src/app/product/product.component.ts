@@ -13,7 +13,7 @@ import { OrdersService } from '../services/orders.service';
 })
 export class ProductComponent implements OnInit {
   product: Product = {} as Product;
-  quantity:number;
+  quantity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,61 +22,65 @@ export class ProductComponent implements OnInit {
     private cartService: CartService,
     private ordersService: OrdersService,
     private toastService: ToastrService
-  ) {
-    this.quantity=1;
-  }
+  ) {}
 
   addToCart() {
     this.cartService.addToCart(this.product, this.quantity);
-    this.toastService.success('Has agregado '+this.quantity+' unidades al carrito');
+    this.toastService.success(
+      'Has agregado ' + this.quantity + ' unidades al carrito'
+    );
   }
 
   goToPay() {
-    localStorage.setItem('productsToPay', JSON.stringify([this.product]));
+    const product = { ...this.product, quantity: this.quantity };
+    localStorage.setItem('productsToPay', JSON.stringify([product]));
     this.router.navigate(['/pagar']);
   }
 
   async createMakeOrder() {
-    if (this.product.stock == 0) {
-      (await this.ordersService.createMakeOrder([this.product])).subscribe(
-        (res) => {
-          this.toastService.success(
-            'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
-          );
-        },
-        (err) => {
-          console.log(err);
-          this.toastService.error(
-            'No se pudo crear el pedido de fabricación, intente nuevamente'
-          );
-        }
-      );
-    }
+    (
+      await this.ordersService.createMakeOrder([
+        { ...this.product, quantity: this.quantity },
+      ])
+    ).subscribe(
+      (res) => {
+        this.toastService.success(
+          'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
+        );
+      },
+      (err) => {
+        this.toastService.error(
+          'No se pudo crear el pedido de fabricación, intente nuevamente'
+        );
+      }
+    );
   }
 
   ngOnInit() {
-    // Trae el id del url y asigna al los datos a la propiedad producto
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.productService.getProduct(id).subscribe((product: any) => {
-        this.product = product;
-      });
+      this.productService.getProduct(id).subscribe(
+        (product: any) => {
+          this.product = product;
+        },
+        (err) => {
+          this.router.navigate(['/']);
+        }
+      );
     });
   }
 
-  increaseQuantity(){
+  increaseQuantity() {
     this.quantity++;
   }
 
-  diminishQuantity(){
-    if (this.quantity > 1){
+  diminishQuantity() {
+    if (this.quantity > 1) {
       this.quantity--;
     }
   }
 
-  getQuantity(){
+  getQuantity() {
     return this.quantity;
   }
-
-
 }

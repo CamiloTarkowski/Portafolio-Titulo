@@ -17,7 +17,7 @@
         type="button"
     /></a>
     <button
-      class="navbar-toggler "
+      class="navbar-toggler"
       type="button "
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -33,7 +33,7 @@
           <a class="nav-link active, texto-nav" routerLink="">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active, texto-nav" routerLink="/catalogue"
+          <a class="nav-link active, texto-nav" routerLink="/catalogo"
             >Catálogo</a
           >
         </li>
@@ -49,24 +49,22 @@
           >
         </li>
         <li class="nav-item" *ngIf="!authService.isLogged()">
-          <a class="nav-link active, texto-nav" routerLink="/login">Ingresa</a>
+          <a class="nav-link active, texto-nav" routerLink="/iniciar-sesion"
+            >Ingresa</a
+          >
         </li>
         <li class="nav-item" *ngIf="!authService.isLogged()">
-          <a class="nav-link active, texto-nav" routerLink="/register"
+          <a class="nav-link active, texto-nav" routerLink="/registro"
             >Regístrate</a
           >
         </li>
       </ul>
       <form class="d-flex" role="search" *ngIf="authService.isLogged()">
-        <div class="username">Sesión iniciada como {{name}} {{lastname}}</div>
-        <!-- <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Buscar"
-          aria-label="Search"
-        /> -->
+        <div class="username">
+          Sesión iniciada como {{ user.name }} {{ user.lastname }}
+        </div>
       </form>
-      <a routerLink="/cart" *ngIf="authService.isLogged()"
+      <a routerLink="/carrito" *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
       <a
@@ -76,11 +74,14 @@
         style="padding-right: 15%"
       >
         <a class="nav-link active, texto-nav" routerLink="/catalogo"
-          ><div><i
-            class="fa-solid fa-arrow-right-from-bracket"
-            alt="Cerrar Sesión"
-          ></i
-        > Cerrar Sesión</div></a>
+          ><div>
+            <i
+              class="fa-solid fa-arrow-right-from-bracket"
+              alt="Cerrar Sesión"
+            ></i>
+            Cerrar Sesión
+          </div></a
+        >
       </a>
     </div>
   </div>

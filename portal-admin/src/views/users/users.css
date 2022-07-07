@@ -31,6 +31,7 @@
   overflow: scroll;
   width: 1100px;
   height: 590px;
+  margin-top: 5px;
 }
 
 .list-users::-webkit-scrollbar { 

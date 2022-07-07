@@ -21,13 +21,16 @@ import { User } from '../interfaces/user.interfaces';
 export class PaymentMethodComponent implements OnInit, OnDestroy {
   apiUrl: string = 'http://localhost:4444';
   user: any;
-  products: Product[] = [];
-  orderProducts: Order_products[]=[];
+  orderProducts: Order_products[] = [];
   finalPrice: number = 0;
-  TEST_CREDIT_CART = '4242 4242 4242 4242';
   isValid: boolean = false;
   notificationId?: string | null = '';
   user1: User[] = [];
+  disableButton: boolean = false;
+  quantityMap = {
+    '=1': 'unidad',
+    other: 'unidades',
+  };
 
   @ViewChild(StripeCardComponent) card!: StripeCardComponent;
 
@@ -79,23 +82,27 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
           this.toastService.error(
             'Hubo un error al realizar el pago, intente más tarde'
           );
+          this.disableButton = false;
         } else {
           if (result.paymentIntent?.status === 'succeeded') {
-            (await this.ordersService.createOrder(this.orderProducts)).subscribe(
+            (
+              await this.ordersService.createOrder(this.orderProducts)
+            ).subscribe(
               (res: any) => {
-                if (this.notificationId != '') {
-                  console.log(this.notificationId);
+                if (this.notificationId) {
                   this.http
                     .delete(
                       `${this.apiUrl}/notifications/${this.notificationId}`
                     )
-                    .subscribe((res) => {
-                      console.log(res);
-                    });
+                    .subscribe((res) => {});
                 }
+
+                this.updateProductStock(res.order_products);
+
                 this.toastService.success(
                   'Pago realizado con éxito, se le enviara una notificacion con la fecha de entrega aproximada'
                 );
+                this.disableButton = false;
                 this.router.navigate(['/catalogo']);
               },
               (err: any) => {
@@ -116,15 +123,34 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
     if (orderProducts.length === 0) this.router.navigate(['/']);
 
     this.finalPrice = orderProducts
-      .map((orderProduct: Order_products) => orderProduct.price*orderProduct.quantity)
+      .map((product: Product) => product.price * (product.quantity || 1))
       .reduce((a: number, b: number) => Number(a) + Number(b));
     this.orderProducts = orderProducts;
   }
 
   private createPaymentIntent(): Observable<any> {
+    this.disableButton = true;
     return this.http.post(`${this.apiUrl}/api/pay`, {
       amount: this.finalPrice,
     });
+  }
+
+  private updateProductStock(order_products: any[]): void {
+    for (const order_product of order_products) {
+      const newStock =
+        parseInt(order_product.product.stock) - order_product.quantity;
+
+      this.http
+        .put(`${this.apiUrl}/products/${order_product.product.id}`, {
+          stock: newStock < 0 ? 0 : newStock,
+        })
+        .subscribe(
+          (res: any) => {},
+          (err: any) => {
+            console.log(err);
+          }
+        );
+    }
   }
 
   ngOnInit(): void {

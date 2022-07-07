@@ -219,6 +219,15 @@ const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-calendar-orders");
   orders = JSON.parse(orders);
 
+  const ordersLength = orders.filter(
+    (order) => order.order_state.state === "Pedido"
+  );
+
+  if (ordersLength.length == 0) {
+    ordersDiv.innerHTML += `<p class="not-pending-text">No hay pedidos pendientes.</p>`;
+    return;
+  }
+
   for (let i = 0; i < orders.length; i++) {
     const template = `
     <div class="order">

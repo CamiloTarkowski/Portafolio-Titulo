@@ -39,6 +39,15 @@
   border-radius: 10px;
 }
 
+.not-pending-text {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  grid-column: span 2;
+}
+
 .light{
   display: grid;
   grid-template-columns: 1fr 1fr;

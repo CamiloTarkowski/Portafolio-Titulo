@@ -48,6 +48,14 @@
   text-align: center;
 }
 
+.not-pending-text {
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+}
+
 .client-name {
   color: black;
   text-align: center;

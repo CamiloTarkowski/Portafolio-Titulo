@@ -1,11 +1,19 @@
-<title>Proceso de pago</title>
-<form action=""> 
-  <main class="main">
-    <div class="container-fluid payment-container font1">
-      <h1 class="font" style="text-align: center; padding: 15px;">Resumen de compra</h1>
-      <div>Nombre: {{user.name}} {{user.lastname}}</div>
-      <br>
-      <div>Se entrega en:  {{user.address}}</div>
+<main class="main">
+  <div class="payment-container">
+    <h1 style="text-align: center">Productos</h1>
+    <hr />
+    <ul>
+      <li *ngFor="let orderProduct of orderProducts">
+        {{ orderProduct.name }} ({{ orderProduct.quantity }}
+        {{ orderProduct.quantity | i18nPlural: quantityMap }})
+
+        <p class="text">
+          ${{
+            orderProduct.price * (orderProduct.quantity || 1)
+              | ThousandSeparator
+          }}
+        </p>
+      </li>
       <hr />
       <ul>
         <li *ngFor="let orderProduct of orderProducts">
@@ -17,14 +25,19 @@
         <b>Precio total:</b> ${{ finalPrice | ThousandSeparator }}
       </p>
 
-      <ngx-stripe-card
-        class="border"
-        [options]="cardOptions"
-        [elementsOptions]="elementsOptions"
-      ></ngx-stripe-card>
-      <div class="d-grid gap-2" style="padding: 15px">
-        <button type="submit" (click)="pay()" class="btn btn-success">Pagar</button>
-      </div>
+    <ngx-stripe-card
+      class="border"
+      [options]="cardOptions"
+      [elementsOptions]="elementsOptions"
+    ></ngx-stripe-card>
+    <div class="d-grid gap-2" style="padding-top: 15px">
+      <button
+        (click)="pay()"
+        [disabled]="disableButton"
+        class="btn btn-success"
+      >
+        Pagar
+      </button>
     </div>
   </main>
 </form> 

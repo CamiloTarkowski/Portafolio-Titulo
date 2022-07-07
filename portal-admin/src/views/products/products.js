@@ -10,21 +10,29 @@ const loadProducts = async () => {
   for (let i = 0; i < products.length; i++) {
     const template = `
     <div class="product">
-      <img class="product__image" src="http://localhost:4444${products[i].image.url}" alt="${products[i].name}">
+      <img class="product__image" src="http://localhost:4444${
+        products[i].image.url
+      }" alt="${products[i].name}">
       <p>${products[i].name}</p>
       <p>${products[i].code}</p>
-      <p>$${products[i].price}</p>
+      <p>$${parseInt(products[i].price).toLocaleString("es-ES")}</p>
       <p>${products[i].size}</p>
       <p>${products[i].stock}</p>
       <p>${products[i].institution.name}</p>
       <div class="product-buttons">
-        <button class="button-radius blue" onclick="editProduct(${products[i].id})">
+        <button class="button-radius blue" onclick="editProduct(${
+          products[i].id
+        })">
           <img src="../../assets/edit.svg"></img>
         </button>
-        <button class="button-radius green" onclick="showProduct(${products[i].id})">
+        <button class="button-radius green" onclick="showProduct(${
+          products[i].id
+        })">
           <img src="../../assets/showMore.svg"></img>
         </button>
-        <button class="button-radius red" onclick="deleteProduct(${products[i].id})">
+        <button class="button-radius red" onclick="deleteProduct(${
+          products[i].id
+        })">
           <img src="../../assets/trash.svg"></img>
         </button>
       </div>

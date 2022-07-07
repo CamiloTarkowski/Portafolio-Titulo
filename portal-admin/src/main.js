@@ -1,4 +1,5 @@
 const { ipcMain, BrowserWindow } = require("electron");
+const { localStorage } = require("electron-browser-storage");
 const axios = require("axios");
 const { Notification } = require("electron/main");
 
@@ -10,7 +11,7 @@ let editProductWindow;
 let showUserWindow;
 let showPopupWindow;
 
-const createMenuWindow = () => {
+const createMenuWindow = async () => {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
@@ -23,7 +24,14 @@ const createMenuWindow = () => {
     },
     resizable: false,
   });
-  mainWindow.loadFile("views/menu/menu.html");
+
+  const user = await localStorage.getItem("user");
+
+  if (!user) {
+    mainWindow.loadFile("views/login/login.html");
+  } else {
+    mainWindow.loadFile("views/menu/menu.html");
+  }
 };
 
 const createNewProductWindow = () => {
@@ -135,7 +143,6 @@ ipcMain.on("go-back", () => {
   mainWindow.loadFile("views/menu/menu.html");
 });
 
-// OPEN WINDOWS
 ipcMain.on("open-orders", () => {
   mainWindow.loadFile("views/orders/orders.html");
 });
@@ -152,7 +159,6 @@ ipcMain.on("open-users", () => {
   mainWindow.loadFile("views/users/users.html");
 });
 
-// LOAD DATA
 ipcMain.handle("load-products", async () => {
   const { data: products } = await axios.get("http://localhost:4444/products");
   return JSON.stringify(products);
@@ -174,7 +180,6 @@ ipcMain.handle("load-calendar-orders", async () => {
   return JSON.stringify(orders);
 });
 
-// ACTIONS
 ipcMain.on("show-product", (_, id) => {
   createShowProductWindow();
   ipcMain.handle(`load-product`, async () => {
@@ -315,6 +320,36 @@ ipcMain.on("show-popup", async (_, schedule) => {
   });
 
   setTimeout(() => ipcMain.removeHandler("load-popup-data"), 300);
+});
+
+ipcMain.on("login", async (_, { email, password }) => {
+  console.log(email, password);
+  if (email.length < 3 || password.length < 3) {
+    new Notification({
+      title: "Portal admin - Error",
+      body: "Debe ingresar un email y contraseña",
+    }).show();
+    return;
+  }
+
+  try {
+    const res = await axios.post(`http://localhost:4444/auth/local`, {
+      identifier: email,
+      password,
+    });
+
+    const { jwt, user } = res.data;
+    await localStorage.setItem("jwt", jwt);
+    await localStorage.setItem("user", JSON.stringify(user));
+
+    mainWindow.loadFile("views/menu/menu.html");
+  } catch (error) {
+    console.log(error);
+    new Notification({
+      title: "Portal admin - Error",
+      body: "email o contraseña incorrectos",
+    }).show();
+  }
 });
 
 module.exports = {
