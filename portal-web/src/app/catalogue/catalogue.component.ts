@@ -11,7 +11,9 @@ export class CatalogueComponent implements OnInit {
 
   constructor(public productService: ProductService) {}
 
+  // este metodo se ejecuta cuando se carga el componente
   ngOnInit() {
+    // obtiene los productos del catalogo y los asigna a la variable products
     this.productService.getAllProducts().subscribe((products) => {
       this.products = products;
     });

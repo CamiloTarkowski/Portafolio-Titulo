@@ -9,15 +9,17 @@ import { OrdersService } from '../services/orders.service';
 export class PaymentHistoryComponent implements OnInit {
   payments: any[] = [];
 
+  // inyeccion de dependencias
   constructor(private ordersService: OrdersService) {}
 
+  // obtiene los pagos de el usuario a traves del servicio y los guarda en la variable payments
   getPayments() {
     this.ordersService.getPayments().subscribe((payments: any) => {
       this.payments = payments;
-      console.log(payments[0].order_products);
     });
   }
 
+  // este metodo se ejecuta cuando se carga el componente
   ngOnInit(): void {
     this.getPayments();
   }

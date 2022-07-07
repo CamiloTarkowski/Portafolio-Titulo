@@ -24,37 +24,44 @@ export class ProductComponent implements OnInit {
     private toastService: ToastrService
   ) {}
 
+  // Agrega el producto al carrito y la cantidad
   addToCart() {
     this.cartService.addToCart(this.product, this.quantity);
+
+    // Muestra un mensaje de que se agrego al carrito
     this.toastService.success(
       'Has agregado ' + this.quantity + ' unidades al carrito'
     );
   }
 
+  // se va a la pagina de pago
   goToPay() {
-    if (this.product.stock < this.quantity) {
-      this.toastService.error('No hay suficiente stock');
-      return;
-    }
-
+    // crea una variable que producto que contiene los datos del producto y su cantidad
     const product = { ...this.product, quantity: this.quantity };
+
+    // se almacena en el localStorage el producto y la cantidad
     localStorage.setItem('productsToPay', JSON.stringify([product]));
+
+    // se redirecciona a la pagina de pago
     this.router.navigate(['/pagar']);
   }
 
+  // crea una orden de fabricacion
   async createMakeOrder() {
+    // se usa el servicio pasandole el producto y la cantidad
     (
       await this.ordersService.createMakeOrder([
         { ...this.product, quantity: this.quantity },
       ])
     ).subscribe(
       (res) => {
+        // se muestra un mensaje de que se creo la orden de fabricacion
         this.toastService.success(
           'Se ha enviado un pedido para fabricacion, espere una notificacion para ver si la dueña lo acepta o rechaza'
         );
       },
       (err) => {
-        console.log(err);
+        // se muestra un mensaje de que no se pudo crear la orden de fabricacion
         this.toastService.error(
           'No se pudo crear el pedido de fabricación, intente nuevamente'
         );
@@ -62,6 +69,7 @@ export class ProductComponent implements OnInit {
     );
   }
 
+  // esto se ejecuta cuando se carga el componente
   ngOnInit() {
     // Trae el id del url y asigna al los datos a la propiedad producto
     this.route.params.subscribe((params) => {
@@ -72,16 +80,19 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  // augmenta la cantidad de productos
   increaseQuantity() {
     this.quantity++;
   }
 
+  // disminuye la cantidad de productos
   diminishQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
 
+  // retorna la cantidad de productos
   getQuantity() {
     return this.quantity;
   }

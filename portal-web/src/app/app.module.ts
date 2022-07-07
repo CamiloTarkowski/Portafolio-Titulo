@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormModule } from './form/form.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { NavigatorComponent } from './navigator/navigator.component';
@@ -47,7 +46,6 @@ import { PaymentHistoryComponent } from './payment-history/payment-history.compo
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormModule,
     HttpClientModule,
     FormsModule,
     MatButtonModule,
@@ -56,6 +54,7 @@ import { PaymentHistoryComponent } from './payment-history/payment-history.compo
     NgxStripeModule.forRoot(
       'pk_test_51LCowUBKpY1HISME3JwtigXTnttVp0whJchc570whrFOENdNmxb2f6Jof0PuNfBLiC09iZQUQJJ8agE30QUXZBn500CyUuhhLF'
     ),
+    // Este es el token publico de la cuenta de stripe
   ],
   providers: [],
   bootstrap: [AppComponent],
