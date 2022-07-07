@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Treae el id del url y asigna al los doatos a la propieda producto
+    // Trae el id del url y asigna al los datos a la propiedad producto
     this.route.params.subscribe((params) => {
       const id = params['id'];
       this.productService.getProduct(id).subscribe((product: any) => {

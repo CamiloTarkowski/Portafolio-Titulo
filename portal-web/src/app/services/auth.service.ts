@@ -47,5 +47,7 @@ export class AuthService {
 
   setUser(user: User): void {
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('name',JSON.stringify(user.name));
+    localStorage.setItem('lastname',JSON.stringify(user.lastname));
   }
 }

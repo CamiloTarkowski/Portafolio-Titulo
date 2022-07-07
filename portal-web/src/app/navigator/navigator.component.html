@@ -57,7 +57,11 @@
           >
         </li>
       </ul>
-
+      <form class="d-flex" role="search" *ngIf="authService.isLogged()">
+        <div class="username">
+          Sesión iniciada como {{ name }} {{ lastname }}
+        </div>
+      </form>
       <a routerLink="/cart" *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>
@@ -68,11 +72,14 @@
         style="padding-right: 15%"
       >
         <a class="nav-link active, texto-nav" routerLink="/catalogo"
-          ><i
-            class="fa-solid fa-arrow-right-from-bracket"
-            alt="Cerrar Sesión"
-          ></i
-        ></a>
+          ><div>
+            <i
+              class="fa-solid fa-arrow-right-from-bracket"
+              alt="Cerrar Sesión"
+            ></i>
+            Cerrar Sesión
+          </div></a
+        >
       </a>
     </div>
   </div>
