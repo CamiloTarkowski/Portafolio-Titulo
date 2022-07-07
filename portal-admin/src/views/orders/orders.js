@@ -6,6 +6,16 @@ const listOrders = document.querySelector(".list-orders");
 const loadOrders = async () => {
   let orders = await ipcRenderer.invoke("load-orders");
   orders = JSON.parse(orders);
+
+  const ordersLength = orders.filter(
+    (order) => order.order_state.state === "Cotización"
+  );
+
+  if (ordersLength == 0) {
+    listOrders.innerHTML += `<p class="not-pending-text">No hay pedidos de fabricación pendientes.</p>`;
+    return;
+  }
+
   for (let i = 0; i < orders.length; i++) {
     if (orders[i].order_state.state != "Cotizacion") continue;
 

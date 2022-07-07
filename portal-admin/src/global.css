@@ -69,6 +69,15 @@ main {
   cursor: pointer;
 }
 
+#addProduct {
+  display: flex;
+  justify-content: space-around;
+  width: 150px;
+  color: white;
+  font-weight: 500;
+}
+
+
 .green {
   background-color: #1BB55C;
 }

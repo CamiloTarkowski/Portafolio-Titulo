@@ -1,6 +1,6 @@
 <div>
   <br /><br /><br /><br />
-  <form class="form" method="post">
+  <form class="form">
     <h1>Inicia sesión en tu cuenta</h1>
     <br />
     <mat-form-field appearance="legacy">
@@ -25,7 +25,13 @@
         required="required"
       /> </mat-form-field
     ><br />
-    <button mat-raised-button color="success" type="button" (click)="login()">
+    <button
+      mat-raised-button
+      [disabled]="disableButton"
+      color="success"
+      type="button"
+      (click)="login()"
+    >
       Iniciar sesión</button
     ><br />
     <span>¿No tienes una cuenta?</span

@@ -17,7 +17,7 @@
         type="button"
     /></a>
     <button
-      class="navbar-toggler "
+      class="navbar-toggler"
       type="button "
       data-bs-toggle="collapse"
       data-bs-target="#navbarSupportedContent"
@@ -57,14 +57,7 @@
           >
         </li>
       </ul>
-      <form class="d-flex" role="search" *ngIf="authService.isLogged()">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Buscar"
-          aria-label="Search"
-        />
-      </form>
+
       <a routerLink="/cart" *ngIf="authService.isLogged()"
         ><img src="./assets/img/cart.png" alt="" width="30px"
       /></a>

@@ -20,6 +20,7 @@ export class OrdersService {
     if (products?.length !== 1) {
       const productsCode = products.map((product) => product.code);
       const productsQuantity = this.getProductQuantity(productsCode);
+      console.log(products);
       const { total, tax } = this.getTotalAndTax(products);
 
       const order = {
@@ -40,8 +41,8 @@ export class OrdersService {
     }
 
     const order = {
-      total: products[0].price,
-      tax: Math.round(products[0].price * 0.19),
+      total: products[0].price * (products[0].quantity || 1),
+      tax: Math.round(products[0].price * (products[0].quantity || 1) * 0.19),
       client: this.user.id,
       order_state: 2,
       delivery_method: this.deliveryMethod,
@@ -50,7 +51,7 @@ export class OrdersService {
           product: {
             id: products[0].id,
           },
-          quantity: 1,
+          quantity: products[0].quantity,
         },
       ],
     };
@@ -62,11 +63,9 @@ export class OrdersService {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
     this.deliveryMethod = await this.createDeliveryMethod();
 
-    // TODO: Crear orden de fabricacion para muchos productos
-
     const order = {
-      total: product[0].price,
-      tax: Math.round(product[0].price * 0.19),
+      total: product[0].price * (product[0].quantity || 1),
+      tax: Math.round(product[0].price * (product[0].quantity || 1) * 0.19),
       client: this.user.id,
       order_state: 1,
       delivery_method: this.deliveryMethod.id,
@@ -75,7 +74,7 @@ export class OrdersService {
           product: {
             id: product[0].id,
           },
-          quantity: 1,
+          quantity: product[0].quantity,
         },
       ],
     };
@@ -108,7 +107,8 @@ export class OrdersService {
     let total = 0;
 
     for (let i = 0; i < products.length; i++) {
-      total = total + products[i].price;
+      const groupProduct = products[i].price * (products[i].quantity || 1);
+      total = total + groupProduct;
     }
 
     const tax = Math.round(total * 0.19);

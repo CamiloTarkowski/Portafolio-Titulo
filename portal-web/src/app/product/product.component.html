@@ -12,60 +12,73 @@
       </div>
     </div>
     <!-- xs  sm  md  lg  -->
-    <div class="container-fluid pad-bott col-12 col-sm-12 col-md-4" >
-      <div class="card" >
+    <div class="container-fluid pad-bott col-12 col-sm-12 col-md-4">
+      <div class="card">
         <div class="card-body">
           <h3>{{ product?.name }}</h3>
           <p>Código: {{ product?.code }}</p>
-          <p class="price padding">${{ product?.price | ThousandSeparator}}</p>
-          <p class="card-text mb-auto">Colegio: {{ product?.institution?.name }}</p>
+          <p class="price padding">${{ product?.price | ThousandSeparator }}</p>
+          <p class="card-text mb-auto">
+            Colegio: {{ product?.institution?.name }}
+          </p>
           <h2>Descripción: {{ product?.description }}</h2>
-          <p class="font1">Unidades disponibles: {{ product?.stock}}</p>
+          <p class="font1">Unidades disponibles: {{ product?.stock }}</p>
 
-          <div class="font1">Cantidad: </div>
+          <div class="font1">Cantidad:</div>
           <div class="container row border font1">
             <div class="col divwidth">
-              <button (click)="diminishQuantity()"
-                type="button" class="btn btn-outline-secondary">-
+              <button
+                (click)="diminishQuantity()"
+                type="button"
+                class="btn btn-outline-secondary"
+              >
+                -
               </button>
             </div>
 
-          <div class="col quantity padding">{{quantity}}</div>
+            <div class="col quantity padding">{{ quantity }}</div>
 
-          <div class="col divwidth">
-            <button (click)="increaseQuantity()" 
-              type="button" class="btn btn-outline-secondary increase">+
-            </button>
-           </div> 
+            <div class="col divwidth">
+              <button
+                (click)="increaseQuantity()"
+                type="button"
+                class="btn btn-outline-secondary increase"
+              >
+                +
+              </button>
+            </div>
           </div>
 
           <div class="floatbottom">
-            <div class="d-grid gap-2" style="padding: 5px;">
+            <div class="d-grid gap-2" style="padding: 5px">
               <button
-              *ngIf="product.stock > 0"
-              class="btn btn-lg btn-block btn-outline-primary"
-              (click)="addToCart()"
+                *ngIf="product.stock > 0 && quantity <= product.stock"
+                class="btn btn-lg btn-block btn-outline-primary"
+                (click)="addToCart()"
               >
-              Añadir al carrito
+                Añadir al carrito
               </button>
-            </div>          
-            <div *ngIf="product.stock != 0" class="d-grid gap-2" style="padding: 5px;">
+            </div>
+            <div
+              *ngIf="product.stock != 0 && quantity <= product.stock"
+              class="d-grid gap-2"
+              style="padding: 5px"
+            >
               <button
-              
-              class="btn btn-lg btn-block btn-primary"
-              (click)="goToPay()"
+                class="btn btn-lg btn-block btn-primary"
+                (click)="goToPay()"
               >
-              Ir a pagar
+                Ir a pagar
               </button>
             </div>
             <button
-            *ngIf="product.stock == 0"
-            class="btn btn-lg btn-block btn-primary"
-            (click)="createMakeOrder()"
-          >
-            Ir a pagar
-          </button>
-        </div>       
+              *ngIf="product.stock == 0 || quantity > product.stock"
+              class="btn btn-lg btn-block btn-primary"
+              (click)="createMakeOrder()"
+            >
+              Cotizar con la dueña
+            </button>
+          </div>
         </div>
       </div>
     </div>

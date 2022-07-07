@@ -4,8 +4,10 @@
     <hr />
     <ul>
       <li *ngFor="let product of products">
-        {{ product.name }}
-        <p class="text">${{ product.price | ThousandSeparator }}</p>
+        {{ product.name }} ({{ product.quantity }} unidades)
+        <p class="text">
+          ${{ product.price * (product.quantity || 1) | ThousandSeparator }}
+        </p>
       </li>
       <hr />
     </ul>
@@ -19,7 +21,13 @@
       [elementsOptions]="elementsOptions"
     ></ngx-stripe-card>
     <div class="d-grid gap-2" style="padding-top: 15px">
-      <button (click)="pay()" class="btn btn-success">Pagar</button>
+      <button
+        (click)="pay()"
+        [disabled]="disableButton"
+        class="btn btn-success"
+      >
+        Pagar
+      </button>
     </div>
   </div>
 </main>
