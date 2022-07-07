@@ -74,9 +74,15 @@ export class ProductComponent implements OnInit {
     // Trae el id del url y asigna al los datos a la propiedad producto
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.productService.getProduct(id).subscribe((product: any) => {
-        this.product = product;
-      });
+      this.productService.getProduct(id).subscribe(
+        (product: any) => {
+          this.product = product;
+        },
+        (err) => {
+          // si noe existe el producto se redirecciona a la pagina de inicio
+          this.router.navigate(['/']);
+        }
+      );
     });
   }
 
