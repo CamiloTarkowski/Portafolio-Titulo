@@ -32,11 +32,6 @@ export class ProductComponent implements OnInit {
   }
 
   goToPay() {
-    if (this.product.stock < this.quantity) {
-      this.toastService.error('No hay suficiente stock');
-      return;
-    }
-
     const product = { ...this.product, quantity: this.quantity };
     localStorage.setItem('productsToPay', JSON.stringify([product]));
     this.router.navigate(['/pagar']);
@@ -54,7 +49,6 @@ export class ProductComponent implements OnInit {
         );
       },
       (err) => {
-        console.log(err);
         this.toastService.error(
           'No se pudo crear el pedido de fabricación, intente nuevamente'
         );
@@ -63,12 +57,16 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Trae el id del url y asigna al los datos a la propiedad producto
     this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.productService.getProduct(id).subscribe((product: any) => {
-        this.product = product;
-      });
+      this.productService.getProduct(id).subscribe(
+        (product: any) => {
+          this.product = product;
+        },
+        (err) => {
+          this.router.navigate(['/']);
+        }
+      );
     });
   }
 

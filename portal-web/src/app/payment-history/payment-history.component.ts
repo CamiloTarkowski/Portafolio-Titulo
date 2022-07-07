@@ -14,7 +14,6 @@ export class PaymentHistoryComponent implements OnInit {
   getPayments() {
     this.ordersService.getPayments().subscribe((payments: any) => {
       this.payments = payments;
-      console.log(payments[0].order_products);
     });
   }
 

@@ -20,7 +20,6 @@ export class OrdersService {
     if (products?.length !== 1) {
       const productsCode = products.map((product) => product.code);
       const productsQuantity = this.getProductQuantity(productsCode);
-      console.log(products);
       const { total, tax } = this.getTotalAndTax(products);
 
       const order = {

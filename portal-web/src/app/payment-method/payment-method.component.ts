@@ -20,10 +20,8 @@ import { Order_products } from '../interfaces/order_products.interface';
 export class PaymentMethodComponent implements OnInit, OnDestroy {
   apiUrl: string = 'http://localhost:4444';
   user: any;
-  products: Product[] = [];
   orderProducts: Order_products[] = [];
   finalPrice: number = 0;
-  TEST_CREDIT_CART = '4242 4242 4242 4242';
   isValid: boolean = false;
   notificationId?: string | null = '';
   disableButton: boolean = false;
@@ -120,7 +118,6 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
     const orderProducts: any[] = JSON.parse(
       localStorage.getItem('productsToPay') || '[]'
     );
-    console.log(orderProducts);
     if (orderProducts.length === 0) this.router.navigate(['/']);
 
     this.finalPrice = orderProducts
@@ -146,9 +143,7 @@ export class PaymentMethodComponent implements OnInit, OnDestroy {
           stock: newStock < 0 ? 0 : newStock,
         })
         .subscribe(
-          (res: any) => {
-            console.log(res);
-          },
+          (res: any) => {},
           (err: any) => {
             console.log(err);
           }
