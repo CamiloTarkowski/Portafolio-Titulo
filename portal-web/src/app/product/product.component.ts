@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
           this.product = product;
         },
         (err) => {
-          // si noe existe el producto se redirecciona a la pagina de inicio
+          // si no existe el producto se redirecciona a la pagina de inicio
           this.router.navigate(['/']);
         }
       );
