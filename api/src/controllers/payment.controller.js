@@ -2,16 +2,19 @@ import { response } from "express";
 import { Stripe } from "stripe";
 import axios from "axios";
 
+// token para hacer transacciones con stripe
 const stripe = new Stripe(
   "sk_test_51LCowUBKpY1HISMEgZvr9juQoEhSj5zepd3L75768L61KMQAwbKpHf4Xb1UNJc6q7aPtZHHgnJprrHHbVqjCKnku00an9Eyimi"
 );
 
+/* Crea un intento de pago, si sale bien retorna el secreto del cliente, si falla retorna un error */
 export const pay = async (req, res = response) => {
   try {
+    // se extrae el monto del body de la peticion
     const { amount } = req.body;
 
-    const DOLAR_TO_CENTS = (Number(amount) / 883) * 100;
-
+    // se pasan de dinero en clp a centavos de dolar
+    const DOLAR_TO_CENTS = (Number(amount) / 950) * 100;
     const UsdAmount = Math.round(DOLAR_TO_CENTS);
 
     const paymentIntent = await stripe.paymentIntents.create({
