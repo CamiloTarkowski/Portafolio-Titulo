@@ -71,13 +71,15 @@
                 Ir a pagar
               </button>
             </div>
-            <button
-              *ngIf="product.stock == 0 || quantity > product.stock"
-              class="btn btn-lg btn-block btn-primary"
-              (click)="createMakeOrder()"
-            >
-              Solicitar fabricación
-            </button>
+            <div class="d-grid gap-2">
+              <button
+                *ngIf="product.stock == 0 || quantity > product.stock"
+                class="btn btn-lg btn-block btn-primary"
+                (click)="createMakeOrder()"
+              >
+                Solicitar confección
+              </button>
+           </div>
           </div>
         </div>
       </div>
