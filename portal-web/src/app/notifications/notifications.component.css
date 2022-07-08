@@ -1,31 +1,37 @@
-.notification__box{
-    max-width: 800px;
-    margin: auto;
-    padding: 15px;
-    font-size: 20px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+.notification__box {
+  max-width: 800px;
+  margin: auto;
+  padding: 15px;
+  font-size: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-b{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+b {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-h1{
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: rgb(73, 73, 73);
+h1 {
+  text-align: center;
+  font-size: 30px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(73, 73, 73);
 }
 
-.body__box{
-    background-color: aliceblue;
-    max-width: 850px;
-    padding: 15px;
-    border-radius: 8px;
+.body__box {
+  background-color: aliceblue;
+  max-width: 850px;
+  padding: 15px;
+  border-radius: 8px;
 }
 
-.message{
-    line-height: 25px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.message {
+  line-height: 25px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.empty {
+  width: 100%;
+  text-align: center;
+  margin: 200px 0;
 }

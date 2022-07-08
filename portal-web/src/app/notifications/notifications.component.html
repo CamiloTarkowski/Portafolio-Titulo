@@ -1,7 +1,6 @@
 <title>Tus notificaciones</title>
 <br />
-
-<div class="container-fluid body__box shadow-sm p-3 mb-5 bg-white rounded">
+<div class="container-fluid body__box shadow-sm p-3 bg-white rounded">
   <h1>Centro de notificaciones</h1>
   <div
     class="card mt-5 notification__box"
@@ -38,5 +37,7 @@
     </button>
   </div>
 
-  <p *ngIf="notifications.length == 0">(No hay ninguna notificación)</p>
+  <p class="empty" *ngIf="notifications.length == 0">
+    No hay ninguna notificación
+  </p>
 </div>
