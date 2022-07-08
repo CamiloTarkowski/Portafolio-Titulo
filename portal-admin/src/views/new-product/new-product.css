@@ -27,7 +27,7 @@
   border-radius: 5px;
 }
 
-.button { 
+#addProduct { 
   border: none;
   outline: none;
   margin-top: 20px;
@@ -36,6 +36,8 @@
   border-radius: 5px;
   color: white;
   font-weight: 700;
+  text-align: center;
+  background-color: #1BB55C;
 }
 
 .file {
