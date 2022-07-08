@@ -15,12 +15,7 @@
         </p>
       </li>
       <hr />
-      <ul>
-        <li *ngFor="let orderProduct of orderProducts">
-          {{ orderProduct.name }} ({{orderProduct.quantity}} Unidades): <div style="text-align: right;">${{ orderProduct.price*orderProduct.quantity | ThousandSeparator }}</div>
-        </li>
-        <hr />
-      </ul>
+
       <p class="text">
         <b>Precio total:</b> ${{ finalPrice | ThousandSeparator }}
       </p>
@@ -41,4 +36,4 @@
       </button>
     </div>
   </div>
-  </main> 
+</main>
