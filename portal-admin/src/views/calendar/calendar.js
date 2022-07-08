@@ -182,10 +182,16 @@ const loadCalendar = async () => {
       (orderProduct) =>
         `${orderProduct.product.name} (${orderProduct.quantity})`
     );
-    const estimatedManufactoringTime = orderProducts.map(
+    let estimatedManufactoringTime = orderProducts.map(
       (orderProduct) =>
-        orderProduct.product.manufactoring_time * orderProduct.quantity
+        Number(orderProduct.product.manufacturing_time) * orderProduct.quantity
     );
+
+    estimatedManufactoringTime = estimatedManufactoringTime.reduce(
+      (a, b) => Number(a) + Number(b),
+      0
+    );
+
     return {
       id: schedule.id,
       calendarId: "1",
@@ -285,7 +291,8 @@ const createNewSchedule = async (orderId, name, rut, number, total) => {
 
   const estimatedManufactoringTime = orderProducts.map(
     (orderProduct) =>
-      orderProduct.product.manufactoring_time * orderProduct.quantity
+      Number(orderProduct.product.manufactoring_time) *
+      Number(orderProduct.quantity)
   );
 
   if (date === "") {
@@ -339,7 +346,9 @@ const calculateEstimatedTime = (orderProducts) => {
     );
   });
 
-  return estimatedManufactoringTime;
+  const estimated = estimatedManufactoringTime.reduce((a, b) => a + b, 0);
+
+  return estimated;
 };
 
 const showProductsCode = (order_products) => {
@@ -359,7 +368,3 @@ const formatDate = (date) => {
   const year = newDate[0] + newDate[3];
   return `${day}/${month}/${year}`;
 };
-
-goBack.addEventListener("click", () => {
-  ipcRenderer.send("go-back");
-});

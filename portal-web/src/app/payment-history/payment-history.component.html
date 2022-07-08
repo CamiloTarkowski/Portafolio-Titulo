@@ -3,7 +3,7 @@
   <main>
     <h1>Historial de compras</h1>
     <div
-      class="card card-body d-flex flex-column align-items-start mb-2"
+      class="card card-body d-flex flex-column align-items-start"
       *ngFor="let payment of payments"
     >
       <div *ngFor="let orderProducts of payment.order_products">
@@ -22,6 +22,7 @@
         <p class="card-text mb-auto">
           Fecha de pago: {{ payment.created_at | date: "dd/MM/YY" }}
         </p>
+        <hr />
       </div>
     </div>
 
