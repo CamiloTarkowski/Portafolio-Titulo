@@ -34,7 +34,7 @@ export class NotificationsComponent implements OnInit {
     this.notificationService
       .deleteNotification(notificationId)
       .subscribe((res) => {
-        this.toastService.success('Se borrado la notificación');
+        this.toastService.success('Se ha borrado la notificación');
         this.notificationService
           .getNotifications()
           .subscribe((notifications) => {
