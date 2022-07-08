@@ -323,7 +323,6 @@ ipcMain.on("show-popup", async (_, schedule) => {
 });
 
 ipcMain.on("login", async (_, { email, password }) => {
-  console.log(email, password);
   if (email.length < 3 || password.length < 3) {
     new Notification({
       title: "Portal admin - Error",

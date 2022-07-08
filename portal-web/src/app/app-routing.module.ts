@@ -44,7 +44,7 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
-    path: 'inicia-sesion',
+    path: 'iniciar-sesion',
     component: LoginComponent,
   },
   {

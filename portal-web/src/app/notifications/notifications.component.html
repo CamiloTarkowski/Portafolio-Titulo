@@ -4,9 +4,7 @@
     <div class="card mt-5" *ngFor="let notification of notifications">
       <p>Pedido: {{ notification.order.order_products | getOrderProducts }}</p>
       <p *ngIf="notification.order.order_state != 4">
-        Precio final (+IVA): ${{
-          notification.order.total + notification.order.tax | ThousandSeparator
-        }}
+        Precio final (+IVA): ${{ notification.order.total | ThousandSeparator }}
       </p>
       <p>
         Fecha del pedido de fabricación:

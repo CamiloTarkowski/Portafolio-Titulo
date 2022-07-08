@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../interfaces/product.interface';
 import { CartService } from '../services/cart.service';
 import { Router } from '@angular/router';
 import { Order_products } from '../interfaces/order_products.interface';

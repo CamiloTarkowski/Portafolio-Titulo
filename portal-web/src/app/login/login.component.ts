@@ -10,18 +10,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  email: string;
-  password: string;
+  email: string = "";
+  password: string = "";
   disableButton: boolean = false;
 
   constructor(
     private authService: AuthService,
     private toast: ToastrService,
     private router: Router
-  ) {
-    this.email = 'bastianhuenuqueo43@gmail.com';
-    this.password = 'conTemporalB1';
-  }
+  ) {}
 
   login() {
     this.disableButton = true;
